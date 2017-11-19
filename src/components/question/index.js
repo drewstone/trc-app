@@ -57,41 +57,6 @@ export default function Question({ screenActions, marketActions }) {
               <input className="input is-medium" type="text" placeholder="Question" />
             </div>
           </div>
-          <div className="field">
-            <div className="control">
-              <input className="input is-medium" type="text" placeholder="Question" />
-            </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <input className="input is-medium" type="text" placeholder="Question" />
-            </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <input className="input is-medium" type="text" placeholder="Question" />
-            </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <input className="input is-medium" type="text" placeholder="Question" />
-            </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <input className="input is-medium" type="text" placeholder="Question" />
-            </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <input className="input is-medium" type="text" placeholder="Question" />
-            </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <input className="input is-medium" type="text" placeholder="Question" />
-            </div>
-          </div>
         {
           dropDownGenerator([
             { data: 'Mechanism Type', options: ['Robust Bayesian Truth Serum', 'Enogenous'] }
