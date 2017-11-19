@@ -18,29 +18,6 @@ export default function Question({ screenActions, marketActions }) {
     margin-right: 20px;
   `;
 
-  const dropDownGenerator = (topics) => {
-    return (
-      <div>
-        {
-          topics.map(topic => (
-            <div className="field">
-              <div className="control">
-                <div className="select">
-                  <select>
-                    <option>Select a { topic.data }</option>
-                    {
-                      topic.options.map(opt => ( <option>{opt}</option> ))
-                    }
-                  </select>
-                </div>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    );
-  }
-
   return (
     <Div className="hero-body is-dark is-fullscreen">
       <OutlinedForm className="column hero is-light">
@@ -52,16 +29,21 @@ export default function Question({ screenActions, marketActions }) {
               <input className="input is-medium" type="text" placeholder="Question" />
             </div>
           </div>
-          <div className="field">
+          <div className="field has-addons">
             <div className="control">
-              <input className="input is-medium" type="text" placeholder="Question" />
+              <div className="select">
+                <select>
+                  <option>Select a mechanism type</option>
+                  {
+                    ['Robust Bayesian Truth Serum', 'Endogenous'].map(opt => ( <option>{opt}</option> ))
+                  }
+                </select>
+              </div>
+            </div>
+            <div class="control">
+              <button type="submit" className="button is-primary">Create</button>
             </div>
           </div>
-        {
-          dropDownGenerator([
-            { data: 'Mechanism Type', options: ['Robust Bayesian Truth Serum', 'Enogenous'] }
-          ])
-        }
       </OutlinedForm>
     </Div>
   );
