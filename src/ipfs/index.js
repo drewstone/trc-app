@@ -1,10 +1,9 @@
 import Promise from 'bluebird';
-import ipfsAPI from 'ipfs-api';
 
 export default async function(ipfsOptions) {
   return new Promise((resolve, reject) => {
     // Checks on ipfsOptions and connects to network
-    const ipfs = ipfsAPI('ipfs.infura.io', '5001', { protocol: 'http' });
+    const ipfs = window.IpfsApi('ipfs.infura.io', '5001', { protocol: 'http' });
   });
 }
 

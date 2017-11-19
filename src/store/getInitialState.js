@@ -4,34 +4,9 @@ const developmentFixtures = {
   market: {
     questions: [{
       id: 1,
-      type: 'PREDICTION',
-      q: 'Is this a quality article?',
-      true: 1,
-      false: 10,
-    },{
-      id: 2,
-      type: 'PREDICTION',
-      q: 'Is this a quality article?',
-      true: 2,
-      false: 10,
-    },{
-      id: 3,
-      type: 'PREDICTION',
-      q: 'Is this a quality article?',
-      true: 3,
-      false: 10,
-    },{
-      id: 4,
-      type: 'PREDICTION',
-      q: 'Is this a quality article?',
-      true: 4,
-      false: 10,
-    },{
-      id: 5,
-      type: 'PREDICTION',
-      q: 'Is this a quality article?',
-      true: 5,
-      false: 10,
+      text: 'Will AAPL go up or down?',
+      mechanismType: 'Endogenous',
+      choices: ['up', 'down'],
     }],
   }
 }

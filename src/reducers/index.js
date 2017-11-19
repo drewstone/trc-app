@@ -23,15 +23,19 @@ const marketReducer = (state = marketInitialState, action) => {
 
   switch (type) {
     case marketActions.ADD_QUESTION:
-      return {
-        ...state,
-        questions: [
-          ...state.questions, {
-            id: payload.questionId,
-            data: payload.questionContents
-          },
-        ],
-      };
+      return handle(state, action, {
+        start: prevState => ({
+          ...prevState,
+          isLoading: true,
+          fooError: null
+        }),
+        finish: prevState => ({ ...prevState, isLoading: false }),
+        failure: prevState => ({ ...prevState, fooError: payload }),
+        success: prevState => ({
+          ...prevState,
+          questions: [ ...prevState.questions, { id: payload.questionId, data: payload.questionContents } ]
+        }),
+      });
     default:
       return state;
   }

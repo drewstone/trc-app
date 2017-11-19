@@ -10,7 +10,7 @@ import UserContainer from './UserContainer';
 import PredictionListContainer from './PredictionListContainer';
 import PredictionContainer from './PredictionContainer';
 import QuestionListContainer from './QuestionListContainer';
-import QuestionContainer from './QuestionContainer';
+import AddQuestionContainer from './AddQuestionContainer';
 
 import EthUtil from '../ethereum';
 
@@ -20,7 +20,7 @@ const screenContainerComponent = {
   [screens.PREDICTIONLIST]: PredictionListContainer,
   [screens.PREDICTION]: PredictionContainer,
   [screens.QUESTIONLIST]: QuestionListContainer,
-  [screens.QUESTION]: QuestionContainer,
+  [screens.ADD_QUESTION]: AddQuestionContainer,
 };
 
 class App extends Component {
