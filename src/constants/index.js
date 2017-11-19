@@ -1,19 +1,17 @@
 export const screens = {
-  MENU: 'MENU',
-  PREDICT: 'PREDICT',
-  POST: 'POST',
+  NEWUSER: 'NEWUSER',
+  USER: 'USER',
+  QUESTION: 'QUESTION',
+  QUESTIONS_LIST: 'QUESTIONS_LIST',
+  PREDICTION: 'PREDICTION',
+  PREDICTIONS_LIST: 'PREDICTIONS_LIST',
 };
 
 export const screenActions = {
   SWITCH_TO: 'SWITCH_TO',
 };
 
-export const userActions = {
-  ADD_POST: 'ADD_POST',
+export const marketActions = {
+  ADD_QUESTION: 'ADD_QUESTION',
   ADD_PREDICTION: 'ADD_PREDICTION',
-}
-
-export const ethereumActions = {
-  CREATE_WALLET: 'CREATE_WALLET',
-  RECOVER_WALLET: 'RECOVER_WALLET',
-}
+};

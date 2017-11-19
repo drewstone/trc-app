@@ -18,17 +18,17 @@ export default function Navbar({ switchTo, screens, options = {}, children }) {
             </span>
             <div className="nav-right nav-menu">
               <span className="nav-item">
-                <a id="menu-btn" className="button is-info">
+                <a id="menu-btn" className="button is-light">
                   <span>Menu</span>
                 </a>
               </span>
               <span className="nav-item">
-                <a id="predict-btn" className="button is-info is-outlined">
+                <a id="predict-btn" className="button is-light">
                   <span>Predict</span>
                 </a>
               </span>
               <span className="nav-item">
-                <a id="about-btn" className="button is-info is-outlined">
+                <a id="about-btn" className="button is-light">
                   <span>Post</span>
                 </a>
               </span>

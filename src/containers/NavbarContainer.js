@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { screens } from '../constants';
-import { screenActions, predictionActions } from '../actions';
+import { screenActions, marketActions } from '../actions';
 import Navbar from '../components/navbar';
 
 class NavbarContainer extends Component {
@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   screenActions: bindActionCreators(screenActions, dispatch),
-  predictionActions: bindActionCreators(predictionActions, dispatch),
+  marketActions: bindActionCreators(marketActions, dispatch),
 })
 
 export default connect(

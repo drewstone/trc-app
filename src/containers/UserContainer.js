@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { screenActions, marketActions } from '../actions';
-import Menu from '../components/menu';
+import user from '../components/user';
 
-class MenuContainer extends Component {
+class UserContainer extends Component {
   render() {
     return (
-      <Menu screenActions={this.props.screenActions}/>
+      <user
+        screenActions={this.props.screenActions}
+        marketActions={this.props.marketActions}
+      />
     );
   }
 }
@@ -18,9 +21,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   screenActions: bindActionCreators(screenActions, dispatch),
   marketActions: bindActionCreators(marketActions, dispatch),
-})
+});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MenuContainer);
+)(UserContainer);

@@ -5,12 +5,22 @@ import { bindActionCreators } from 'redux';
 import { screenActions } from '../actions';
 import { screens } from '../constants';
 import NavbarContainer from './NavbarContainer';
-import MenuContainer from './MenuContainer';
+import NewUserContainer from './NewUserContainer';
+import UserContainer from './UserContainer';
+import PredictionListContainer from './PredictionListContainer';
+import PredictionContainer from './PredictionContainer';
+import QuestionListContainer from './QuestionListContainer';
+import QuestionContainer from './QuestionContainer';
 
 import EthUtil from '../ethereum';
 
 const screenContainerComponent = {
-  [screens.MENU]: MenuContainer,
+  [screens.NEWUSER]: NewUserContainer,
+  [screens.USER]: UserContainer,
+  [screens.PREDICTIONLIST]: PredictionListContainer,
+  [screens.PREDICTION]: PredictionContainer,
+  [screens.QUESTIONLIST]: QuestionListContainer,
+  [screens.QUESTION]: QuestionContainer,
 };
 
 class App extends Component {

@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-import { screens, screenActions, userActions } from '../constants';
+import { screens, screenActions, marketActions } from '../constants';
+import { handle } from 'redux-pack';
 
-const screenReducer = (state = screens.MENU, action) => {
+const screenReducer = (state = screens.NEWUSER, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -12,33 +13,31 @@ const screenReducer = (state = screens.MENU, action) => {
   }
 };
 
-const predictionReducer = (state = [], action) => {
+const marketInitialState = {
+  predictions: [],
+  questions: [],
+};
+
+const marketReducer = (state = marketInitialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case userActions.ADD_PREDICTION:
-      return state.map(elt => {
-        if (elt.id === payload.data.id) {
-          if (payload.value) {
-            payload.data.true += 1;
-          } else {
-            payload.data.false += 1;
-          }
-
-          return Object.assign({}, payload.data, {
-            voted: payload.value,
-          });
-        } else {
-          return Object.assign({}, elt);
-        }
-      });
-
+    case marketActions.ADD_QUESTION:
+      return {
+        ...state,
+        questions: [
+          ...state.questions, {
+            id: payload.questionId,
+            data: payload.questionContents
+          },
+        ],
+      };
     default:
       return state;
   }
-};
+}
 
 export default combineReducers({
   currentScreen: screenReducer,
-  predictions: predictionReducer,
+  market: marketReducer,
 });
