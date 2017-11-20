@@ -14,13 +14,12 @@ const screenReducer = (state = screens.NEWUSER, action) => {
 };
 
 const marketInitialState = {
-  predictions: [],
+  predictions: {},
   questions: [],
 };
 
 const marketReducer = (state = marketInitialState, action) => {
   const { type, payload } = action;
-  
   switch (type) {
     case marketActions.ADD_QUESTION:
       return handle(state, action, {
@@ -44,19 +43,14 @@ const marketReducer = (state = marketInitialState, action) => {
         start: prevState => ({ ...prevState, isLoading: true, fooError: null }),
         finish: prevState => ({ ...prevState, isLoading: false }),
         failure: prevState => ({ ...prevState, fooError: payload }),
-        success: prevState => ({
-          ...prevState,
-          predictions: {
-            ...prevState.predictions,
-            [payload.question.id]: [
-              ...prevState.predictions[payload.question.id],
-              {
-                user: 'Jim',
-                prediction: payload.prediction,
-              }
-            ],
-          }
-        }),
+        success: prevState => {
+          const newState = Object.assign({}, prevState);
+          newState.predictions[payload.question.id].push({
+            name: 'Jim', prediction: payload.prediction
+          });
+
+          return newState;
+        },
       });
     default:
       return state;
