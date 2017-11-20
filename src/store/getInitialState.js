@@ -4,9 +4,33 @@ const developmentFixtures = {
   market: {
     questions: [{
       id: 1,
-      text: 'Will AAPL go up or down?',
       mechanismType: 'Endogenous',
-      choices: ['up', 'down'],
+      text: 'Will APPL go up or down?',
+      choices: ['up', 'down']
+    },
+    {
+      id: 2,
+      mechanismType: 'Endogenous',
+      text: 'Will GOOG go up or down?',
+      choices: ['up', 'down']
+    },
+    {
+      id: 3,
+      mechanismType: 'Endogenous',
+      text: 'Will SBUX go up or down?',
+      choices: ['up', 'down']
+    },
+    {
+      id: 4,
+      mechanismType: 'Endogenous',
+      text: 'Will TSLA go up or down?',
+      choices: ['up', 'down']
+    },
+    {
+      id: 5,
+      mechanismType: 'Endogenous',
+      text: 'Will FB go up or down?',
+      choices: ['up', 'down']
     }],
   }
 }

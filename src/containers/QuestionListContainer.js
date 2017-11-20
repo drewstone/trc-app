@@ -7,12 +7,17 @@ import QuestionList from '../components/questionlist';
 class QuestionListContainer extends Component {
   render() {
     return (
-      <QuestionList screenActions={this.props.screenActions}/>
+      <QuestionList
+        questions={this.props.questions}
+        screenActions={this.props.screenActions}
+        marketActions={this.props.marketActions}
+      />
     );
   }
 }
 
 const mapStateToProps = state => ({
+  questions: state.market.questions,
 });
 
 const mapDispatchToProps = dispatch => ({

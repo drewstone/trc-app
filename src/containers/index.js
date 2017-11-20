@@ -17,9 +17,9 @@ import EthUtil from '../ethereum';
 const screenContainerComponent = {
   [screens.NEWUSER]: NewUserContainer,
   [screens.USER]: UserContainer,
-  [screens.PREDICTIONLIST]: PredictionListContainer,
+  [screens.PREDICTION_LIST]: PredictionListContainer,
   [screens.PREDICTION]: PredictionContainer,
-  [screens.QUESTIONLIST]: QuestionListContainer,
+  [screens.QUESTION_LIST]: QuestionListContainer,
   [screens.ADD_QUESTION]: AddQuestionContainer,
 };
 
