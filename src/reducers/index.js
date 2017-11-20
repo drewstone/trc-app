@@ -1,6 +1,4 @@
-
-
-fdsjfdksljfdsklfdsjkljkljkjkimport { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import { screens, screenActions, marketActions } from '../constants';
 import { handle } from 'redux-pack';
 
