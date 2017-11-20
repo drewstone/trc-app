@@ -4,21 +4,22 @@ import ipfsUtil from '../ipfs';
 
 export default {
   addPrediction: (data, value) => {
-    return Promise.wait(2000);
+    return Promise.wait(100)
+    .then(() => (data, value));
   },
   fetchPredictions: (data, value) => {
-    return Promise.wait(2000);
+    return Promise.wait(100);
   },
-  addQuetion: (data, value) => {
-    return Promise.wait(2000);
+  addQuestion: (data, value) => {
+    return Promise.wait(100);
   },
-  fetchQuetions: (data, value) => {
-    return Promise.wait(2000);
+  fetchQuestions: (data, value) => {
+    return Promise.wait(100);
   },
   getProfile: (data, value) => {
-    return Promise.wait(2000);
+    return Promise.wait(100);
   },
   editProfile: (data, value) => {
-    return Promise.wait(2000);
+    return Promise.wait(100);
   },
 }
