@@ -22,10 +22,10 @@ export default function NewUser({ screenActions, marketActions, decentralState }
 
   return (
     <Div className="hero-body is-dark is-fullscreen">
-      <OutlinedArticle className="column hero is-half is-light has-text-centered" onClick={() => screenActions.switchTo(screens.QUESTION)}>
+      <OutlinedArticle className="column hero is-half is-light has-text-centered" onClick={() => screenActions.switchTo(screens.QUESTION_LIST)}>
         <h1>Answer a question</h1>
       </OutlinedArticle>
-      <OutlinedArticle className="column hero is-half is-light has-text-centered"> 
+      <OutlinedArticle className="column hero is-half is-light has-text-centered" onClick={() => screenActions.switchTo(screens.QUESTION)}> 
         <h1>Add a question</h1>
       </OutlinedArticle>
     </Div>
