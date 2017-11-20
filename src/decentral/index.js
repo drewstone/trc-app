@@ -3,28 +3,28 @@ import ethUtil from '../ethereum';
 import ipfsUtil from '../ipfs';
 
 export default {
-  addPrediction: (data, value) => {
+  addPrediction: (data) => {
     return Promise.wait(100)
-    .then(() => (data, value));
+    .then(() => (data));
   },
-  fetchPredictions: (data, value) => {
+  fetchPredictions: (data) => {
     return Promise.wait(100)
-    .then(() => (data, value));
+    .then(() => (data));
   },
-  addQuestion: (data, value) => {
+  addQuestion: (data) => {
     return Promise.wait(100)
-    .then(() => (data, value));
+    .then(() => (data));
   },
-  fetchQuestions: (data, value) => {
+  fetchQuestions: (data) => {
     return Promise.wait(100)
-    .then(() => (data, value));
+    .then(() => (data));
   },
-  getProfile: (data, value) => {
+  getProfile: (data) => {
     return Promise.wait(100)
-    .then(() => (data, value));
+    .then(() => (data));
   },
-  editProfile: (data, value) => {
+  editProfile: (data) => {
     return Promise.wait(100)
-    .then(() => (data, value));
+    .then(() => (data));
   },
 }

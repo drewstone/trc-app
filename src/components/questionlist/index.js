@@ -53,8 +53,12 @@ class QuestionList extends React.Component {
     });
   }
 
-  handleSubmit() {
-    console.log(this.state.selectedChoice);
+  handleSubmit(e) {
+    e.preventDefault();
+    this.marketActions.addPrediction({
+      question: this.state.currQuestion,
+      prediction: this.state.selectedChoice,
+    });
   }
 
   presentModal() {
