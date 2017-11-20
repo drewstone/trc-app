@@ -2,6 +2,12 @@ import { screens } from '../constants';
 
 const developmentFixtures = {
   market: {
+    predictions: {
+      1: [{
+        user: 'Jim',
+        prediction: 'up',
+      }]
+    },
     questions: [{
       id: 1,
       mechanismType: 'Endogenous',

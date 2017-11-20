@@ -34,6 +34,7 @@ class QuestionList extends React.Component {
     };
     this.handleChoiceChange = this.handleChoiceChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.dismissModal = this.dismissModal.bind(this);
   }
 
   componentDidMount() {
@@ -55,9 +56,16 @@ class QuestionList extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.marketActions.addPrediction({
+    this.props.marketActions.addPrediction({
       question: this.state.currQuestion,
       prediction: this.state.selectedChoice,
+    });
+
+    this.setState(state => {
+      return {
+        ...state,
+        isModalVisible: false,
+      }
     });
   }
 
@@ -67,21 +75,24 @@ class QuestionList extends React.Component {
         <ModalContent id="modalContent">
           {this.state.currQuestion.text}
           <form onSubmit={this.handleSubmit}>
-            <label>
-              <input type="radio"
-                value={this.state.currQuestion.choices[0]}
-                checked={this.state.selectedChoice === this.state.currQuestion.choices[0]}
-                onChange={() => this.handleChoiceChange(this.state.currQuestion.choices[0])}/>
-              {this.state.currQuestion.choices[0]}
-            </label>
-            <label>
-              <input
-                type="radio" value={this.state.currQuestion.choices[1]}
-                checked={this.state.selectedChoice === this.state.currQuestion.choices[1]}
-                onChange={() => this.handleChoiceChange(this.state.currQuestion.choices[1])}/>
-              {this.state.currQuestion.choices[1]}
-            </label>
+            <div>
+              <label>
+                <input type="radio"
+                  value={this.state.currQuestion.choices[0]}
+                  checked={this.state.selectedChoice === this.state.currQuestion.choices[0]}
+                  onChange={() => this.handleChoiceChange(this.state.currQuestion.choices[0])}/>
+                {this.state.currQuestion.choices[0]}
+              </label>
+              <label>
+                <input
+                  type="radio" value={this.state.currQuestion.choices[1]}
+                  checked={this.state.selectedChoice === this.state.currQuestion.choices[1]}
+                  onChange={() => this.handleChoiceChange(this.state.currQuestion.choices[1])}/>
+                {this.state.currQuestion.choices[1]}
+              </label>
+            </div>
             <button type="submit">Submit</button>
+            <button onClick={this.dismissModal}>Exit</button>
           </form>
         </ModalContent>
       </QuestionModal>
@@ -94,6 +105,15 @@ class QuestionList extends React.Component {
         ...state,
         isModalVisible: !state.isModalVisible,
         currQuestion: data
+      }
+    });
+  }
+
+  dismissModal() {
+    this.setState(state => {
+      return {
+        ...state,
+        isModalVisible: false
       }
     });
   }

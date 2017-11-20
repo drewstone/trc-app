@@ -20,7 +20,7 @@ const marketInitialState = {
 
 const marketReducer = (state = marketInitialState, action) => {
   const { type, payload } = action;
-
+  
   switch (type) {
     case marketActions.ADD_QUESTION:
       return handle(state, action, {
