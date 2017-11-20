@@ -46,7 +46,16 @@ const marketReducer = (state = marketInitialState, action) => {
         failure: prevState => ({ ...prevState, fooError: payload }),
         success: prevState => ({
           ...prevState,
-          predictions: [ ...prevState.predictions, payload.prediction ]
+          predictions: {
+            ...prevState.predictions,
+            [payload.question.id]: [
+              ...prevState.predictions[payload.question.id],
+              {
+                user: 'Jim',
+                prediction: payload.prediction,
+              }
+            ],
+          }
         }),
       });
     default:
