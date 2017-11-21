@@ -1,10 +1,10 @@
 import Promise from 'bluebird';
+var ipfsFns = require('../decentral/index.js')
 
-export default async function(ipfsOptions) {
-  return new Promise((resolve, reject) => {
+export default function() {
     // Checks on ipfsOptions and connects to network
-    const ipfs = window.IpfsApi('ipfs.infura.io', '5001', { protocol: 'http' });
-  });
+   const ipfsOptions = window.IpfsApi('localhost', '5001', { protocol: 'http' });
+   return ipfsFns(ipfsOptions);
 }
 
    // // connect to ipfs daemon API server
