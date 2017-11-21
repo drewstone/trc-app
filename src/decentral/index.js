@@ -3,11 +3,13 @@ import ethUtil from '../ethereum';
 import ipfsUtil from '../ipfs';
 import ipfsAPI from 'ipfs-api';
 import hash from 'object-hash';
+import fs from 'fs';
+import readLastLines from 'read-last-lines';
 var mkdirp = Promise.promisify(require("mkdirp"));
 var writeFile = Promise.promisify(require("jsonfile").writeFile);
 var readFile = Promise.promisify(require("jsonfile").readFile);
 
-const allQuestionsDir = 'site/all_questions/';
+const allQuestionsDir = '../../data/all_questions/';
 const registryPath = allQuestionsDir + 'registry.json';
 
 export default function(ipfsOptions) {
@@ -25,7 +27,7 @@ export default function(ipfsOptions) {
       return Promise.delay(100)
       .then(() => (data));
     },
-    addQuestion: (data) => {
+    addQuestion: (question) => {
       return new Promise((resolve, reject) => {
         // question is a JSON object
         console.log(question);
@@ -40,11 +42,12 @@ export default function(ipfsOptions) {
         }).then(() => {
           console.log("Updating the registry");
           // TODO: Can make this more efficient
-          readFile(registryPath)
-          .then((registry) => {
-            registry[hash(question)] = timestampPath;
-            return writeFile(registryPath, registry);
-          })
+          // readFile(registryPath)
+          // .then((registry) => {
+          //   registry[hash(question)] = timestampPath;
+          //   return writeFile(registryPath, registry);
+          // })
+          fs.appendFileSync(registryPath, hash(question) + ',' + timestampPath);
         }).then(() => {
           console.log("Writing the file succeeded!");
           console.log("Readding site/");
@@ -57,7 +60,7 @@ export default function(ipfsOptions) {
           // const hash = result.slice(-1)[0].hash
           return new Promise((res, rej) => {
             result = result.filter((i, n) => { return i.path==='site'; });
-            if (result.length != 1) {
+            if (result.length !== 1) {
               rej();
             } else {
               res(result[0].hash);
@@ -79,15 +82,27 @@ export default function(ipfsOptions) {
         })
       })
     },
-    fetchQuestions: (data) => {
+    fetchQuestions: (numQuestions) => {
+      const getQuestion = function (hash, location) {
+        return new Promise((resolve, reject) => {
+          readFile(allQuestionsDir + location + hash)
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(err);
+          })
+        });
+      };
+  
       return new Promise((resolve, reject) => {
-        readFile(registryPath)
-        .then((obj) => {
-          const location = obj[hash];
-          return readFile(all_questions_dir + location + hash);
-        })
-        .then((res) => {
-          resolve(res);
+        readLastLines.read(registryPath, numQuestions)
+        .then((lines) => {
+          var data = lines.map(function (line) {
+            var tokens = line.split(',');
+            return getQuestion(tokens[0], tokens[1]);
+          });
+          return data;
         })
         .catch((err) => {
           reject(err);
