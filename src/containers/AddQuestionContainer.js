@@ -8,8 +8,8 @@ class AddQuestionContainer extends Component {
   render() {
     return (
       <AddQuestion
-        screenActions={this.props.screenActions}
-        marketActions={this.props.marketActions}
+        switchTo={this.props.screenActions.switchTo}
+        addQuestion={this.props.marketActions.addQuestion}
       />
     );
   }

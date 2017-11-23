@@ -8,7 +8,7 @@ import NavbarContainer from './NavbarContainer';
 import NewUserContainer from './NewUserContainer';
 import UserContainer from './UserContainer';
 import PredictionListContainer from './PredictionListContainer';
-import PredictionContainer from './PredictionContainer';
+import QuestionContainer from './QuestionContainer';
 import QuestionListContainer from './QuestionListContainer';
 import AddQuestionContainer from './AddQuestionContainer';
 
@@ -18,7 +18,7 @@ const screenContainerComponent = {
   [screens.NEWUSER]: NewUserContainer,
   [screens.USER]: UserContainer,
   [screens.PREDICTION_LIST]: PredictionListContainer,
-  [screens.PREDICTION]: PredictionContainer,
+  [screens.QUESTION]: QuestionContainer,
   [screens.QUESTION_LIST]: QuestionListContainer,
   [screens.ADD_QUESTION]: AddQuestionContainer,
 };
@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     const { currentScreen } = this.props;
     const ScreenComponent = screenContainerComponent[currentScreen];
-
+    console.log(this.props);
     return (
       <NavbarContainer>
         <ScreenComponent />
@@ -43,7 +43,7 @@ class App extends Component {
 
 
 const mapStateToProps = state => ({
-  currentScreen: state.currentScreen,
+  currentScreen: state.screen.currentScreen,
 });
 
 const mapDispatchToProps = dispatch => ({

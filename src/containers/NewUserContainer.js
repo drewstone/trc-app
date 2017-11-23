@@ -8,7 +8,7 @@ class NewUserContainer extends Component {
   render() {
     return (
       <NewUser
-        screenActions={this.props.screenActions}
+        switchTo={this.props.screenActions.switchTo}
         marketActions={this.props.marketActions}
       />
     );

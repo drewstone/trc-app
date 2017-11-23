@@ -38,11 +38,22 @@ const developmentFixtures = {
       text: 'Will FB go up or down?',
       choices: ['up', 'down']
     }],
-  }
+  },
+
+  unsubmitted: {
+    1: {
+      choice: 'up',
+    },
+  },
 }
 
 export default function (config) {
-  const state = { currentScreen: screens.NEWUSER };
+  const state = {
+    screen: {
+      currentScreen: screens.NEWUSER,
+      metadata: null
+    },
+  };
 
   if (process.env.NODE_ENV === 'development') {
     return Object.assign({}, state, developmentFixtures);

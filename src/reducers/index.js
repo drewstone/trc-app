@@ -1,13 +1,17 @@
 import { combineReducers } from 'redux';
-import { screens, screenActions, marketActions } from '../constants';
+import { screens, screenActions, marketActions, userActions } from '../constants';
 import { handle } from 'redux-pack';
 
-const screenReducer = (state = screens.NEWUSER, action) => {
-  const { type, payload } = action;
+const screenInitialState = {
+  currentScreen: screens.NEWUSER,
+  metadata: null,
+};
 
+const screenReducer = (state = screenInitialState, action) => {
+  const { type, payload } = action;
   switch (type) {
     case screenActions.SWITCH_TO:
-      return payload;
+      return { ...state, currentScreen: payload.screen, metadata: payload. metadata };
     default:
       return state;
   }
@@ -57,7 +61,31 @@ const marketReducer = (state = marketInitialState, action) => {
   }
 }
 
+const userInitialState = {
+  unsubmitted: {},
+}
+
+const userReducer = (state = userInitialState, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case userActions.SELECT_CHOICE:
+      return {
+        ...state,
+        unsubmitted: {
+          ...state.unsubmitted,
+          [payload.id]: {
+            choice: payload.choice,
+          }
+        },
+      };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
-  currentScreen: screenReducer,
+  screen: screenReducer,
   market: marketReducer,
+  user: userReducer,
 });

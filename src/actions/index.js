@@ -2,9 +2,9 @@ import * as constants from '../constants';
 import decentral from '../decentral';
 
 export const screenActions = {
-  switchTo: screen => ({
+  switchTo: (screen, metadata) => ({
     type: constants.screenActions.SWITCH_TO,
-    payload: screen,
+    payload: { screen, metadata },
   }),
 };
 
@@ -39,3 +39,10 @@ export const marketActions = {
     promise: decentral.editProfile(data),
   }),
 };
+
+export const userActions = {
+  selectChoice: (id, choice) => ({
+    type: constants.userActions.SELECT_CHOICE,
+    payload: { id, choice },
+  }),
+}

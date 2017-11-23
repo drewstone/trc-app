@@ -11,6 +11,17 @@ export default function Navbar({ switchTo, screens, options = {}, children }) {
                 <p className="nav-title">Truecoin</p>
               </a>
             </div>
+            <div className="nav-right">
+              <a className="nav-item" onClick={() => switchTo(screens.QUESTION_LIST)}>
+                <p>Answer</p>
+              </a>
+              <a className="nav-item" onClick={() => switchTo(screens.ADD_QUESTION)}>
+                <p>Add</p>
+              </a>
+              <a className="nav-item" onClick={() => switchTo(screens.USER)}>
+                <p>Profile</p>
+              </a>
+            </div>
             <span className="nav-toggle">
               <span></span>
               <span></span>

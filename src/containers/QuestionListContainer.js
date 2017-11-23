@@ -9,7 +9,7 @@ class QuestionListContainer extends Component {
     return (
       <QuestionList
         questions={this.props.questions}
-        screenActions={this.props.screenActions}
+        switchTo={this.props.screenActions.switchTo}
         marketActions={this.props.marketActions}
       />
     );

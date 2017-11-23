@@ -3,24 +3,14 @@ import styled from 'styled-components';
 import { colors } from '../colors';
 import { screens } from '../../constants';
 
-export default function Question({ screenActions, marketActions }) {
-  const Div = styled.div`
-    position: relative;
-    flex-direction:row;
-  `;
-
-  const OutlinedForm = styled.div`
+export default function AddQuestion({ switchTo, addQuestion }) {
+  const Form = styled.div`
     margin-top: 10px;
   `;
 
-  const LeftLabel = styled.label`
-    float: left;
-    margin-right: 20px;
-  `;
-
   return (
-    <Div className="hero-body is-dark is-fullscreen">
-      <OutlinedForm className="column hero is-light">
+    <div className="hero-body is-fullscreen">
+      <Form className="column hero is-light">
         <div className="has-text-centered">
           <h1>Add a question</h1>
         </div> 
@@ -35,16 +25,16 @@ export default function Question({ screenActions, marketActions }) {
                 <select>
                   <option>Select a mechanism type</option>
                   {
-                    ['Robust Bayesian Truth Serum', 'Endogenous'].map(opt => ( <option>{opt}</option> ))
+                    ['Robust Bayesian Truth Serum', 'Endogenous'].map((opt, inx) => ( <option key={inx}>{opt}</option> ))
                   }
                 </select>
               </div>
             </div>
             <div class="control">
-              <button type="submit" className="button is-primary">Create</button>
+              <button type="submit" className="button is-primary" onClick={() => addQuestion()}>Create</button>
             </div>
           </div>
-      </OutlinedForm>
-    </Div>
+      </Form>
+    </div>
   );
 }

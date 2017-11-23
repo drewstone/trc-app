@@ -1,8 +1,8 @@
 import React from 'react';
-export default function User({ screenActions, marketActions, decentralState }) {
+export default function User({ screenActions, marketActions }) {
   return (
-    <div>
-      <h1>Welcome back {decentralState.ethereum.address}</h1>
+    <div className="hero-body">
+      <h1>Welcome back!</h1>
     </div>
   );
 }
