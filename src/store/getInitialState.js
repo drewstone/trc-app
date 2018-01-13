@@ -39,18 +39,12 @@ const developmentFixtures = {
       choices: ['up', 'down']
     }],
   },
-
-  unsubmitted: {
-    1: {
-      choice: 'up',
-    },
-  },
 }
 
 export default function (config) {
   const state = {
     screen: {
-      currentScreen: screens.NEWUSER,
+      currentScreen: screens.LANDING_PAGE,
       metadata: null
     },
   };

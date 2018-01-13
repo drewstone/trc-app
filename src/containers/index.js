@@ -4,13 +4,17 @@ import { bindActionCreators } from 'redux';
 
 import { screenActions } from '../actions';
 import { screens } from '../constants';
-import NavbarContainer from './NavbarContainer';
 import NewUserContainer from './NewUserContainer';
 import UserContainer from './UserContainer';
 import PredictionListContainer from './PredictionListContainer';
 import QuestionContainer from './QuestionContainer';
 import QuestionListContainer from './QuestionListContainer';
 import AddQuestionContainer from './AddQuestionContainer';
+import LandingPageContainer from './LandingPageContainer';
+import PlatformContainer from './PlatformContainer';
+import AboutContainer from './AboutContainer';
+import ContactContainer from './ContactContainer';
+
 
 import EthUtil from '../ethereum';
 
@@ -21,6 +25,10 @@ const screenContainerComponent = {
   [screens.QUESTION]: QuestionContainer,
   [screens.QUESTION_LIST]: QuestionListContainer,
   [screens.ADD_QUESTION]: AddQuestionContainer,
+  [screens.LANDING_PAGE]: LandingPageContainer,
+  [screens.PLATFORM]: PlatformContainer,
+  [screens.ABOUT]: AboutContainer,
+  [screens.CONTACT]: ContactContainer,
 };
 
 class App extends Component {
@@ -31,11 +39,9 @@ class App extends Component {
   render() {
     const { currentScreen } = this.props;
     const ScreenComponent = screenContainerComponent[currentScreen];
-    console.log(this.props);
+
     return (
-      <NavbarContainer>
-        <ScreenComponent />
-      </NavbarContainer>
+      <ScreenComponent />
     );
   }
 }

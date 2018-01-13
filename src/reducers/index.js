@@ -32,7 +32,7 @@ const marketReducer = (state = marketInitialState, action) => {
         failure: prevState => ({ ...prevState, fooError: payload }),
         success: prevState => ({
           ...prevState,
-          questions: [ ...prevState.questions, payload.question ],
+          questions: [ ...prevState.questions, { id: prevState.questions.length+1, ...payload.question } ],
         }),
       });
     case marketActions.FETCH_QUESTIONS:

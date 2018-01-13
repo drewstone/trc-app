@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { screens } from '../constants';
 import { screenActions, marketActions } from '../actions';
-import Navbar from '../components/navbar';
+import { screens } from '../constants';
+import About from '../components/about';
 
-class NavbarContainer extends Component {
+class AboutContainer extends Component {
   render() {
     return (
-      <Navbar screens={screens} switchTo={this.props.screenActions.switchTo}>
-        { this.props.children }
-      </Navbar>
+      <About
+        screens={screens}
+        switchTo={this.props.screenActions.switchTo}
+        marketActions={this.props.marketActions}
+      />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  predictions: state.predictions,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(NavbarContainer);
+)(AboutContainer);

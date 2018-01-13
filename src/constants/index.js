@@ -5,6 +5,9 @@ export const screens = {
   QUESTION: 'QUESTION',
   QUESTION_LIST: 'QUESTION_LIST',
   PREDICTION_LIST: 'PREDICTION_LIST',
+  LANDING_PAGE: 'LANDING_PAGE',
+  ABOUT: 'ABOUT',
+  CONTACT: 'CONTACT',
 };
 
 export const screenActions = {

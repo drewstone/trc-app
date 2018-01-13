@@ -8,7 +8,7 @@ class QuestionContainer extends Component {
   render() {
     return (
       <Question
-        question={this.props.questions.filter(q => q.id == this.props.screenMetaData)[0]}
+        question={this.props.questions.filter(q => q.id === this.props.screenMetaData)[0]}
         switchTo={this.props.screenActions.switchTo}
         selectedChoice={this.props.unsubmitted[this.props.screenMetaData]}
         selectChoice={this.props.userActions.selectChoice}

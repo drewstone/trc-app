@@ -29,7 +29,8 @@ export default function Question({ switchTo, question, selectedChoice, selectCho
 
   return (
     <div className="hero-body is-fullscreen">
-      <form onSubmit={submitForm}>
+      <form className="container" onSubmit={submitForm}>
+        <h1 className="is-size-1">{question.text}</h1>
         <div>
           <Label>
             <input type="radio"
