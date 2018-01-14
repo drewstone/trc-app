@@ -9,6 +9,7 @@ class PlatformContainer extends Component {
   render() {
     return (
       <Platform
+        tasks={this.props.market.tasks}
         screens={screens}
         switchTo={this.props.screenActions.switchTo}
         marketActions={this.props.marketActions}
@@ -18,6 +19,7 @@ class PlatformContainer extends Component {
 }
 
 const mapStateToProps = state => ({
+  market: state.market,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -72,7 +72,7 @@ export default function LandingPage({ switchTo, screens }) {
         <div className="container">
           <div className="content has-text-centered">
             <p>
-              <a className="icon" href="https://github.com/dansup/bulma-templates">
+              <a className="icon" href="https://github.com/drewstone/trc-app">
                 <i className="fa fa-github"></i>
               </a>
             </p>

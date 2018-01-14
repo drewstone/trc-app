@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
+import * as _ from 'lodash';
+
+const TAG_COLORS = {
+  'FINANCE': 'success',
+  'POLITICS': 'info',
+  'SPORTS': 'warning',
+  'DESIGN': 'danger',
+}
 
 export default class Platform extends Component {
   constructor(props) {
     super();
+    console.log(props);
     this.state = {
-      filterType: "Popular",
-      tagTypes: ["Dashboard"],
-      openTasks: props.tasks || [],
+      filter: "Popular",
+      tags: [],
+      tasks: props.tasks || [],
+      tasksInView: props.tasks || [],
     };
   }
 
@@ -15,29 +25,45 @@ export default class Platform extends Component {
   }
 
   handleFilterTypeClick(fType) {
-    document.getElementById(`${this.state.filterType}`).classList.remove('is-active')
+    document.getElementById(`${this.state.filter}`).classList.remove('is-active')
     document.getElementById(`${fType}`).classList.add('is-active')
 
     this.setState({
-      filterType: fType,
+      filter: fType,
     });
   }
 
   handleTagTypeClick(tType) {
-    if (tType in this.state.tagTypes) {
-      document.getElementById(`${tType}`).classList.remove('is-active')
+    if (this.state.tags.includes(tType)) {
+      document.getElementById(`${tType}`).classList.remove('is-active');
+
       this.setState({
-        tagTypes: this.state.tagTypes.filter(tag => tag !== tType)
+        tags: this.state.tags.filter(tag => tag !== tType),
+        tasksInView: (this.state.tags.length == 1) 
+          ? this.state.tasks
+          : [...this.state.tasks.filter(task => (
+              _.intersection(task.tags, this.state.tags.filter(tag => tag !== tType)).length > 0
+            ))]
       });
     } else {
       document.getElementById(`${tType}`).classList.add('is-active')
       this.setState({
-        tagTypes: [ ...this.state.tagTypes, tType ]
+        tags: [ ...this.state.tags, tType ],
+        tasksInView: [
+          ...this.state.tasks.filter(task => (
+            _.intersection(task.tags, [ ...this.state.tags, tType]).length > 0
+          ))
+        ]
       });
     }
+
+    this.setState({
+      
+    })
   }
 
   render() {
+    console.log(this.state);
     return (
       <section className="hero is-info">
         <nav className="navbar is-white topNav">
@@ -94,10 +120,15 @@ export default class Platform extends Component {
                   Tags
                 </p>
                 <ul className="menu-list">
-                  <li><a id={"Politics"} className="button is-info" onClick={() => this.handleFilterTypeClick("Politics")}>Politics</a></li>
-                  <li><a id={"Design"} className="button is-info" onClick={() => this.handleFilterTypeClick("Design")}>Design</a></li>
-                  <li><a id={"Sports"} className="button is-info" onClick={() => this.handleFilterTypeClick("Sports")}>Sports</a></li>
-                  <li><a id={"Finance"} className="button is-info" onClick={() => this.handleFilterTypeClick("Finance")}>Finance</a></li>
+                  {
+                    ["Politics", "Design", "Sports", "Finance"].map((elt, inx) => {
+                      return (
+                        <li key={inx}>
+                          <a id={elt} className="button" onClick={() => this.handleTagTypeClick(elt)}>{elt}</a>
+                        </li>
+                      );
+                    })
+                  }
                 </ul>
               </aside>
 
@@ -106,9 +137,9 @@ export default class Platform extends Component {
             <div className="column is-9 is-fullheight" style={{height: `${window.innerHeight}px`}}>
               <div className="box content">
                 {
-                  this.state.openTasks.map((task, inx) => (
+                  this.state.tasksInView.map((task, inx) => (
                     <article key={inx} className="post">
-                      <h4>{task.name}</h4>
+                      <h4>{task.text}</h4>
                       <span className="pull-right has-text-grey-light"><i className="fa fa-comments"></i> 2</span>
                       <div className="media">
                         <div className="media-left">
@@ -120,7 +151,11 @@ export default class Platform extends Component {
                           <div className="content">
                             <p>
                               <a>{task.poster}</a> {task.creationTime}  &nbsp; 
-                              { task.tags.map(tag => (<span className="tag">{tag}</span>))}
+                              { 
+                                task.tags.map((tag, inx) => (
+                                  <span key={inx} className={`tag is-${TAG_COLORS[tag.toUpperCase()]}`}>{tag}</span>
+                                ))
+                              }
                             </p>
                           </div>
                         </div>
