@@ -4,20 +4,30 @@ import { bindActionCreators } from 'redux';
 import { screens } from '../constants';
 import { screenActions, marketActions } from '../actions';
 import LandingPage from '../components/landingpage';
+import Home from '../components/landingpage/home';
+import About from '../components/landingpage/about';
+import Contact from '../components/landingpage/contact';
+
+const LandingScreenContainer = {
+  HOME: Home,
+  ABOUT: About,
+  CONTACT: Contact,
+}
 
 class LandingPageContainer extends Component {
   render() {
+    const LandingScreen = LandingScreenContainer[this.props.metadata.component];
+
     return (
-      <LandingPage
-        screens={screens}
-        switchTo={this.props.screenActions.switchTo}
-      />
+      <LandingPage screens={screens} switchTo={this.props.screenActions.switchTo}>
+        <LandingScreen />
+      </LandingPage>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  predictions: state.predictions,
+  metadata: state.screen.metadata,
 });
 
 const mapDispatchToProps = dispatch => ({

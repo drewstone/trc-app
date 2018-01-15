@@ -3,7 +3,7 @@ import { screens, screenActions, marketActions, userActions } from '../constants
 import { handle } from 'redux-pack';
 
 const screenInitialState = {
-  currentScreen: screens.NEWUSER,
+  currentScreen: screens.PLATFORM,
   metadata: null,
 };
 
@@ -11,7 +11,7 @@ const screenReducer = (state = screenInitialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case screenActions.SWITCH_TO:
-      return { ...state, currentScreen: payload.screen, metadata: payload. metadata };
+      return { ...state, currentScreen: payload.screen, metadata: payload.metadata };
     default:
       return state;
   }

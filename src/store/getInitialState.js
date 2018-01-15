@@ -8,51 +8,21 @@ const developmentFixtures = {
         prediction: 'up',
       }]
     },
-    tasks: [{
-      id: 1,
-      creationTime: Date.now(),
+    topics: [{
+      topic: 'Financial predictions',
       poster: 'John',
-      mechanismType: 'Endogenous',
-      text: 'Will APPL go up or down?',
-      choices: ['up', 'down'],
-      tags: ['Finance'],
-    },
-    {
-      id: 2,
+      description: 'The following tasks contain numerous stock market prediction questions. Complete the tasks by submitting your predictons over the available stocks in question.',
       creationTime: Date.now(),
-      poster: 'John',
       mechanismType: 'Endogenous',
-      text: 'Will GOOG go up or down?',
-      choices: ['up', 'down'],
       tags: ['Finance'],
-    },
-    {
-      id: 3,
-      creationTime: Date.now(),
-      poster: 'John',
-      mechanismType: 'Endogenous',
-      text: 'Will SBUX go up or down?',
-      choices: ['up', 'down'],
-      tags: ['Finance'],
-    },
-    {
-      id: 4,
-      creationTime: Date.now(),
-      poster: 'John',
-      mechanismType: 'Endogenous',
-      text: 'Will TSLA go up or down?',
-      choices: ['up', 'down'],
-      tags: ['Finance'],
-    },
-    {
-      id: 5,
-      creationTime: Date.now(),
-      poster: 'John',
-      mechanismType: 'Endogenous',
-      text: 'Will FB go up or down?',
-      choices: ['up', 'down'],
-      tags: ['Finance'],
-    }],
+      tasks: [
+        { text: 'Will APPL go up or down?', choices: ['up', 'down'] },
+        { text: 'Will GOOG go up or down?', choices: ['up', 'down'] },
+        { text: 'Will SBUX go up or down?', choices: ['up', 'down'] },
+        { text: 'Will TSLA go up or down?', choices: ['up', 'down'] },
+        { text: 'Will FB go up or down?', choices: ['up', 'down'] }
+      ],
+    }]
   },
 }
 
@@ -60,7 +30,9 @@ export default function (config) {
   const state = {
     screen: {
       currentScreen: screens.PLATFORM,
-      metadata: null
+      metadata: {
+        component: "HOME",
+      }
     },
   };
 
