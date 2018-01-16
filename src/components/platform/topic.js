@@ -167,7 +167,7 @@ export default class TopicPage extends Component {
   render() {
     return (
       <section className="articles">
-        <div className="column is-10 is-offset-2">
+        <div className="column is-10 is-offset-1">
           <div className="card article">
               <div className="card-content">
                 <div className="media">
