@@ -5,7 +5,7 @@ export default class TaskPage extends Component {
   constructor(props) {
     super();
     this.state = {
-      id: props.task.id
+      id: props.task.id,
       pages: props.task.questions,
       currPage: 1,
       prevPage: 1,
