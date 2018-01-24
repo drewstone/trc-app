@@ -8,14 +8,15 @@ const developmentFixtures = {
         prediction: 'up',
       }]
     },
-    topics: [{
-      topic: 'Financial predictions',
+    tasks: [{
+      id: 1,
+      task: 'Financial predictions',
       poster: 'John',
       description: 'The following tasks contain numerous stock market prediction questions. Complete the tasks by submitting your predictons over the available stocks in question.',
       creationTime: Date.now(),
       mechanismType: 'Endogenous',
       tags: ['Finance'],
-      tasks: [
+      questions: [
         { text: 'Will APPL go up or down?', choices: ['up', 'down'] },
         { text: 'Will GOOG go up or down?', choices: ['up', 'down'] },
         { text: 'Will SBUX go up or down?', choices: ['up', 'down'] },

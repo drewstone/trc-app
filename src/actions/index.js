@@ -19,14 +19,19 @@ export const marketActions = {
     promise: decentral.addPrediction(data),
   }),
 
-  addQuestion: (data) => ({
-    type: constants.marketActions.ADD_QUESTION,
-    promise: decentral.addQuestion(data),
+  submitTask: (data) => ({
+    type: constants.marketActions.SUBMIT_TASK,
+    promise: decentral.submitTask(data),
   }),
 
-  fetchQuestions: (data) => ({
-    type: constants.marketActions.FETCH_QUESTIONS,
-    promise: decentral.fetchQuestions(data),
+  addTask: (data) => ({
+    type: constants.marketActions.ADD_TASK,
+    promise: decentral.addTask(data),
+  }),
+
+  fetchTasks: (data) => ({
+    type: constants.marketActions.FETCH_TASKS,
+    promise: decentral.fetchTask(data),
   }),
 
   getProfile: (data) => ({

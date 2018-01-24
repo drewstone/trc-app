@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import HomePage from './home';
-import TopicPage from './topic';
+import TaskPage from './task';
 
 export default class Platform extends Component {
   componentDidMount() {
@@ -21,15 +21,17 @@ export default class Platform extends Component {
     return React.Children.map(this.props.children, child => {
       if (child.type == HomePage) {
         return React.cloneElement(child, {
-          topics: this.props.topics,
+          tasks: this.props.tasks,
           screens: this.props.screens,
           switchTo: this.props.switchTo,
+          addTask: this.props.marketActions.addTask,
         });        
-      } else if (child.type == TopicPage) {
+      } else if (child.type == TaskPage) {
         return React.cloneElement(child, {
-          topic: this.props.currentTopic,
+          task: this.props.currentTask,
           screens: this.props.screens,
           switchTo: this.props.switchTo,
+          submitTask: this.props.marketActions.submitTask,
         })
       } else {
         return child;

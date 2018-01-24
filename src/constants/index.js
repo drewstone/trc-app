@@ -1,6 +1,4 @@
 export const screens = {
-  NEWUSER: 'NEWUSER',
-  USER: 'USER',
   LANDING_PAGE: 'LANDING_PAGE',
   PLATFORM: 'PLATFORM',
 };
@@ -10,8 +8,10 @@ export const screenActions = {
 };
 
 export const marketActions = {
-  ADD_QUESTION: 'ADD_QUESTION',
+  ADD_TASK: 'ADD_TASK',
+  FETCH_TASKS: 'FETCH_TASKS',
   ADD_PREDICTION: 'ADD_PREDICTION',
+  FETCH_PREDICTIONS: 'FETCH_PREDICTIONS',
 };
 
 export const userActions = {

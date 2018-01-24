@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-export default class TopicPage extends Component {
+export default class TaskPage extends Component {
   constructor(props) {
     super();
     this.state = {
-      pages: props.topic.tasks,
+      id: props.task.id
+      pages: props.task.questions,
       currPage: 1,
       prevPage: 1,
       completedCount: 0,
-      clicked: Array(props.topic.tasks.length),
+      clicked: Array(props.task.questions.length),
     }
   }
 
@@ -56,6 +57,25 @@ export default class TopicPage extends Component {
   }
 
   renderPagination() {
+    if (this.state.pages.length < 3) {
+      if (this.state.pages.length == 1) {
+        return (<ul className="pagination-list" style={{listStyleType: 'none'}}>
+          <li><a id={`johnsons-1`} className="pagination-link" aria-label="Page 1" aria-current="page">1</a></li>
+        </ul>);
+      } else if (this.state.pages.length == 2) {
+        return (<ul className="pagination-list" style={{listStyleType: 'none'}}>
+          <li><a id={`johnsons-1`} className="pagination-link" aria-label="Page 1" aria-current="page">1</a></li>
+          <li><a id={`johnsons-2`} className="pagination-link" aria-label="Goto page 2">2</a></li>
+        </ul>);
+      } else {
+        return (<ul className="pagination-list" style={{listStyleType: 'none'}}>
+          <li><a id={`johnsons-1`} className="pagination-link" aria-label="Page 1" aria-current="page">1</a></li>
+          <li><a id={`johnsons-2`} className="pagination-link" aria-label="Goto page 2">2</a></li>
+          <li><a id={`johnsons-3`} className="pagination-link" aria-label="Goto page 3">3</a></li>
+        </ul>);
+      }
+    }
+
     if (this.state.currPage < 4) {
       return (
         <ul className="pagination-list" style={{listStyleType: 'none'}}>
@@ -88,6 +108,13 @@ export default class TopicPage extends Component {
   }
 
   renderPaginationButtons() {
+    if (this.state.pages.length == 1) {
+      return [
+          <a key={1} className="pagination-previous" title="This is the first page" disabled>Previous</a>,
+          <a key={2} className="pagination-next" disabled>Next page</a>
+      ];
+    }
+
     if (this.state.currPage == 1) {
       return [
           <a key={1} className="pagination-previous" title="This is the first page" disabled>Previous</a>,
@@ -172,19 +199,19 @@ export default class TopicPage extends Component {
               <div className="card-content">
                 <div className="media">
                   <div className="media-center">
-                      <img src="http://www.radfaces.com/images/avatars/daria-morgendorffer.jpg" className="author-image" alt="Placeholder image" />
+                      <img src="http://www.radfaces.com/images/avatars/scrappy-doo.jpg" className="author-image" alt="Placeholder image" />
                   </div>
                   <div className="container">
                     <div className="media-content">
-                      <h1 className="title article-title is-1"><b>Task topic: </b>{this.props.topic.topic}</h1>
-                      <h3 style={{marginBottom: "20px"}}><b>Posted: </b>{(new Date(this.props.topic.creationTime)).toDateString()}</h3>
+                      <h1 className="title article-title is-1"><b>Task task: </b>{this.props.task.task}</h1>
+                      <h3 style={{marginBottom: "20px"}}><b>Posted: </b>{(new Date(this.props.task.creationTime)).toDateString()}</h3>
                     </div>
                   </div>
                 </div>
               </div>
             <div className="content article-body" style={{height: `${window.innerHeight}px`}}>
               <h3 className="has-text-centered">Description</h3>
-              <p>{this.props.topic.description}</p>
+              <p>{this.props.task.description}</p>
               { this.renderTaskNavigation() }
               <div className="card">
                 <div className="card-content">
@@ -195,7 +222,9 @@ export default class TopicPage extends Component {
                 { this.renderSelector() }
               </div>
               <span id="submitBtnSpan">
-                <a className="button is-success">Success</a>
+                <a className="button is-success" onClick={() => {
+                  
+                }}>Success</a>
               </span>
             </div>
           </div>

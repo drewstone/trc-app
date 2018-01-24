@@ -1,4 +1,5 @@
 import Promise from 'bluebird';
+import hash from 'object-hash';
 import ethUtil from '../ethereum';
 import ipfsUtil from '../ipfs';
 
@@ -11,11 +12,22 @@ export default {
     return Promise.delay(100)
     .then(() => (data));
   },
-  addQuestion: (data) => {
+  submitTask: (data) => {
     return Promise.delay(100)
-    .then(() => (data));
+    .then(() => ({
+      ...data,
+      submissionTime: Date.now(),
+    }))
+  }
+  addTask: (data) => {
+    return Promise.delay(100)
+    .then(() => ({
+      id: hash(data),
+      ...data,
+      creationTime: Date.now(),
+    }));
   },
-  fetchQuestions: (data) => {
+  fetchTasks: (data) => {
     return Promise.delay(100)
     .then(() => (data));
   },

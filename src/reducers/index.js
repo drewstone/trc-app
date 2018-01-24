@@ -19,23 +19,23 @@ const screenReducer = (state = screenInitialState, action) => {
 
 const marketInitialState = {
   predictions: {},
-  questions: [],
+  tasks: [],
 };
 
 const marketReducer = (state = marketInitialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case marketActions.ADD_QUESTION:
+    case marketActions.ADD_TASK:
       return handle(state, action, {
         start: prevState => ({ ...prevState, isLoading: true, fooError: null }),
         finish: prevState => ({ ...prevState, isLoading: false }),
         failure: prevState => ({ ...prevState, fooError: payload }),
         success: prevState => ({
           ...prevState,
-          questions: [ ...prevState.questions, { id: prevState.questions.length+1, ...payload.question } ],
+          tasks: [ ...prevState.tasks, { ...payload } ],
         }),
       });
-    case marketActions.FETCH_QUESTIONS:
+    case marketActions.FETCH_TASKS:
       return handle(state, action, {
         start: prevState => ({ ...prevState, isLoading: true, fooError: null }),
         finish: prevState => ({ ...prevState, isLoading: false }),

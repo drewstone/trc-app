@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import * as _ from 'lodash';
+import Form from './form';
 
 const TAG_COLORS = {
-  FINANCE: "success",
-  POLITICS: "info",
-  SPORTS: "warning",
-  DESIGN: "danger",
+  Finance: "success",
+  Politics: "info",
+  Sports: "warning",
+  Design: "danger",
 }
 
 export default class HomePage extends Component {
@@ -13,37 +14,49 @@ export default class HomePage extends Component {
     super();
     this.state = {
       filter: "Popular",
-      tags: [],
-      topics: props.topics || [],
-      topicsInView: props.topics || [],
-    }
+      tags: ["Politics", "Design", "Sports", "Finance"],
+      clickedTags: [],
+      tasks: props.tasks || [],
+      modalClicked: false,
+      form: {
+        task: "",
+        description: "",
+        tags: [],
+        mechanismType: "Endogenous",
+        poster: window.web3.eth.coinbase,
+        questions: [{
+          text: "",
+          choices: ["up", "down"],
+        }],
+      },
+    };
   }
 
   componentDidMount() {
     document.getElementById("Popular").classList.add("is-active");
+    document.body.addEventListener("click", (event) => {
+      if (this.state.modalClicked && event.target.className.includes("modal-background")) {
+        document.getElementById("platform-modal").classList.remove("is-active");
+        this.setState({
+          modalClicked: !this.state.modalClicked,
+        });
+      }
+    });
   }
 
   handleTagTypeClick(tType) {
-    if (this.state.tags.includes(tType)) {
-      document.getElementById(`${tType}`).classList.remove('is-active');
+    if (this.state.clickedTags.includes(tType)) {
+      document.getElementById(`${tType}`).classList.remove("is-active");
+      document.getElementById(`${tType}`).classList.remove(`is-${TAG_COLORS[tType]}`);
 
       this.setState({
-        tags: this.state.tags.filter(tag => tag !== tType),
-        topicsInView: (this.state.tags.length == 1) 
-          ? this.state.topics
-          : [...this.state.topics.filter(topic => (
-              _.intersection(topic.tags, this.state.tags.filter(tag => tag !== tType)).length > 0
-            ))]
+        clickedTags: this.state.clickedTags.filter(tag => tag !== tType),
       });
     } else {
-      document.getElementById(`${tType}`).classList.add('is-active')
+      document.getElementById(`${tType}`).classList.add("is-active")
+      document.getElementById(`${tType}`).classList.add(`is-${TAG_COLORS[tType]}`);
       this.setState({
-        tags: [ ...this.state.tags, tType ],
-        topicsInView: [
-          ...this.state.topics.filter(topic => (
-            _.intersection(topic.tags, [ ...this.state.tags, tType]).length > 0
-          ))
-        ]
+        clickedTags: [ ...this.state.clickedTags, tType ],
       });
     }
   }
@@ -57,13 +70,132 @@ export default class HomePage extends Component {
     });
   }
 
-  handleTopicClick(topic) {
+  handleModalClick() {
+    if (!this.state.modalClicked) {
+      document.getElementById('platform-modal').classList.add('is-active') 
+    } else {
+      document.getElementById('platform-modal').classList.remove('is-active')
+    }
+    
+    this.setState({
+      modalClicked: !this.state.modalClicked,
+    })
+  }
 
+  handleModalTagClick(e) {
+    let state;
+    const tag = e.target.id.split("-")[2];
+    if (!this.state.form.tags.includes(tag)) {
+      document.getElementById(`form-tag-${tag}`).classList.add("is-active");
+      document.getElementById(`form-tag-${tag}`).classList.add(`is-${TAG_COLORS[tag]}`);
+      state = Object.assign({}, this.state, {
+        form: {
+          ...this.state.form,
+          tags: [ ...this.state.form.tags, tag ],
+        }
+      });
+    } else {
+      document.getElementById(`form-tag-${tag}`).classList.remove("is-active");
+      document.getElementById(`form-tag-${tag}`).classList.remove(`is-${TAG_COLORS[tag]}`);
+      state = Object.assign({}, this.state, {
+        form: {
+          ...this.state.form,
+          tags: [ ...this.state.form.tags.filter(t => t != tag) ],
+        }
+      });
+    }
+
+    this.setState(state);
+  }
+
+  handleQuestionChange(e) {
+    const state = Object.assign({}, this.state, {
+      form: {
+        ...this.state.form,
+        questions: [ ...this.state.form.questions.map((q, inx) => {
+          if (inx == e.target.id.split("-")[2]) {
+            q[e.target.id.split("-")[1]] = e.target.value;
+          }
+
+          return q;
+        })]
+      }
+    });
+
+    this.setState(state);
+  }
+
+  handleTaskChange(e) {
+    const state = Object.assign({}, this.state, {
+      form: {
+        ...this.state.form,
+        task: e.target.value,
+      }
+    });
+
+    this.setState(state);
+  }
+
+  handleDescriptionChange(e) {
+    const state = Object.assign({}, this.state, {
+      form: {
+        ...this.state.form,
+        description: e.target.value,
+      }
+    });
+
+    this.setState(state);
+  }
+
+  handleMechanismChange(e) {
+    const state = Object.assign({}, this.state, {
+      form: {
+        ...this.state.form,
+        mechanismType: e.target.value,
+      }
+    });
+
+    this.setState(state);
+  }
+
+  handleChoiceChange(e) {
+    const state = Object.assign({}, this.state, {
+      form: {
+        ...this.state.form,
+        questions: [ ...this.state.form.questions.map((q, inx) => {
+          if (inx == Number(e.target.id.split("-")[2])) {
+            q[e.target.id.split("-")[1]] = e.target.value.split(" or ");
+          }
+
+          return q;
+        })],
+      }
+    });
+
+    this.setState(state);
+  }
+
+  handleFormSubmit(e) {
+    this.props.addTask(this.state.form);
+    this.handleModalClick();
+  }
+
+  getTasksInView() {
+    let tasksInView = [];
+    for (var i = this.props.tasks.length - 1; i >= 0; i--) {
+      if (_.intersection(this.props.tasks[i].tags, this.state.clickedTags).length > 0) {
+        tasksInView.push(this.props.tasks[i]);
+      } else if (this.state.clickedTags.length == 0) {
+        tasksInView.push(this.props.tasks[i])
+      }
+    }
+
+    return tasksInView;
   }
 
   render() {
     return (
-      <div>
+      <div style={{height: `${window.innerHeight}px`}}>
         <nav className="navbar is-white">
           <div className="container">
             <div className="navbar-menu">
@@ -83,14 +215,14 @@ export default class HomePage extends Component {
         <section className="container">
           <div className="columns">
             <div className="column is-3">
-              <a className="button is-primary is-block is-alt is-large">New Post</a>
+              <a className="button is-primary is-block is-alt is-large" onClick={this.handleModalClick.bind(this)}>New Post</a>
               <aside className="menu">
                 <p className="menu-label">
                   Tags
                 </p>
                 <ul className="menu-list">
                   {
-                    ["Politics", "Design", "Sports", "Finance"].map((elt, inx) => {
+                    this.state.tags.map((elt, inx) => {
                       return (
                         <li key={inx}>
                           <a id={elt} className="button" onClick={() => this.handleTagTypeClick(elt)}>{elt}</a>
@@ -103,41 +235,84 @@ export default class HomePage extends Component {
 
             </div>
 
-            <div className="column is-9 is-fullheight" style={{height: `${window.innerHeight}px`}}>
-              <div className="box content">
-                {
-                  this.state.topicsInView.map((topic, inx) => (
-                    <a key={inx} onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TOPIC", topic: topic })}>
-                      <article className="post">
-                        <h4>{topic.topic}</h4>
-                        <span className="pull-right has-text-grey-light">{topic.tasks.length} &nbsp; <i className="fa fa-tasks"></i></span>
-                        <div className="media">
-                          <div className="media-left">
-                            <p className="image is-32x32">
-                              <img src="http://bulma.io/images/placeholders/128x128.png" />
+            <div className="column is-9 is-fullheight">
+            {
+              this.getTasksInView().map((task, inx) => (
+                <div key={inx} className="box content">
+                  <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TASK", task: task })}>
+                    <article className="post">
+                      <h4>{task.task}</h4>
+                      <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
+                      <div className="media">
+                        <div className="media-left">
+                          <p className="image is-32x32">
+                            <img src="http://bulma.io/images/placeholders/128x128.png" />
+                          </p>
+                        </div>
+                        <div className="media-content">
+                          <div className="content">
+                            <p>
+                              <a>{task.poster}</a> {task.creationTime}  &nbsp; 
+                              { 
+                                task.tags.map((tag, inx) => (
+                                  <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
+                                ))
+                              }
                             </p>
                           </div>
-                          <div className="media-content">
-                            <div className="content">
-                              <p>
-                                <a>{topic.poster}</a> {topic.creationTime}  &nbsp; 
-                                { 
-                                  topic.tags.map((tag, inx) => (
-                                    <span key={inx} className={`tag is-${TAG_COLORS[tag.toUpperCase()]}`}>{tag}</span>
-                                  ))
-                                }
-                              </p>
-                            </div>
-                          </div>
                         </div>
-                      </article>
-                    </a>
-                  ))
-                }
-              </div>
+                      </div>
+                    </article>
+                  </a>
+                </div>
+              ))
+            }
             </div>
           </div>
         </section>
+        <div id="platform-modal" className="modal">
+          <div className="modal-background"></div>
+          <div className="modal-card">
+            <header className="modal-card-head">
+              <p className="modal-card-title">Add a new task</p>
+              <button className="delete" aria-label="close" onClick={this.handleModalClick.bind(this)}></button>
+            </header>
+            <section className="modal-card-body">
+              <Form
+                data={{
+                  task: this.state.form.task,
+                  description: this.state.form.description,
+                  mechanismType: this.state.form.mechanismType,
+                  poster: this.state.form.poster,
+                  questions: this.state.form.questions,
+                  tags: this.state.form.tags,
+                }}
+                tags={this.state.tags}
+                handleTaskChange={this.handleTaskChange.bind(this)}
+                handleDescriptionChange={this.handleDescriptionChange.bind(this)}
+                handleChoiceChange={this.handleChoiceChange.bind(this)}
+                handleMechanismChange={this.handleMechanismChange.bind(this)}
+                handleModalTagClick={this.handleModalTagClick.bind(this)}
+                handleQuestionChange={this.handleQuestionChange.bind(this)}
+                addQuestion={() => {
+                  const state = Object.assign({}, this.state, {
+                    form: {
+                      ...this.state.form,
+                      questions: [ ...this.state.form.questions, { text: "", choices: ["up", "down"] }],
+                    }
+                  });
+
+                  this.setState(state);
+                }}/>
+            </section>
+            <footer className="modal-card-foot">
+              <button className="button is-success" onClick={this.handleFormSubmit.bind(this)} disabled={(
+                this.state.form.task.length == 0 || this.state.form.description.length == 0 ||
+                _.every(this.state.form.questions.map(q => q.text.length == 0)))}>Submit</button>
+              <button className="button" onClick={this.handleModalClick.bind(this)}>Cancel</button>
+            </footer>
+          </div>
+        </div>
       </div>
     );
   }

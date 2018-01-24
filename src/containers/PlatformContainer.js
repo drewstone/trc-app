@@ -5,21 +5,20 @@ import { screenActions, marketActions } from '../actions';
 import { screens } from '../constants';
 import Platform from '../components/platform';
 import HomePage from '../components/platform/home';
-import TopicPage from '../components/platform/topic';
+import TaskPage from '../components/platform/task';
 
 const PlatformScreenContainer = {
   HOME: HomePage,
-  TOPIC: TopicPage,
+  TASK: TaskPage,
 }
 
 class PlatformContainer extends Component {
   render() {
     const PlatformScreen = PlatformScreenContainer[this.props.metadata.component];
-
     return (
       <Platform
-        currentTopic={this.props.metadata.topic}
-        topics={this.props.market.topics}
+        currentTask={this.props.metadata.task}
+        tasks={this.props.market.tasks}
         screens={screens}
         switchTo={this.props.screenActions.switchTo}
         marketActions={this.props.marketActions}>
