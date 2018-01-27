@@ -1,0 +1,8 @@
+{
+  "contract_name": "MathLib",
+  "abi": [],
+  "unlinked_binary": "0x60606040523415600e57600080fd5b5b603680601c6000396000f30060606040525b600080fd00a165627a7a72305820791397db0cd3b9e3b5d29ae3011c08ee32e4ec7bb2f5f7b7ad87c0cdf98cf2c40029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1517072159021
+}

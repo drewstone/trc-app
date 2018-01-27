@@ -1,0 +1,355 @@
+{
+  "contract_name": "TruecoinProtocol",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "designer",
+          "type": "address"
+        },
+        {
+          "name": "mechanismId",
+          "type": "uint8"
+        },
+        {
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "name": "taskId",
+          "type": "bytes32"
+        },
+        {
+          "name": "signal",
+          "type": "uint128"
+        },
+        {
+          "name": "posterior",
+          "type": "uint128"
+        }
+      ],
+      "name": "submitPrediction",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "mechanismManager",
+          "type": "address"
+        }
+      ],
+      "name": "initProtocol",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "mechanismId",
+          "type": "uint8"
+        },
+        {
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "name": "mechContract",
+          "type": "address"
+        },
+        {
+          "name": "timeLength",
+          "type": "uint256"
+        }
+      ],
+      "name": "setNewMechanism",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "m",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "designer",
+          "type": "address"
+        },
+        {
+          "name": "mechanismId",
+          "type": "uint8"
+        },
+        {
+          "name": "name",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getMechanism",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "score",
+          "type": "uint128"
+        }
+      ],
+      "name": "determineMintedTokens",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "designer",
+          "type": "address"
+        },
+        {
+          "name": "mechanismId",
+          "type": "uint8"
+        },
+        {
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "name": "taskId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "claimScoreByTask",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "destroyOwner",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "mechanismId",
+          "type": "uint8"
+        },
+        {
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "name": "mechContract",
+          "type": "address"
+        }
+      ],
+      "name": "settleMechanism",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "designer",
+          "type": "address"
+        },
+        {
+          "name": "mechanismId",
+          "type": "uint8"
+        },
+        {
+          "name": "name",
+          "type": "bytes32"
+        }
+      ],
+      "name": "claimScore",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "mechanismManager",
+          "type": "address"
+        }
+      ],
+      "name": "Initialized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "designer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "mechanismId",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "mechContract",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "Setting",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "designer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "participant",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "taskId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "preds",
+          "type": "uint128[2]"
+        }
+      ],
+      "name": "Submission",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "designer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "participant",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "score",
+          "type": "uint128"
+        }
+      ],
+      "name": "Score",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "designer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "caller",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "mechContract",
+          "type": "address"
+        }
+      ],
+      "name": "Settlement",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b5b60008054600160a060020a03191633600160a060020a03161790555b5b6109ce8061003c6000396000f300606060405236156100935763ffffffff60e060020a600035041663033f022f81146100985780630c4e5d41146100e057806347575f7c146101015780635a2ee0191461012e57806363b9cc731461015d57806385fe6c07146101a15780638da5cb5b146101db5780638f3d487f1461020a57806398f925f4146102375780639d65d52b1461024c578063b51c4b1714610276575b600080fd5b34156100a357600080fd5b6100de600160a060020a036004351660ff602435166044356064356fffffffffffffffffffffffffffffffff60843581169060a435166102a0565b005b34156100eb57600080fd5b6100de600160a060020a036004351661040a565b005b341561010c57600080fd5b6100de60ff60043516602435600160a060020a0360443516606435610496565b005b341561013957600080fd5b61014161059a565b604051600160a060020a03909116815260200160405180910390f35b341561016857600080fd5b610141600160a060020a036004351660ff602435166044356105a9565b604051600160a060020a03909116815260200160405180910390f35b34156101ac57600080fd5b6101c96fffffffffffffffffffffffffffffffff60043516610639565b60405190815260200160405180910390f35b34156101e657600080fd5b610141610652565b604051600160a060020a03909116815260200160405180910390f35b341561021557600080fd5b6100de600160a060020a036004351660ff60243516604435606435610661565b005b341561024257600080fd5b6100de61076e565b005b341561025757600080fd5b6100de60ff60043516602435600160a060020a03604435166107aa565b005b341561028157600080fd5b6100de600160a060020a036004351660ff6024351660443561089c565b005b600154600160a060020a031663b4e2d0e58787878787873360006040516020015260405160e060020a63ffffffff8a16028152600160a060020a03978816600482015260ff9096166024870152604486019490945260648501929092526fffffffffffffffffffffffffffffffff90811660848501521660a483015290911660c482015260e401602060405180830381600087803b151561034057600080fd5b6102c65a03f1151561035157600080fd5b50505060405180519050507f211ed06edfd60f0ae075635d710cfa81cad9375e375958181ed31717b9d923e28633856040805190810160409081526fffffffffffffffffffffffffffffffff80891683528716602083015251600160a060020a0380861682528416602082015260408082018490526060820190839080838360005b838110156103ec5780820151818401525b6020016103d3565b5050505090500194505050505060405180910390a15b505050505050565b60005433600160a060020a0390811691161461042557600080fd5b6001805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383811691909117918290557f908408e307fc569b417f6cbec5d5a06f44a0a505ac0479b47d421a4b2fd6a1e69116604051600160a060020a03909116815260200160405180910390a15b5b50565b600154600160a060020a0316636aaeb996338686868660006040516020015260405160e060020a63ffffffff8816028152600160a060020a03958616600482015260ff909416602485015260448401929092529092166064820152608481019190915260a401602060405180830381600087803b151561051557600080fd5b6102c65a03f1151561052657600080fd5b50505060405180519050507fa1492b490b22aacb9db2e876bb4f3825081707a9b766c0fdb967ad7f1dea07d13385858585604051600160a060020a03958616815260ff909416602085015260408085019390935293166060830152608082019290925260a001905180910390a15b50505050565b600154600160a060020a031681565b600154600090600160a060020a031663fcb648f9858585856040516020015260405160e060020a63ffffffff8616028152600160a060020a03909316600484015260ff90911660248301526044820152606401602060405180830381600087803b151561061557600080fd5b6102c65a03f1151561062657600080fd5b50505060405180519150505b9392505050565b6fffffffffffffffffffffffffffffffff81165b919050565b600054600160a060020a031681565b600154600090600160a060020a0316635cef5d8e8686868633876040516020015260405160e060020a63ffffffff8816028152600160a060020a03958616600482015260ff909416602485015260448401929092526064830152909116608482015260a401602060405180830381600087803b15156106df57600080fd5b6102c65a03f115156106f057600080fd5b5050506040518051905090507f95e6338b80e1fed49409daa2f5cc267803a9f0735b6ba61c2522e854c6d81d5085338584604051600160a060020a0394851681529290931660208301526040808301919091526fffffffffffffffffffffffffffffffff9092166060820152608001905180910390a15b5050505050565b60005433600160a060020a0390811691161461078957600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191690555b5b565b600154600160a060020a0316637c59c0883385858560006040516020015260405160e060020a63ffffffff8716028152600160a060020a03948516600482015260ff909316602484015260448301919091529091166064820152608401602060405180830381600087803b151561082057600080fd5b6102c65a03f1151561083157600080fd5b50505060405180519050507ffa794a7d7b5e6dd7a6c736e18fd25d12ab94d048730d8512c5ba7dd84dfb39b333848484604051600160a060020a03948516815260ff90931660208401526040808401929092529092166060820152608001905180910390a15b505050565b600154600090600160a060020a03166344a50fce85858533866040516020015260405160e060020a63ffffffff8716028152600160a060020a03948516600482015260ff909316602484015260448301919091529091166064820152608401602060405180830381600087803b151561091457600080fd5b6102c65a03f1151561092557600080fd5b5050506040518051905090507f95e6338b80e1fed49409daa2f5cc267803a9f0735b6ba61c2522e854c6d81d5084338484604051600160a060020a0394851681529290931660208301526040808301919091526fffffffffffffffffffffffffffffffff9092166060820152608001905180910390a15b505050505600a165627a7a72305820452b77fa555c179d0a20a9a707ef0f32f961b97aa96ef05f66a0727f65ba63930029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1517072159022
+}

@@ -7,7 +7,7 @@ const contract = require('truffle-contract');
 const config = require('../config/contracts_config');
 
 module.exports = function() {
-  const dirPath = path.join(path.resolve('./'), '/src/contracts');
+  const dirPath = path.join(path.resolve('./'), '/contracts');
   const artifactor = new Artifactor(dirPath);
 
   return initialize(dirPath, artifactor)
@@ -45,9 +45,13 @@ function compileDirectory(dirPath) {
 
 function compile(artifactor, dirpath) {
   let data = fs.readdirSync(dirpath);
-
+  
   let contractData = [];
   for (ctc in data) {
+    if (data[ctc] == '.DS_Store') {
+      continue;
+    }
+    
     if (data[ctc].split('.').length > 1) {
       contractData.push({ ctc: data[ctc], data: fs.readFileSync(`${dirpath}/${data[ctc]}`).toString() });
     } else {
@@ -57,10 +61,11 @@ function compile(artifactor, dirpath) {
     }
   }
 
+  // console.log(contractData);
   contractData = contractData.reduce((prev, curr) => (Object.assign({}, prev, {[curr.ctc]: curr.data})), {});
-
+  
   const output = solc.compile({ sources: contractData }, 1);
-  console.log(output);
+
   const contracts = Object.keys(output.contracts).map(key => ({
       contract_name: key.split(':')[1],
       abi: JSON.parse(output.contracts[key].interface),

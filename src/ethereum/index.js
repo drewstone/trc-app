@@ -1,14 +1,11 @@
 import compile from './compile';
 
-export default function (web3) {
+export default function () {
   return compile().then(contracts => {
-    return {
-      TruecoinProtocol: () => {
-
-      },
-      RBTSMechanism: () => {
-
-      }
-    };
+    return Object.keys(contracts).reduce((prev, curr) => {
+      const contract = contracts[curr];
+      contract.setProvider(window.web3);
+      return Object.assign({}, prev, { [curr]: contract })
+    }, {});
   });
 }
