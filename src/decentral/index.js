@@ -18,7 +18,7 @@ export default {
       ...data,
       submissionTime: Date.now(),
     }))
-  }
+  },
   addTask: (data) => {
     return Promise.delay(100)
     .then(() => ({
