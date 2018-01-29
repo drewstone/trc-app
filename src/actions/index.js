@@ -1,5 +1,6 @@
 import * as constants from '../constants';
-import decentral from '../decentral';
+import Decentral from '../decentral/base';
+const decentral = Decentral(window.web3);
 
 export const screenActions = {
   switchTo: (screen, metadata) => ({
@@ -24,9 +25,9 @@ export const marketActions = {
     promise: decentral.submitTask(data),
   }),
 
-  addTask: (data) => ({
+  addTask: (protocol, data) => ({
     type: constants.marketActions.ADD_TASK,
-    promise: decentral.addTask(data),
+    promise: decentral.addTask(protocol, data),
   }),
 
   fetchTasks: (data) => ({
@@ -51,3 +52,15 @@ export const userActions = {
     payload: { id, choice },
   }),
 }
+
+export const decentralActions = {
+  fetchContracts: () => ({
+    type: constants.decentralActions.FETCH_CONTRACTS,
+    promise: decentral.fetchContracts(),
+  }),
+
+  fetchTasks: (protocol) => ({
+    type: constants.decentralActions.FETCH_TASKS,
+    promise: decentral.fetchTasks(protocol),
+  }),
+};

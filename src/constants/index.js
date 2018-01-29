@@ -16,4 +16,9 @@ export const marketActions = {
 
 export const userActions = {
   SELECT_CHOICE: 'SELECT_CHOICE',
-}
+};
+
+export const decentralActions = {
+  FETCH_CONTRACTS: 'FETCH_CONTRACTS',
+  FETCH_TASKS: 'FETCH_TASKS',
+};

@@ -17,6 +17,7 @@ class PlatformContainer extends Component {
     const PlatformScreen = PlatformScreenContainer[this.props.metadata.component];
     return (
       <Platform
+        contracts={this.props.contracts}
         currentTask={this.props.metadata.task}
         tasks={this.props.market.tasks}
         screens={screens}
@@ -31,6 +32,7 @@ class PlatformContainer extends Component {
 const mapStateToProps = state => ({
   metadata: state.screen.metadata,
   market: state.market,
+  contracts: state.decentral.contracts,
 });
 
 const mapDispatchToProps = dispatch => ({

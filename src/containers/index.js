@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { screenActions } from '../actions';
+import { screenActions, decentralActions } from '../actions';
 import { screens } from '../constants';
 import LandingPageContainer from './LandingPageContainer';
 import PlatformContainer from './PlatformContainer';
-
-
-import EthUtil from '../ethereum';
+import { deploy } from '../ethereum';
 
 const screenContainerComponent = {
   [screens.LANDING_PAGE]: LandingPageContainer,
@@ -17,7 +15,7 @@ const screenContainerComponent = {
 
 class App extends Component {
   componentDidMount() {
-    EthUtil();
+    return this.props.decentralActions.fetchContracts(window.web3);
   }
 
   render() {
@@ -34,10 +32,12 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   currentScreen: state.screen.currentScreen,
+  contracts: state.decentral.contracts,
 });
 
 const mapDispatchToProps = dispatch => ({
   screenActions: bindActionCreators(screenActions, dispatch),
+  decentralActions: bindActionCreators(decentralActions, dispatch),
 })
 
 export default connect(

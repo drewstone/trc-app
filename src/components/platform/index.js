@@ -25,6 +25,7 @@ export default class Platform extends Component {
           screens: this.props.screens,
           switchTo: this.props.switchTo,
           addTask: this.props.marketActions.addTask,
+          contracts: this.props.contracts,
         });        
       } else if (child.type == TaskPage) {
         return React.cloneElement(child, {
@@ -32,6 +33,7 @@ export default class Platform extends Component {
           screens: this.props.screens,
           switchTo: this.props.switchTo,
           submitTask: this.props.marketActions.submitTask,
+          contracts: this.props.contracts,
         })
       } else {
         return child;
