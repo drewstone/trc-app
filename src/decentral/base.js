@@ -19,8 +19,10 @@ export default function(web3) {
       const questions = data.questions.map(q => q.text);
       const args = [taskName, events, questions, timeLength];
 
-      let result = await protocol.createTask.call(...args, { from: web3.eth.coinbase });
+      let result = await protocol.createTask(...args, { from: web3.eth.coinbase });
       console.log(result);
+
+      return Promise.resolve(data);
     },
 
     addPrediction: (data) => {
