@@ -6,7 +6,6 @@ import { screenActions, decentralActions } from '../actions';
 import { screens } from '../constants';
 import LandingPageContainer from './LandingPageContainer';
 import PlatformContainer from './PlatformContainer';
-import { deploy } from '../ethereum';
 
 const screenContainerComponent = {
   [screens.LANDING_PAGE]: LandingPageContainer,
