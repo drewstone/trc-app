@@ -176,7 +176,7 @@ export default class HomePage extends Component {
   }
 
   handleFormSubmit(e) {
-    this.props.addTask(this.state.form);
+    this.props.addTask(this.props.contracts.Protocol, this.state.form);
     this.handleModalClick();
   }
 

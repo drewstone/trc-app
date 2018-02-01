@@ -1,6 +1,13 @@
 import { combineReducers } from 'redux';
-import { screens, screenActions, marketActions, userActions } from '../constants';
 import { handle } from 'redux-pack';
+import {
+  screens,
+  screenActions,
+  marketActions,
+  userActions,
+  decentralActions,
+} from '../constants';
+
 
 const screenInitialState = {
   currentScreen: screens.PLATFORM,
@@ -84,8 +91,29 @@ const userReducer = (state = userInitialState, action) => {
   }
 }
 
+const decentralInitialState = {
+  contracts: {},
+}
+
+const decentralReducer = (state = decentralInitialState, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case decentralActions.FETCH_CONTRACTS:
+      return handle(state, action, {
+        start: prevState => ({ ...prevState, isLoading: true, fooError: null }),
+        finish: prevState => ({ ...prevState, isLoading: false }),
+        failure: prevState => ({ ...prevState, fooError: payload }),
+        success: prevState => ({ ...prevState, contracts: payload }),
+      });
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   screen: screenReducer,
   market: marketReducer,
   user: userReducer,
+  decentral: decentralReducer,
 });
