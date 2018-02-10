@@ -9,7 +9,7 @@ const TAG_COLORS = {
   Design: "danger",
 }
 
-export default class HomePage extends Component {
+export default class AdminPage extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -177,31 +177,29 @@ export default class HomePage extends Component {
     return this.getTasksInView().map((task, inx) => {
       return (
         <div key={inx} className="box content">
-          <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TASK", task: task })}>
-            <article className="post">
-              <h4>{task.task}</h4>
-              <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
-              <div className="media">
-                <div className="media-left">
-                  <p className="image is-32x32">
-                    <img src="http://bulma.io/images/placeholders/128x128.png" />
+          <article className="post">
+            <h4>{task.task}</h4>
+            <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
+            <div className="media">
+              <div className="media-left">
+                <p className="image is-32x32">
+                  <img src="http://bulma.io/images/placeholders/128x128.png" />
+                </p>
+              </div>
+              <div className="media-content">
+                <div className="content">
+                  <p>
+                    <a>{task.poster}</a> {task.creationTime}  &nbsp; 
+                    { 
+                      task.tags.map((tag, inx) => (
+                        <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
+                      ))
+                    }
                   </p>
                 </div>
-                <div className="media-content">
-                  <div className="content">
-                    <p>
-                      <a>{task.poster}</a> {task.creationTime}  &nbsp; 
-                      { 
-                        task.tags.map((tag, inx) => (
-                          <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
-                        ))
-                      }
-                    </p>
-                  </div>
-                </div>
               </div>
-            </article>
-          </a>
+            </div>
+          </article>
         </div>
       );
     });

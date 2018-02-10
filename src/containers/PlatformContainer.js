@@ -6,15 +6,23 @@ import { screens } from '../constants';
 import Platform from '../components/platform';
 import HomePage from '../components/platform/home';
 import TaskPage from '../components/platform/task';
+import AdminPage from '../components/platform/admin';
 
 const PlatformScreenContainer = {
   HOME: HomePage,
   TASK: TaskPage,
+  ADMIN: AdminPage,
 }
 
 class PlatformContainer extends Component {
   render() {
     const PlatformScreen = PlatformScreenContainer[this.props.metadata.component];
+
+    let tasks = this.props.market.tasks;
+    if (this.props.metadata.component == 'ADMIN') {
+      tasks = this.props.user.tasks;
+    }
+
     return (
       <Platform
         contracts={this.props.contracts}

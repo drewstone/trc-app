@@ -12,10 +12,11 @@ export const marketActions = {
   FETCH_TASKS: 'FETCH_TASKS',
   ADD_PREDICTION: 'ADD_PREDICTION',
   FETCH_PREDICTIONS: 'FETCH_PREDICTIONS',
+  SUBMIT_TASK: 'SUBMIT_TASK',
 };
 
 export const userActions = {
-  SELECT_CHOICE: 'SELECT_CHOICE',
+  FETCH_MY_TASKS: 'FETCH_MY_TASKS',
 };
 
 export const decentralActions = {

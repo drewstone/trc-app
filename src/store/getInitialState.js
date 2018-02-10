@@ -2,26 +2,19 @@ import { screens } from '../constants';
 
 const developmentFixtures = {
   market: {
-    predictions: {
-      1: [{
-        user: 'Jim',
-        prediction: 'up',
-      }]
-    },
     tasks: [{
-      id: 1,
       task: 'Financial predictions',
       poster: 'John',
       description: 'The following tasks contain numerous stock market prediction questions. Complete the tasks by submitting your predictons over the available stocks in question.',
       creationTime: Date.now(),
-      mechanismType: 'Endogenous',
       tags: ['Finance'],
+      choices: ['up', 'down'],
       questions: [
-        { text: 'Will APPL go up or down?', choices: ['up', 'down'] },
-        { text: 'Will GOOG go up or down?', choices: ['up', 'down'] },
-        { text: 'Will SBUX go up or down?', choices: ['up', 'down'] },
-        { text: 'Will TSLA go up or down?', choices: ['up', 'down'] },
-        { text: 'Will FB go up or down?', choices: ['up', 'down'] }
+        'Will APPL go up or down?',
+        'Will GOOG go up or down?',
+        'Will SBUX go up or down?',
+        'Will TSLA go up or down?',
+        'Will FB go up or down?'
       ],
     }]
   },

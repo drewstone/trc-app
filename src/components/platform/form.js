@@ -46,22 +46,8 @@ export default class Form extends Component {
           <p className="help">Add a general task description</p>
         </div>
         <div className="field">
-          <label className="label">Mechanism Type</label>
-          <div className="control">
-            <div className="select">
-              <select
-                id="form-select-mech"
-                onChange={this.props.handleMechanismChange}
-                value={this.props.data.mechanismType}>
-                <option>Endogenous</option>
-                <option>Robust Bayesian Truth Serum</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div className="field">
           <label className="label">Task tags</label>
-          <div className="field is-grouped">
+          <div className="field is-grouped has-addons">
             {
               this.props.tags.map((tag, inx) => {
                 return (
@@ -75,13 +61,27 @@ export default class Form extends Component {
             }
           </div>
         </div>
+        <div className="field">
+          <label className="label">Task choices</label>
+          <div className="field">
+            <p className="control">
+              <span className="select">
+                <select onChange={this.props.handleChoiceChange}>
+                  <option>up or down</option>
+                  <option>left or right</option>
+                  <option>true or false</option>
+                </select>
+              </span>
+            </p>
+          </div>
+        </div>
         <ul id="modal-question-list">
           { 
             this.props.data.questions.map((q, inx) => {
               return (
                 <div key={inx} className="field is-fullwidth">
                   <label className="label">Question</label>
-                  <div className="field has-addons">
+                  <div className="field">
                     <div className="control is-expanded">
                       <input
                         id={`form-text-${inx}`}
@@ -92,18 +92,6 @@ export default class Form extends Component {
                         placeholder="Question"
                         required/>
                     </div>
-                    <p className="control">
-                      <span className="select">
-                        <select
-                          id={`form-choices-${inx}`}
-                          onChange={this.props.handleChoiceChange}
-                          value={this.props.data.questions[inx].choices.join(" or ")}>
-                          <option>up or down</option>
-                          <option>left or right</option>
-                          <option>true or false</option>
-                        </select>
-                      </span>
-                    </p>
                   </div>
                   <br/>
                 </div>

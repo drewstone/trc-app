@@ -47,7 +47,10 @@ const marketReducer = (state = marketInitialState, action) => {
         start: prevState => ({ ...prevState, isLoading: true, fooError: null }),
         finish: prevState => ({ ...prevState, isLoading: false }),
         failure: prevState => ({ ...prevState, fooError: payload }),
-        success: prevState => ({ ...prevState, questions: payload.questions }),
+        success: prevState => ({
+          ...prevState,
+          tasks: [ ...prevState.tasks, ...payload ],
+        }),
       });
     case marketActions.ADD_PREDICTION:
       return handle(state, action, {
