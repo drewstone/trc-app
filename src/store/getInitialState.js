@@ -4,9 +4,9 @@ const developmentFixtures = {
   market: {
     tasks: [{
       task: 'Financial predictions',
-      poster: 'John',
+      designer: 'John',
       description: 'The following tasks contain numerous stock market prediction questions. Complete the tasks by submitting your predictons over the available stocks in question.',
-      creationTime: Date.now(),
+      initiationTime: Date.now(),
       tags: ['Finance'],
       choices: ['up', 'down'],
       questions: [
@@ -23,7 +23,7 @@ const developmentFixtures = {
 export default function (config) {
   const state = {
     screen: {
-      currentScreen: screens.PLATFORM,
+      currentScreen: screens.LANDING_PAGE,
       metadata: {
         component: "HOME",
       }

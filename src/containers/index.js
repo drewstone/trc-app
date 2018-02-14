@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Web3Provider } from 'react-web3';
 
 import {
   screenActions,
@@ -18,17 +19,17 @@ const screenContainerComponent = {
 
 class App extends Component {
   componentDidMount() {
-    return this.props.decentralActions.fetchContracts(window.web3)
+    return this.props.marketActions.fetchContracts(window.web3)
     .then(() => this.props.marketActions.fetchTasks(this.props.contracts));
   }
 
   render() {
     const { currentScreen } = this.props;
-    const ScreenComponent = screenContainerComponent[currentScreen];
+    let ScreenComponent = screenContainerComponent[currentScreen];
 
-    return (
-      <ScreenComponent />
-    );
+    return (currentScreen == 'PLATFORM') 
+      ? (<Web3Provider><ScreenComponent/></Web3Provider>)
+      : (<ScreenComponent />);
   }
 }
 
@@ -41,7 +42,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   screenActions: bindActionCreators(screenActions, dispatch),
-  decentralActions: bindActionCreators(decentralActions, dispatch),
   marketActions: bindActionCreators(marketActions, dispatch),
 });
 

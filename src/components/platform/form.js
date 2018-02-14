@@ -101,6 +101,7 @@ export default class Form extends Component {
         </ul>
         <div id="extra-qtn-btn" className="field has-text-centered">
           <a className="button" onClick={this.props.addQuestion}>Add another question</a>
+          <a className="button" onClick={this.props.removeQuestions}>Clear empty questions</a>
         </div>
         <span style={{display: "hidden"}}><a id="form-submit" type="submit"></a></span>
       </form>

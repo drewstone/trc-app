@@ -22,8 +22,8 @@ export default class AdminPage extends Component {
         choices: [],
         task: "",
         description: "",
-        poster: window.web3.eth.coinbase,
-        questions: [],
+        designer: window.web3.eth.coinbase,
+        questions: [""],
         tags: [],
       },
     };
@@ -170,37 +170,39 @@ export default class AdminPage extends Component {
       }
     }
 
-    return tasksInView;
+    return tasksInView.filter(task => task.designer == "John");
   }
 
   renderTasks() {
     return this.getTasksInView().map((task, inx) => {
       return (
-        <div key={inx} className="box content">
-          <article className="post">
-            <h4>{task.task}</h4>
-            <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
-            <div className="media">
-              <div className="media-left">
-                <p className="image is-32x32">
-                  <img src="http://bulma.io/images/placeholders/128x128.png" />
-                </p>
-              </div>
-              <div className="media-content">
-                <div className="content">
-                  <p>
-                    <a>{task.poster}</a> {task.creationTime}  &nbsp; 
-                    { 
-                      task.tags.map((tag, inx) => (
-                        <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
-                      ))
-                    }
-                  </p>
+          <div key={inx} className="hero box content is-dark">
+            <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "ADMINTASK", task: task })}>
+              <article className="post">
+                <h4 style={{color: 'white'}}>{task.task}</h4>
+                <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
+                <div className="media">
+                  <div className="media-left">
+                    <p className="image is-32x32">
+                      <img src="http://bulma.io/images/placeholders/128x128.png" />
+                    </p>
+                  </div>
+                  <div className="media-content">
+                    <div className="content">
+                      <p>
+                        <a>{task.designer}</a> {task.initiationTime}  &nbsp; 
+                        { 
+                          task.tags.map((tag, inx) => (
+                            <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
+                          ))
+                        }
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </article>
-        </div>
+              </article>
+            </a>
+          </div>
       );
     });
   }
@@ -208,24 +210,7 @@ export default class AdminPage extends Component {
   render() {
     return (
       <div style={{height: `${window.innerHeight}px`}}>
-        {/*
-          <nav className="navbar is-white">
-            <div className="container">
-              <div className="navbar-menu">
-                <div className="navbar-start">
-                  <a id={"Popular"} className="navbar-item" onClick={() => this.handleFilterTypeClick("Popular")}>Popular</a>
-                  <a id={"Recent"} className="navbar-item" onClick={() => this.handleFilterTypeClick("Recent")}>Recent</a>
-                  <a id={"Rising"} className="navbar-item" onClick={() => this.handleFilterTypeClick("Rising")}>Rising</a>
-                </div>
-                <div className="navbar-end">
-                  <div className="navbar-item">
-                    <input className="input" type="text" placeholder="Search forum..." />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </nav>
-        */}
+
         <section className="container">
           <div className="columns">
             <div className="column is-3">
@@ -234,17 +219,15 @@ export default class AdminPage extends Component {
                 <p className="menu-label">
                   Tags
                 </p>
-                <ul className="menu-list">
-                  {
-                    Object.keys(TAG_COLORS).map((elt, inx) => {
-                      return (
-                        <li key={inx}>
-                          <a id={elt} className="button" onClick={() => this.handleTagTypeClick(elt)}>{elt}</a>
-                        </li>
-                      );
-                    })
-                  }
-                </ul>
+                <ul className="menu-list">{
+                  Object.keys(TAG_COLORS).map((elt, inx) => {
+                    return (
+                      <li key={inx}>
+                        <a id={elt} className="button" onClick={() => this.handleTagTypeClick(elt)}>{elt}</a>
+                      </li>
+                    );
+                  })
+                }</ul>
               </aside>
 
             </div>
@@ -266,7 +249,7 @@ export default class AdminPage extends Component {
                 data={{
                   task: this.state.form.task,
                   description: this.state.form.description,
-                  poster: this.state.form.poster,
+                  designer: this.state.form.designer,
                   questions: this.state.form.questions,
                   tags: this.state.form.tags,
                 }}
@@ -281,6 +264,16 @@ export default class AdminPage extends Component {
                     form: {
                       ...this.state.form,
                       questions: [ ...this.state.form.questions, "" ],
+                    }
+                  });
+
+                  this.setState(state);
+                }}
+                removeQuestions={() => {
+                  const state = Object.assign({}, this.state, {
+                    form: {
+                      ...this.state.form,
+                      questions: [ ...this.state.form.questions.filter(question => question != "") ],
                     }
                   });
 

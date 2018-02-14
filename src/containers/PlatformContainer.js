@@ -7,11 +7,13 @@ import Platform from '../components/platform';
 import HomePage from '../components/platform/home';
 import TaskPage from '../components/platform/task';
 import AdminPage from '../components/platform/admin';
+import AdminTaskPage from '../components/platform/admintask';
 
 const PlatformScreenContainer = {
   HOME: HomePage,
   TASK: TaskPage,
   ADMIN: AdminPage,
+  ADMINTASK: AdminTaskPage,
 }
 
 class PlatformContainer extends Component {
@@ -20,7 +22,7 @@ class PlatformContainer extends Component {
 
     let tasks = this.props.market.tasks;
     if (this.props.metadata.component == 'ADMIN') {
-      tasks = this.props.user.tasks;
+      // tasks = this.props.user.tasks;
     }
 
     return (

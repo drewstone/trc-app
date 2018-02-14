@@ -123,10 +123,6 @@ export default class TaskPage extends Component {
     this.setState({
       clicked: cl,
     });
-
-    if (this.state.currQuestion < this.state.questions.length - 1) {
-      this.handleNextClick()
-    }
   }
 
   handleSubmit() {
@@ -146,7 +142,7 @@ export default class TaskPage extends Component {
                   <div className="container">
                     <div className="media-content">
                       <h1 className="title article-title is-1"><b>Task name: </b>{this.props.task.task}</h1>
-                      <h3 style={{marginBottom: "20px"}}><b>Posted: </b>{(new Date(this.props.task.creationTime)).toDateString()}</h3>
+                      <h3 style={{marginBottom: "20px"}}><b>Posted: </b>{(new Date(this.props.task.initiationTimeTime)).toDateString()}</h3>
                     </div>
                   </div>
                 </div>

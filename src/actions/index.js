@@ -35,32 +35,6 @@ export const marketActions = {
     promise: util.fetchTasks(contracts),
   }),
 
-  getProfile: (data) => ({
-    type: constants.marketActions.GET_PROFILE,
-    promise: util.getProfile(data),
-  }),
-
-  editProfile: (data) => ({
-    type: constants.marketActions.EDIT_PROFILE,
-    promise: util.editProfile(data),
-  }),
-};
-
-export const userActions = {
-  selectChoice: (id, choice) => ({
-    type: constants.userActions.SELECT_CHOICE,
-    payload: { id, choice },
-  }),
-
-  fetchMyTasks: (contracts) => ({
-    type: constants.userActions.FETCH_MY_TASKS,
-    promise: new Promise((resolve, reject) => {
-
-    }),
-  })
-}
-
-export const decentralActions = {
   fetchContracts: () => ({
     type: constants.decentralActions.FETCH_CONTRACTS,
     promise: util.fetchContracts(),

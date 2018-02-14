@@ -4,7 +4,8 @@ import eth from './ethereum';
 export default function(web3) {
   return {
     fetchContracts: async function() {
-      return await eth.fetchContracts(web3);
+      const contracts = await eth.fetchContracts(web3);
+      return contracts;
     },
     fetchTasks: async function(contracts) {
       const { Mechanism, Protocol } = contracts;
@@ -15,9 +16,13 @@ export default function(web3) {
       tasks = await Promise.all(promises);
       promises = tasks.map(task => {
         return {
+          id: task.keccak.call(),
           name: task.name.call(),
-          manager: task.manager.call(),
+          protocol: task.protocol.call(),
+          designer: task.designer.call(),
+          description: task.description.call(),
           questions: task.getQuestions.call(),
+          answers: task.getAnswers.call(),
           participants: task.getParticipants.call(),
           events: task.getEvents.call(),
           initiationTime: task.initiationTime.call(),
@@ -27,12 +32,17 @@ export default function(web3) {
 
       let result = await Promise.all(promises.map(Promise.props))
       tasks = result.map(elt => ({
-        task: web3.toAscii(elt.name),
-        poster: elt.manager,
-        creationTime: elt.initiationTime.toNumber(),
-        mechanismType: 'Endogenous',
-        tags: ['Finance'],
-        questions: elt.questions.map(web3.toAscii),
+        id: elt.id,
+        name: web3.toAscii(elt.name),
+        protocol: elt.protocol,
+        designer: elt.designer,
+        description: elt.description,
+        questions: elt.questions,
+        answers: elt.answers,
+        participants: elt.participants,
+        events: elt.events,
+        initiationTime: elt.initiationTime.toNumber(),
+        terminationTime: elt.terminationTime.toNumber(),
       }));
 
       return Promise.resolve(tasks);
@@ -41,11 +51,13 @@ export default function(web3) {
     addTask: async function(contracts, data) {
       const { Protocol } = contracts;
       const taskName = data.task;
-      const designer = data.poster;
+      const designer = data.designer;
       const events = data.choices;
       const timeLength = 1;
       const questions = data.questions.map(q => q.text);
-      const args = [taskName, events, questions, timeLength];
+      const description = data.description;
+      const tags = data.tags;
+      const args = [taskName, events, questions, timeLength, description, tags];
 
       try {
         let result = await Protocol.createTask(...args, { from: designer });  
@@ -105,16 +117,6 @@ export default function(web3) {
       } catch (exception) {
         return Promise.reject(`Failed to score task: ${exception}`);
       }
-    },
-
-    getProfile: (data) => {
-      return Promise.delay(100)
-      .then(() => (data));
-    },
-
-    editProfile: (data) => {
-      return Promise.delay(100)
-      .then(() => (data));
     },
   };
 }

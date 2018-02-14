@@ -13,13 +13,8 @@ export const marketActions = {
   ADD_PREDICTION: 'ADD_PREDICTION',
   FETCH_PREDICTIONS: 'FETCH_PREDICTIONS',
   SUBMIT_TASK: 'SUBMIT_TASK',
+  FETCH_USER_INFO: 'FETCH_USER_INFO'
 };
-
-export const userActions = {
-  FETCH_MY_TASKS: 'FETCH_MY_TASKS',
-};
-
 export const decentralActions = {
   FETCH_CONTRACTS: 'FETCH_CONTRACTS',
-  FETCH_TASKS: 'FETCH_TASKS',
 };

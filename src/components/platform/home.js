@@ -19,11 +19,11 @@ export default class HomePage extends Component {
       tasks: props.tasks || [],
       modalClicked: false,
       form: {
-        choices: [],
+        choices: ["up", "down"],
         task: "",
         description: "",
-        poster: window.web3.eth.coinbase,
-        questions: [],
+        designer: window.web3.eth.coinbase,
+        questions: [""],
         tags: [],
       },
     };
@@ -190,7 +190,7 @@ export default class HomePage extends Component {
                 <div className="media-content">
                   <div className="content">
                     <p>
-                      <a>{task.poster}</a> {task.creationTime}  &nbsp; 
+                      <a>{task.designer}</a> {task.initiationTime}  &nbsp; 
                       { 
                         task.tags.map((tag, inx) => (
                           <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
@@ -268,7 +268,7 @@ export default class HomePage extends Component {
                 data={{
                   task: this.state.form.task,
                   description: this.state.form.description,
-                  poster: this.state.form.poster,
+                  designer: this.state.form.designer,
                   questions: this.state.form.questions,
                   tags: this.state.form.tags,
                 }}
@@ -283,6 +283,16 @@ export default class HomePage extends Component {
                     form: {
                       ...this.state.form,
                       questions: [ ...this.state.form.questions, "" ],
+                    }
+                  });
+
+                  this.setState(state);
+                }}
+                removeQuestions={() => {
+                  const state = Object.assign({}, this.state, {
+                    form: {
+                      ...this.state.form,
+                      questions: [ ...this.state.form.questions.filter(question => question != "") ],
                     }
                   });
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import HomePage from './home';
 import TaskPage from './task';
 import AdminPage from './admin';
+import AdminTaskPage from './admintask';
 
 export default class Platform extends Component {
   componentDidMount() {
@@ -28,7 +29,7 @@ export default class Platform extends Component {
           addTask: this.props.marketActions.addTask,
           contracts: this.props.contracts,
         });        
-      } else if (child.type == TaskPage) {
+      } else if (child.type == TaskPage || child.type == AdminTaskPage) {
         return React.cloneElement(child, {
           task: this.props.currentTask,
           screens: this.props.screens,
@@ -65,12 +66,6 @@ export default class Platform extends Component {
                 </a>
                 <a className="navbar-item" onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "ADMIN" })}>
                   Admin
-                </a>
-                <a className="navbar-item">
-                  Documentation
-                </a>
-                <a className="navbar-item">
-                  Blog
                 </a>
               </div>
 
