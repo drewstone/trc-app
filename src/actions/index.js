@@ -1,41 +1,42 @@
 import * as constants from '../constants';
-import decentral from '../decentral';
+import BaseUtil from './base';
+const util = BaseUtil(window.web3);
 
 export const screenActions = {
-  switchTo: screen => ({
+  switchTo: (screen, metadata) => ({
     type: constants.screenActions.SWITCH_TO,
-    payload: screen,
+    payload: { screen, metadata },
   }),
 };
 
 export const marketActions = {
-  addPrediction: (data, value) => ({
+  addPrediction: (data) => ({
     type: constants.marketActions.ADD_PREDICTION,
-    promise: decentral.addPrediction(data, value),
+    promise: util.addPrediction(data),
   }),
 
-  fetchPredictions: (data, value) => ({
+  fetchPredictions: (data) => ({
     type: constants.marketActions.FETCH_PREDICTIONS,
-    promise: decentral.addPrediction(data, value),
+    promise: util.addPrediction(data),
   }),
 
-  addQuestion: (data, value) => ({
-    type: constants.marketActions.ADD_QUESTION,
-    promise: decentral.addQuestion(data, value),
+  submitTask: (contracts, data) => ({
+    type: constants.marketActions.SUBMIT_TASK,
+    promise: util.submitTask(contracts, data),
   }),
 
-  fetchQuestions: (data, value) => ({
-    type: constants.marketActions.FETCH_QUESTIONS,
-    promise: decentral.fetchQuestions(data, value),
+  addTask: (contracts, data) => ({
+    type: constants.marketActions.ADD_TASK,
+    promise: util.addTask(contracts, data),
   }),
 
-  getProfile: (data, value) => ({
-    type: constants.marketActions.GET_PROFILE,
-    promise: decentral.getProfile(data, value),
+  fetchTasks: (contracts) => ({
+    type: constants.marketActions.FETCH_TASKS,
+    promise: util.fetchTasks(contracts),
   }),
 
-  editProfile: (data, value) => ({
-    type: constants.marketActions.EDIT_PROFILE,
-    promise: decentral.editProfile(data, value),
+  fetchContracts: () => ({
+    type: constants.decentralActions.FETCH_CONTRACTS,
+    promise: util.fetchContracts(),
   }),
 };

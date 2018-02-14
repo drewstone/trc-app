@@ -1,0 +1,8 @@
+{
+  "contract_name": "Database",
+  "abi": [],
+  "unlinked_binary": "0x60606040523415600e57600080fd5b5b603680601c6000396000f30060606040525b600080fd00a165627a7a72305820daaa690d84210caa1d1925904f3ec8f98e12d4880b9ae563cbaa1925939349620029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1518460777726
+}

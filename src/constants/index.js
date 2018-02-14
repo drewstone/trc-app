@@ -1,10 +1,6 @@
 export const screens = {
-  NEWUSER: 'NEWUSER',
-  USER: 'USER',
-  ADD_QUESTION: 'ADD_QUESTION',
-  QUESTION_LIST: 'QUESTION_LIST',
-  PREDICTION: 'PREDICTION',
-  PREDICTION_LIST: 'PREDICTION_LIST',
+  LANDING_PAGE: 'LANDING_PAGE',
+  PLATFORM: 'PLATFORM',
 };
 
 export const screenActions = {
@@ -12,6 +8,13 @@ export const screenActions = {
 };
 
 export const marketActions = {
-  ADD_QUESTION: 'ADD_QUESTION',
+  ADD_TASK: 'ADD_TASK',
+  FETCH_TASKS: 'FETCH_TASKS',
   ADD_PREDICTION: 'ADD_PREDICTION',
+  FETCH_PREDICTIONS: 'FETCH_PREDICTIONS',
+  SUBMIT_TASK: 'SUBMIT_TASK',
+  FETCH_USER_INFO: 'FETCH_USER_INFO'
+};
+export const decentralActions = {
+  FETCH_CONTRACTS: 'FETCH_CONTRACTS',
 };

@@ -7,7 +7,7 @@ const contract = require('truffle-contract');
 const config = require('../config/contracts_config');
 
 module.exports = function() {
-  const dirPath = path.join(path.resolve('./'), '/contracts');
+  const dirPath = path.join(path.resolve('./'), 'src/contracts');
   const artifactor = new Artifactor(dirPath);
 
   return initialize(dirPath, artifactor)
@@ -26,14 +26,7 @@ function initialize(dirPath, artifactor) {
     fs.mkdirSync(dirPath);
   } 
 
-  if (fs.readdirSync(dirPath).length == 0) {
-    return compile(artifactor, config.CONTRACTS_DIRECTORY);
-  } else {
-    return Promise.map(fs.readdirSync(dirPath), c => {
-      let parsedContract = JSON.parse(fs.readFileSync(path.join(dirPath, c)));
-      return artifactor.save(parsedContract);
-    });
-  }
+  return compile(artifactor, config.CONTRACTS_DIRECTORY);
 }
 
 function compileDirectory(dirPath) {
@@ -43,25 +36,31 @@ function compileDirectory(dirPath) {
   });
 }
 
-function compile(artifactor, dirpath) {
-  let data = fs.readdirSync(dirpath);
-  
+function recursiveCompile(path) {
+  const data = fs.readdirSync(path).filter(file => !file.includes('.DS_Store'));
   let contractData = [];
   for (ctc in data) {
     if (data[ctc].split('.').length > 1) {
-      contractData.push({ ctc: data[ctc], data: fs.readFileSync(`${dirpath}/${data[ctc]}`).toString() });
+      const trimmed_contract = fs.readFileSync(`${path}/${data[ctc]}`)
+        .toString()
+        .replace(new RegExp('../mechanism/', 'g'), './')
+        .replace(new RegExp('../math/', 'g'), './')
+
+      contractData.push({ ctc: data[ctc], data: trimmed_contract });
     } else {
-      compileDirectory(`${dirpath}/${data[ctc]}`).forEach(elt => {
-        contractData.push(elt);
-      });
+      let dirName = `${path}/${data[ctc]}`;
+      const dirData = recursiveCompile(dirName);
+      contractData = [ ...contractData, ...dirData ];  
     }
   }
 
-  // console.log(contractData);
-  contractData = contractData.reduce((prev, curr) => (Object.assign({}, prev, {[curr.ctc]: curr.data})), {});
-  
-  const output = solc.compile({ sources: contractData }, 1);
+  return contractData;
+}
 
+function compile(artifactor, path) {
+  contractData = recursiveCompile(path).reduce((prev, curr) => (Object.assign({}, prev, {[curr.ctc]: curr.data})), {});
+
+  const output = solc.compile({ sources: contractData }, 1);
   const contracts = Object.keys(output.contracts).map(key => ({
       contract_name: key.split(':')[1],
       abi: JSON.parse(output.contracts[key].interface),

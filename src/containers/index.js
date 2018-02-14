@@ -1,54 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Web3Provider } from 'react-web3';
 
-import { screenActions } from '../actions';
+import {
+  screenActions,
+  decentralActions,
+  marketActions,
+} from '../actions';
 import { screens } from '../constants';
-import NavbarContainer from './NavbarContainer';
-import NewUserContainer from './NewUserContainer';
-import UserContainer from './UserContainer';
-import PredictionListContainer from './PredictionListContainer';
-import PredictionContainer from './PredictionContainer';
-import QuestionListContainer from './QuestionListContainer';
-import AddQuestionContainer from './AddQuestionContainer';
-
-import EthUtil from '../ethereum';
+import LandingPageContainer from './LandingPageContainer';
+import PlatformContainer from './PlatformContainer';
 
 const screenContainerComponent = {
-  [screens.NEWUSER]: NewUserContainer,
-  [screens.USER]: UserContainer,
-  [screens.PREDICTIONLIST]: PredictionListContainer,
-  [screens.PREDICTION]: PredictionContainer,
-  [screens.QUESTIONLIST]: QuestionListContainer,
-  [screens.ADD_QUESTION]: AddQuestionContainer,
+  [screens.LANDING_PAGE]: LandingPageContainer,
+  [screens.PLATFORM]: PlatformContainer,
 };
 
 class App extends Component {
   componentDidMount() {
-    EthUtil();
+    return this.props.marketActions.fetchContracts(window.web3)
+    .then(() => this.props.marketActions.fetchTasks(this.props.contracts));
   }
 
   render() {
     const { currentScreen } = this.props;
-    const ScreenComponent = screenContainerComponent[currentScreen];
+    let ScreenComponent = screenContainerComponent[currentScreen];
 
-    return (
-      <NavbarContainer>
-        <ScreenComponent />
-      </NavbarContainer>
-    );
+    return (currentScreen == 'PLATFORM') 
+      ? (<Web3Provider><ScreenComponent/></Web3Provider>)
+      : (<ScreenComponent />);
   }
 }
 
 
 
 const mapStateToProps = state => ({
-  currentScreen: state.currentScreen,
+  currentScreen: state.screen.currentScreen,
+  contracts: state.decentral.contracts,
 });
 
 const mapDispatchToProps = dispatch => ({
   screenActions: bindActionCreators(screenActions, dispatch),
-})
+  marketActions: bindActionCreators(marketActions, dispatch),
+});
 
 export default connect(
   mapStateToProps,

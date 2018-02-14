@@ -5,7 +5,6 @@ import configureStore from './store';
 import getInitialState from './store/getInitialState';
 import App from './containers';
 import DevTools from './containers/DevTools';
-
 const store = configureStore(getInitialState());
 
 export default class Root extends Component {
