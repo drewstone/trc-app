@@ -6,7 +6,7 @@ export default function ContactPage({ switchTo, screens }) {
       <div className="container has-text-centered is-transparent">
         <div className="column is-6 is-offset-3">
           <h1 className="title is-size-1">
-            CONTACT
+            drstone@seas.upenn.edu
           </h1>
         </div>
       </div>

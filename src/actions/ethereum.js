@@ -8,7 +8,7 @@ import RBTS from '../contracts/RBTS';
 const CONTRACTS = [ Protocol, Mechanism, RBTS ];
 
 const DEPLOYED = {
-  Protocol: "0x37bee53b0895ebb7f5f76caa01568a4ea78df75e",
+  Protocol: "0x822f93e8fee8968b764c2d825cb4a9c999509233",
 };
 
 function setup() {

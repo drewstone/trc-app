@@ -26,7 +26,7 @@ export default class Form extends Component {
               className="input"
               type="text"
               placeholder="Text input"
-              value={this.props.data.poster}
+              value={this.props.data.designer}
               disabled
               required/>
           </div>
@@ -62,7 +62,7 @@ export default class Form extends Component {
           </div>
         </div>
         <div className="field">
-          <label className="label">Task choices</label>
+          <label className="label">Task events</label>
           <div className="field">
             <p className="control">
               <span className="select">
@@ -93,12 +93,12 @@ export default class Form extends Component {
                         required/>
                     </div>
                   </div>
-                  <br/>
                 </div>
               );
             })
           }
         </ul>
+        <br/>
         <div id="extra-qtn-btn" className="field has-text-centered">
           <a className="button" onClick={this.props.addQuestion}>Add another question</a>
           <a className="button" onClick={this.props.removeQuestions}>Clear empty questions</a>

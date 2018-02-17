@@ -19,7 +19,7 @@ export default class HomePage extends Component {
       tasks: props.tasks || [],
       modalClicked: false,
       form: {
-        choices: ["up", "down"],
+        events: ["up", "down"],
         task: "",
         description: "",
         designer: window.web3.eth.coinbase,
@@ -110,7 +110,7 @@ export default class HomePage extends Component {
       form: {
         ...this.state.form,
         questions: [ ...this.state.form.questions.map((q, inx) => {
-          if (inx == e.target.id.split("-")[2]) {
+          if (inx === Number(e.target.id.split("-")[2])) {
             q = e.target.value;
           }
 
@@ -148,7 +148,7 @@ export default class HomePage extends Component {
     const state = Object.assign({}, this.state, {
       form: {
         ...this.state.form,
-        choices: e.target.value.split(" or "),
+        events: e.target.value.split(" or "),
       }
     });
 
@@ -165,7 +165,7 @@ export default class HomePage extends Component {
     for (var i = this.props.tasks.length - 1; i >= 0; i--) {
       if (_.intersection(this.props.tasks[i].tags, this.state.clickedTags).length > 0) {
         tasksInView.push(this.props.tasks[i]);
-      } else if (this.state.clickedTags.length == 0) {
+      } else if (this.state.clickedTags.length === 0) {
         tasksInView.push(this.props.tasks[i])
       }
     }
@@ -175,32 +175,40 @@ export default class HomePage extends Component {
 
   renderTasks() {
     return this.getTasksInView().map((task, inx) => {
-      return (
+      const content = (
+        <article className="post">
+          <h4>{task.name}</h4>
+          <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
+          <div className="media">
+            <div className="media-left">
+              <p className="image is-32x32">
+                <img src="http://bulma.io/images/placeholders/128x128.png" />
+              </p>
+            </div>
+            <div className="media-content">
+              <div className="content">
+                <p>
+                  <span>{task.designer}</span> {task.initiationTime}  &nbsp; 
+                  { 
+                    task.tags.map((tag, inx) => (
+                      <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
+                    ))
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+      );
+
+      return (task.hasFinished) ? (
+        <div key={inx} className="hero is-light box content">
+          { content }
+        </div>
+      ) : (
         <div key={inx} className="box content">
           <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TASK", task: task })}>
-            <article className="post">
-              <h4>{task.task}</h4>
-              <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
-              <div className="media">
-                <div className="media-left">
-                  <p className="image is-32x32">
-                    <img src="http://bulma.io/images/placeholders/128x128.png" />
-                  </p>
-                </div>
-                <div className="media-content">
-                  <div className="content">
-                    <p>
-                      <a>{task.designer}</a> {task.initiationTime}  &nbsp; 
-                      { 
-                        task.tags.map((tag, inx) => (
-                          <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
-                        ))
-                      }
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </article>
+            { content }
           </a>
         </div>
       );
@@ -301,8 +309,8 @@ export default class HomePage extends Component {
             </section>
             <footer className="modal-card-foot">
               <button className="button is-success" onClick={this.handleFormSubmit.bind(this)} disabled={(
-                this.state.form.task.length == 0 || this.state.form.description.length == 0 ||
-                _.every(this.state.form.questions.map(q => q.length == 0)))}>Submit</button>
+                this.state.form.task.length === 0 || this.state.form.description.length === 0 ||
+                _.every(this.state.form.questions.map(q => q.length === 0)))}>Submit</button>
               <button className="button" onClick={this.handleModalClick.bind(this)}>Cancel</button>
             </footer>
           </div>
