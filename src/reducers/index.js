@@ -25,6 +25,7 @@ const screenReducer = (state = screenInitialState, action) => {
 };
 
 const marketInitialState = {
+  user: {},
   predictions: {},
   tasks: [],
 };
@@ -47,7 +48,18 @@ const marketReducer = (state = marketInitialState, action) => {
         start: prevState => ({ ...prevState, isLoading: true, fooError: null }),
         finish: prevState => ({ ...prevState, isLoading: false }),
         failure: prevState => ({ ...prevState, fooError: payload }),
-        success: prevState => ({ ...prevState, questions: payload.questions }),
+        success: prevState => {
+          return {
+            ...prevState,
+            user: {
+              tasks: [
+                ...state.user.tasks,
+                payload.filter(task => task.designer != window.web3.eth.coinbase)
+              ],
+            },
+            tasks: [ ...prevState.tasks, ...payload ],
+          }
+        },
       });
     case marketActions.ADD_PREDICTION:
       return handle(state, action, {
@@ -68,28 +80,6 @@ const marketReducer = (state = marketInitialState, action) => {
   }
 }
 
-const userInitialState = {
-  unsubmitted: {},
-}
-
-const userReducer = (state = userInitialState, action) => {
-  const { type, payload } = action;
-
-  switch (type) {
-    case userActions.SELECT_CHOICE:
-      return {
-        ...state,
-        unsubmitted: {
-          ...state.unsubmitted,
-          [payload.id]: {
-            choice: payload.choice,
-          }
-        },
-      };
-    default:
-      return state;
-  }
-}
 
 const decentralInitialState = {
   contracts: {},
@@ -114,6 +104,5 @@ const decentralReducer = (state = decentralInitialState, action) => {
 export default combineReducers({
   screen: screenReducer,
   market: marketReducer,
-  user: userReducer,
   decentral: decentralReducer,
 });

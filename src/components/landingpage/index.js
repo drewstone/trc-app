@@ -60,7 +60,7 @@ export default class LandingPage extends Component {
             this.props.children
           }
         </section>
-        <footer className="hero is-info footer">
+        <footer className="hero is-info">
           <div className="container">
             <div className="content has-text-centered">
               <p>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import HomePage from './home';
 import TaskPage from './task';
+import AdminPage from './admin';
+import AdminTaskPage from './admintask';
 
 export default class Platform extends Component {
   componentDidMount() {
@@ -19,7 +21,7 @@ export default class Platform extends Component {
 
   renderChildren() {
     return React.Children.map(this.props.children, child => {
-      if (child.type == HomePage) {
+      if (child.type == HomePage || child.type == AdminPage) {
         return React.cloneElement(child, {
           tasks: this.props.tasks,
           screens: this.props.screens,
@@ -27,7 +29,7 @@ export default class Platform extends Component {
           addTask: this.props.marketActions.addTask,
           contracts: this.props.contracts,
         });        
-      } else if (child.type == TaskPage) {
+      } else if (child.type == TaskPage || child.type == AdminTaskPage) {
         return React.cloneElement(child, {
           task: this.props.currentTask,
           screens: this.props.screens,
@@ -62,11 +64,8 @@ export default class Platform extends Component {
                 <a className="navbar-item" onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "HOME" })}>
                   Home
                 </a>
-                <a className="navbar-item">
-                  Documentation
-                </a>
-                <a className="navbar-item">
-                  Blog
+                <a className="navbar-item" onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "ADMIN" })}>
+                  Admin
                 </a>
               </div>
 

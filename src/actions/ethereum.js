@@ -3,12 +3,12 @@ import contract from 'truffle-contract';
 
 import Protocol from '../contracts/Protocol';
 import Mechanism from '../contracts/Mechanism';
-import Scorer from '../contracts/Scorer';
+import RBTS from '../contracts/RBTS';
 
-const CONTRACTS = [ Protocol, Mechanism, Scorer ];
+const CONTRACTS = [ Protocol, Mechanism, RBTS ];
 
 const DEPLOYED = {
-  Protocol: "0x27b46f74467ee140870146048b3a804a9036d3ad",
+  Protocol: "0x37bee53b0895ebb7f5f76caa01568a4ea78df75e",
 };
 
 function setup() {
