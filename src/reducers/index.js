@@ -25,7 +25,6 @@ const screenReducer = (state = screenInitialState, action) => {
 };
 
 const marketInitialState = {
-  user: {},
   predictions: {},
   tasks: [],
 };
@@ -51,28 +50,8 @@ const marketReducer = (state = marketInitialState, action) => {
         success: prevState => {
           return {
             ...prevState,
-            user: {
-              tasks: [
-                ...state.user.tasks,
-                payload.filter(task => task.designer != window.web3.eth.coinbase)
-              ],
-            },
             tasks: [ ...prevState.tasks, ...payload ],
           }
-        },
-      });
-    case marketActions.ADD_PREDICTION:
-      return handle(state, action, {
-        start: prevState => ({ ...prevState, isLoading: true, fooError: null }),
-        finish: prevState => ({ ...prevState, isLoading: false }),
-        failure: prevState => ({ ...prevState, fooError: payload }),
-        success: prevState => {
-          const newState = Object.assign({}, prevState);
-          newState.predictions[payload.question.id].push({
-            name: 'Jim', prediction: payload.prediction
-          });
-
-          return newState;
         },
       });
     default:

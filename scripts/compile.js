@@ -59,15 +59,16 @@ function recursiveCompile(path) {
 
 function compile(artifactor, path) {
   contractData = recursiveCompile(path).reduce((prev, curr) => (Object.assign({}, prev, {[curr.ctc]: curr.data})), {});
-
   const output = solc.compile({ sources: contractData }, 1);
+
   const contracts = Object.keys(output.contracts).map(key => ({
       contract_name: key.split(':')[1],
       abi: JSON.parse(output.contracts[key].interface),
       unlinked_binary: output.contracts[key].bytecode,
-      schema_version: "0.0.5",
   }))
-  .reduce((prev, curr) => (Object.assign({}, prev, {[curr.contract_name]: curr})), {})
+  .reduce((prev, curr) => {
+    return Object.assign({}, prev, {[curr.contract_name]: curr});
+  }, {})
 
   return artifactor.saveAll(contracts);
 }

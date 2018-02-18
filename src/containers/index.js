@@ -5,7 +5,6 @@ import { Web3Provider } from 'react-web3';
 
 import {
   screenActions,
-  decentralActions,
   marketActions,
 } from '../actions';
 import { screens } from '../constants';

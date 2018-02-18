@@ -5,7 +5,8 @@ export default class TaskPage extends Component {
   constructor(props) {
     super();
     this.state = {
-      choices: props.task.choices,
+      submitter: window.web3.eth.coinbase,
+      events: props.task.events,
       questions: props.task.questions,
       currQuestion: 0,
       prevQuestion: 0,
@@ -18,7 +19,7 @@ export default class TaskPage extends Component {
   }
 
   componentDidMount() {
-    if (this.state.completedCount == this.state.questions.length) {
+    if (this.state.completedCount === this.state.questions.length) {
       document.getElementById('submitBtnSpan').style.display = "";
     } else {
       document.getElementById('submitBtnSpan').style.display = "none";
@@ -26,7 +27,7 @@ export default class TaskPage extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.completedCount == this.state.questions.length) {
+    if (this.state.completedCount === this.state.questions.length) {
       document.getElementById('submitBtnSpan').style.display = "";
     } else {
       document.getElementById('submitBtnSpan').style.display = "none";
@@ -42,19 +43,19 @@ export default class TaskPage extends Component {
   }
 
   renderPaginationButtons() {
-    if (this.state.questions.length == 1) {
+    if (this.state.questions.length === 1) {
       return [
           <a key={1} className="pagination-previous" title="This is the first page" disabled>Previous</a>,
           <a key={2} className="pagination-next" disabled>Next</a>
       ];
     }
 
-    if (this.state.currQuestion == 0) {
+    if (this.state.currQuestion === 0) {
       return [
           <a key={1} className="pagination-previous" title="This is the first page" disabled>Previous</a>,
           <a key={2} className="pagination-next" onClick={this.handleNextClick.bind(this)}>Next</a>
       ];
-    } else if (this.state.currQuestion == this.state.questions.length - 1) {
+    } else if (this.state.currQuestion === this.state.questions.length - 1) {
       return [
           <a key={1} className="pagination-previous" title="This is the first page" onClick={this.handlePrevClick.bind(this)}>Previous</a>,
           <a key={2} className="pagination-next" disabled>Next</a>
@@ -68,14 +69,12 @@ export default class TaskPage extends Component {
   }
 
   renderSelector() {
-    let Selector;
-    if (this.state.clicked[this.state.currQuestion] == null) {
-      Selector = styled.div``;
-    } else if (this.state.clicked[this.state.currQuestion] == 0) {
+    let Selector = styled.div``;
+    if (this.state.clicked[this.state.currQuestion] === 0) {
       Selector = styled.div`
         background: -webkit-linear-gradient(left, #00C6FF 0%,#00C6FF 50%,#000000 50%,white 50%,white 100%);
       `;
-    } else if (this.state.clicked[this.state.currQuestion] == 1) {
+    } else if (this.state.clicked[this.state.currQuestion] === 1) {
       Selector = styled.div`
         background: -webkit-linear-gradient(right, #00C6FF 0%,#00C6FF 50%,#000000 50%,white 50%,white 100%);
       `;
@@ -85,12 +84,12 @@ export default class TaskPage extends Component {
       <Selector className="card-footer">
         <p className="card-footer-item">
           <span>
-            <a onClick={() => this.handleSelectionClick(0)}>{this.state.choices[0]}</a>
+            <a onClick={() => this.handleSelectionClick(0)}>{this.state.events[0]}</a>
           </span>
         </p>
         <p className="card-footer-item">
           <span>
-            <a onClick={() => this.handleSelectionClick(1)}>{this.state.choices[1]}</a>
+            <a onClick={() => this.handleSelectionClick(1)}>{this.state.events[1]}</a>
           </span>
         </p>
       </Selector>
@@ -141,8 +140,9 @@ export default class TaskPage extends Component {
                   </div>
                   <div className="container">
                     <div className="media-content">
-                      <h1 className="title article-title is-1"><b>Task name: </b>{this.props.task.task}</h1>
-                      <h3 style={{marginBottom: "20px"}}><b>Posted: </b>{(new Date(this.props.task.initiationTimeTime)).toDateString()}</h3>
+                      <h1 className="title article-title is-1"><b>Task name: </b>{this.props.task.name}</h1>
+                      <h3 style={{marginBottom: "20px"}}><b>Posted: </b>{(new Date(this.props.task.initiationTime)).toDateString()}</h3>
+                      <h3 style={{marginBottom: "20px"}}><b>Designer: </b>{this.props.task.designer}</h3>
                     </div>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export default class TaskPage extends Component {
                 </div>
                 <input
                   onChange={(e) => this.setState({ sliderValues: [...this.state.sliderValues.map((elt, inx) => {
-                    if (inx == this.state.currQuestion) {
+                    if (inx === this.state.currQuestion) {
                       return e.target.value;
                     } else {
                       return elt;

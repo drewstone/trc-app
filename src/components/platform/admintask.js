@@ -5,7 +5,7 @@ export default class AdminTaskPage extends Component {
   constructor(props) {
     super();
     this.state = {
-      choices: props.task.choices,
+      choices: props.task.events,
       questions: props.task.questions,
       currQuestion: 0,
       prevQuestion: 0,
@@ -21,19 +21,19 @@ export default class AdminTaskPage extends Component {
   }
 
   renderPaginationButtons() {
-    if (this.state.questions.length == 1) {
+    if (this.state.questions.length === 1) {
       return [
           <a key={1} className="pagination-previous" title="This is the first page" disabled>Previous</a>,
           <a key={2} className="pagination-next" disabled>Next</a>
       ];
     }
 
-    if (this.state.currQuestion == 0) {
+    if (this.state.currQuestion === 0) {
       return [
           <a key={1} className="pagination-previous" title="This is the first page" disabled>Previous</a>,
           <a key={2} className="pagination-next" onClick={this.handleNextClick.bind(this)}>Next</a>
       ];
-    } else if (this.state.currQuestion == this.state.questions.length - 1) {
+    } else if (this.state.currQuestion === this.state.questions.length - 1) {
       return [
           <a key={1} className="pagination-previous" title="This is the first page" onClick={this.handlePrevClick.bind(this)}>Previous</a>,
           <a key={2} className="pagination-next" disabled>Next</a>
@@ -60,8 +60,14 @@ export default class AdminTaskPage extends Component {
     });
   }
 
-  renderQuestionData(question) {
-    return question;
+  renderQuestionData() {
+    const answeredCount = this.props.task.answers.filter(arr => arr.length > 0).length;
+    return (<div>
+      <p className="title">{ this.state.questions[this.state.currQuestion] }</p>
+      <ul>
+        <li>Number of Answers: {answeredCount}</li>
+      </ul>
+    </div>);
   }
 
   render() {
@@ -76,8 +82,9 @@ export default class AdminTaskPage extends Component {
                   </div>
                   <div className="container">
                     <div className="media-content">
-                      <h1 className="title article-title is-1"><b>Task name: </b>{this.props.task.task}</h1>
+                      <h1 className="title article-title is-1"><b>Task name: </b>{this.props.task.name}</h1>
                       <h3 style={{marginBottom: "20px"}}><b>Posted: </b>{(new Date(this.props.task.initiationTime)).toDateString()}</h3>
+                      <h3 style={{marginBottom: "20px"}}><b>Designer: </b>{this.props.task.designer}</h3>
                     </div>
                   </div>
                 </div>
@@ -88,9 +95,7 @@ export default class AdminTaskPage extends Component {
               { this.renderTaskNavigation() }
               <div className="card">
                 <div className="card-content has-text-centered">
-                  <p className="title">
-                    { this.renderQuestionData(this.state.questions[this.state.currQuestion]) }
-                  </p>
+                  { this.renderQuestionData() }
                 </div>
               </div>
             </div>

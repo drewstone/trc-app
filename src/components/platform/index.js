@@ -11,7 +11,7 @@ export default class Platform extends Component {
     function toggleNav() {
       var nav = document.getElementById("topNav");
       var className = nav.getAttribute("class");
-      if (className == "navbar-menu") {
+      if (className === "navbar-menu") {
           nav.className = "navbar-menu is-active";
       } else {
           nav.className = "navbar-menu";
@@ -21,7 +21,7 @@ export default class Platform extends Component {
 
   renderChildren() {
     return React.Children.map(this.props.children, child => {
-      if (child.type == HomePage || child.type == AdminPage) {
+      if (child.type === HomePage || child.type === AdminPage) {
         return React.cloneElement(child, {
           tasks: this.props.tasks,
           screens: this.props.screens,
@@ -29,7 +29,7 @@ export default class Platform extends Component {
           addTask: this.props.marketActions.addTask,
           contracts: this.props.contracts,
         });        
-      } else if (child.type == TaskPage || child.type == AdminTaskPage) {
+      } else if (child.type === TaskPage || child.type === AdminTaskPage) {
         return React.cloneElement(child, {
           task: this.props.currentTask,
           screens: this.props.screens,

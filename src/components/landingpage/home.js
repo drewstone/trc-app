@@ -9,7 +9,7 @@ export default function HomePage({}) {
             A prediction market for crowd intelligence.
           </h1>
           <h2 className="subtitle is-size-5">
-             <b>Truecoin transforms subjective information gathering into a prediction market, allowing you to forecast the crowds' beliefs.</b>
+             <b>Truecoin takes qualities from prediction markets to crowdsource subjective information gathering, allowing you to forecast the crowds' beliefs.</b>
           </h2>
           <div className="box">
             
@@ -19,7 +19,7 @@ export default function HomePage({}) {
               </p>
               <p className="control">
                 <a className="button is-primary">
-                  Notify Me
+                  Keep in touch
                 </a>
               </p>
             </div>

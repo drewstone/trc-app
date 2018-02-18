@@ -110,7 +110,7 @@ export default class AdminPage extends Component {
       form: {
         ...this.state.form,
         questions: [ ...this.state.form.questions.map((q, inx) => {
-          if (inx == e.target.id.split("-")[2]) {
+          if (inx === e.target.id.split("-")[2]) {
             q = e.target.value;
           }
 
@@ -165,12 +165,12 @@ export default class AdminPage extends Component {
     for (var i = this.props.tasks.length - 1; i >= 0; i--) {
       if (_.intersection(this.props.tasks[i].tags, this.state.clickedTags).length > 0) {
         tasksInView.push(this.props.tasks[i]);
-      } else if (this.state.clickedTags.length == 0) {
+      } else if (this.state.clickedTags.length === 0) {
         tasksInView.push(this.props.tasks[i])
       }
     }
 
-    return tasksInView.filter(task => task.designer == "John");
+    return tasksInView.filter(task => task.designer === this.state.form.designer);
   }
 
   renderTasks() {
@@ -179,7 +179,7 @@ export default class AdminPage extends Component {
           <div key={inx} className="hero box content is-dark">
             <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "ADMINTASK", task: task })}>
               <article className="post">
-                <h4 style={{color: 'white'}}>{task.task}</h4>
+                <h4 style={{color: 'white'}}>{task.name}</h4>
                 <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
                 <div className="media">
                   <div className="media-left">
@@ -282,8 +282,8 @@ export default class AdminPage extends Component {
             </section>
             <footer className="modal-card-foot">
               <button className="button is-success" onClick={this.handleFormSubmit.bind(this)} disabled={(
-                this.state.form.task.length == 0 || this.state.form.description.length == 0 ||
-                _.every(this.state.form.questions.map(q => q.length == 0)))}>Submit</button>
+                this.state.form.task.length === 0 || this.state.form.description.length === 0 ||
+                _.every(this.state.form.questions.map(q => q.length === 0)))}>Submit</button>
               <button className="button" onClick={this.handleModalClick.bind(this)}>Cancel</button>
             </footer>
           </div>
