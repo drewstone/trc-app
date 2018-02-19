@@ -1,5 +1,6 @@
 import Promise from 'bluebird';
 import eth from './ethereum';
+import db from './db';
 
 const REGEX = new RegExp('\u0000', 'g')
 
