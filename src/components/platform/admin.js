@@ -174,37 +174,47 @@ export default class AdminPage extends Component {
   }
 
   renderTasks() {
-    return this.getTasksInView().map((task, inx) => {
+    var tasksInView = this.getTasksInView();
+    if (tasksInView.length == 0) {
       return (
-          <div key={inx} className="hero box content is-dark">
-            <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "ADMINTASK", task: task })}>
-              <article className="post">
-                <h4 style={{color: 'white'}}>{task.name}</h4>
-                <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
-                <div className="media">
-                  <div className="media-left">
-                    <p className="image is-32x32">
-                      <img src="http://bulma.io/images/placeholders/128x128.png" />
-                    </p>
-                  </div>
-                  <div className="media-content">
-                    <div className="content">
-                      <p>
-                        <a>{task.designer}</a> {task.initiationTime}  &nbsp; 
-                        { 
-                          task.tags.map((tag, inx) => (
-                            <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
-                          ))
-                        }
+        <div className="hero is-light box">
+          <h4>There are no tasks present. Use the New Task button on the left to add a task.</h4>
+        </div>
+      );
+    }
+    else {
+      return tasksInView.map((task, inx) => {
+        return (
+            <div key={inx} className="hero box content is-dark">
+              <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "ADMINTASK", task: task })}>
+                <article className="post">
+                  <h4 style={{color: 'white'}}>{task.name}</h4>
+                  <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
+                  <div className="media">
+                    <div className="media-left">
+                      <p className="image is-32x32">
+                        <img src="http://bulma.io/images/placeholders/128x128.png" />
                       </p>
                     </div>
+                    <div className="media-content">
+                      <div className="content">
+                        <p>
+                          <a>{task.designer}</a> {task.initiationTime}  &nbsp; 
+                          { 
+                            task.tags.map((tag, inx) => (
+                              <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
+                            ))
+                          }
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </article>
-            </a>
-          </div>
-      );
-    });
+                </article>
+              </a>
+            </div>
+        );
+      });
+    }
   }
 
   render() {
@@ -214,7 +224,7 @@ export default class AdminPage extends Component {
         <section className="container">
           <div className="columns">
             <div className="column is-3">
-              <a className="button is-primary is-block is-alt is-large" onClick={this.handleModalClick.bind(this)}>New Post</a>
+              <a className="button is-primary is-block is-alt is-large" onClick={this.handleModalClick.bind(this)}>New Task</a>
               <aside className="menu">
                 <p className="menu-label">
                   Tags
@@ -233,6 +243,7 @@ export default class AdminPage extends Component {
             </div>
 
             <div className="column is-9 is-fullheight">
+              <span className="has-text-grey-light">These are the tasks you have created.</span>
               { this.renderTasks() }
             </div>
           </div>

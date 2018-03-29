@@ -30,7 +30,7 @@ export default class Form extends Component {
               disabled
               required/>
           </div>
-          <p className="help">This is the address posting the task</p>
+          <p className="help">This is your Metamask address</p>
         </div>
         <div className="field">
           <label className="label">Description</label>

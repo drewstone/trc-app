@@ -174,45 +174,55 @@ export default class HomePage extends Component {
   }
 
   renderTasks() {
-    return this.getTasksInView().map((task, inx) => {
-      const content = (
-        <article className="post">
-          <h4>{task.name}</h4>
-          <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
-          <div className="media">
-            <div className="media-left">
-              <p className="image is-32x32">
-                <img src="http://bulma.io/images/placeholders/128x128.png" />
-              </p>
-            </div>
-            <div className="media-content">
-              <div className="content">
-                <p>
-                  <span>{task.designer}</span> {task.initiationTime}  &nbsp; 
-                  { 
-                    task.tags.map((tag, inx) => (
-                      <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
-                    ))
-                  }
+    var tasksInView = this.getTasksInView();
+    if (tasksInView.length == 0) {
+      return (
+        <div className="hero is-light box">
+          <h4>There are no tasks present. Use the New Task button on the left to add a task.</h4>
+        </div>
+      );
+    }
+    else {
+      return tasksInView.map((task, inx) => {
+        const content = (
+          <article className="post">
+            <h4>{task.name}</h4>
+            <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
+            <div className="media">
+              <div className="media-left">
+                <p className="image is-32x32">
+                  <img src="http://bulma.io/images/placeholders/128x128.png" />
                 </p>
               </div>
+              <div className="media-content">
+                <div className="content">
+                  <p>
+                    <span>{task.designer}</span>&nbsp;
+                    { 
+                      task.tags.map((tag, inx) => (
+                        <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
+                      ))
+                    }
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        </article>
-      );
-
-      return (task.hasFinished) ? (
-        <div key={inx} className="hero is-light box content">
-          { content }
-        </div>
-      ) : (
-        <div key={inx} className="box content">
-          <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TASK", task: task })}>
+          </article>
+        );
+  
+        return (task.hasFinished) ? (
+          <div key={inx} className="hero is-light box content">
             { content }
-          </a>
-        </div>
-      );
-    });
+          </div>
+        ) : (
+          <div key={inx} className="box content">
+            <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TASK", task: task })}>
+              { content }
+            </a>
+          </div>
+        );
+      });
+    }
   }
 
   render() {
@@ -239,7 +249,7 @@ export default class HomePage extends Component {
         <section className="container">
           <div className="columns">
             <div className="column is-3">
-              <a className="button is-primary is-block is-alt is-large" onClick={this.handleModalClick.bind(this)}>New Post</a>
+              <a className="button is-primary is-block is-alt is-large" onClick={this.handleModalClick.bind(this)}>New Task</a>
               <aside className="menu">
                 <p className="menu-label">
                   Tags

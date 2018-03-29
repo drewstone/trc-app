@@ -49,7 +49,7 @@ export default class Platform extends Component {
         <nav className="navbar is-white topNav">
           <div className="container">
             <div className="navbar-brand">
-              <a className="navbar-item is-size-3" onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "HOME" })}>
+              <a className="navbar-item is-size-3" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "HOME" })}>
                 <b>TRUECOIN</b>
               </a>
               <div id="nav-toggle" className="navbar-burger burger" data-target="topNav">
