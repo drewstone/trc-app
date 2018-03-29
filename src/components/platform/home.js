@@ -7,6 +7,7 @@ const TAG_COLORS = {
   Politics: "info",
   Sports: "warning",
   Design: "danger",
+  Other: "secondary",
 }
 
 export default class HomePage extends Component {
@@ -14,7 +15,7 @@ export default class HomePage extends Component {
     super();
     this.state = {
       filter: "Popular",
-      tags: ["Politics", "Design", "Sports", "Finance"],
+      tags: ["Politics", "Design", "Sports", "Finance", "Other"],
       clickedTags: [],
       tasks: props.tasks || [],
       modalClicked: false,

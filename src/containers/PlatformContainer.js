@@ -23,7 +23,7 @@ class PlatformContainer extends Component {
     const PlatformScreen = PlatformScreenContainer[this.props.metadata.component];
 
     let tasks = this.props.market.tasks;
-    if (this.props.metadata.component == 'ASKED') {
+    if (this.props.metadata.component === 'ASKED') {
       // tasks = this.props.user.tasks;
     }
 
@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   screenActions: bindActionCreators(screenActions, dispatch),
   marketActions: bindActionCreators(marketActions, dispatch),
-})
+});
 
 export default connect(
   mapStateToProps,

@@ -5,10 +5,10 @@ export default class LandingPage extends Component {
     document.getElementById("nav-toggle").addEventListener("click", toggleNav);
 
     function toggleNav() {
-      var nav = document.getElementById("navbarMenu");
-      var className = nav.getAttribute("class");
-      if (className == "navbar-menu") {
-          nav.className = "navbar-menu is-active";
+      const nav = document.getElementById("navbarMenu");
+      const className = nav.getAttribute("class");
+      if (className === "navbar-menu") {
+        nav.className = "navbar-menu is-active";
       } else {
           nav.className = "navbar-menu";
       }
@@ -36,6 +36,9 @@ export default class LandingPage extends Component {
                   <div className="navbar-end">
                     <a className="navbar-item is-size-5" onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "HOME" })}>
                       PLATFORM
+                    </a>
+                    <a className="navbar-item is-size-5" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "TUTORIAL" })}>
+                      TUTORIAL
                     </a>
                     <a className="navbar-item is-size-5" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "ABOUT" })}>
                       ABOUT

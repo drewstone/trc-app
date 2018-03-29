@@ -1,7 +1,7 @@
 import Promise from 'bluebird';
 import eth from './ethereum';
 
-const REGEX = new RegExp('\u0000', 'g')
+const REGEX = new RegExp('\u0000', 'g');
 
 export default function(web3) {
   return {
@@ -34,12 +34,12 @@ export default function(web3) {
         }
       });
 
-      let result = await Promise.all(promises.map(Promise.props))
+      let result = await Promise.all(promises.map(Promise.props));
       let answers = [];
       tasks = result.map(elt => {
-        answers.push( (elt.designer == web3.eth.coinbase)
+        answers.push( (elt.designer === web3.eth.coinbase)
           ? [...Array(elt.questions.length).keys()].map((x, inx) => { return elt.task.getAnswers(inx) })
-          : [])
+          : []);
         return {
           id: elt.id,
           name: web3.toAscii(elt.name),
@@ -98,7 +98,7 @@ export default function(web3) {
       const { Protocol } = contracts;
 
       const questionIndices = data.clicked.map((d, inx) => {
-        if (d != undefined) {
+        if (d !== undefined) {
           return inx;
         } else {
           return false;

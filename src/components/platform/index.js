@@ -74,8 +74,8 @@ export default class Platform extends Component {
               </div>
 
               <div className="navbar-end">
-                <a className="navbar-item" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "HOME" })}>
-                  Website
+                <a className="navbar-item" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "TUTORIAL" })}>
+                  Tutorial
                 </a>
               </div>
             </div>
