@@ -24,6 +24,9 @@ export default function HomePage({}) {
               </p>
             </div>
           </div>
+
+          <h2>Learn more!</h2>
+          <iframe width="100%" height="400dpi" src="https://drive.google.com/file/d/1OhIf5A4VLnC4qgDfpk2PCS376CBDF6FP/preview"/>
         </div>
       </div>
     </div>
