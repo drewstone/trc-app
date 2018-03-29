@@ -169,8 +169,12 @@ export default class AnsweredPage extends Component {
         tasksInView.push(this.props.tasks[i])
       }
     }
+    
+    tasksInView.forEach(task => console.log(Array.from(task.participants)))
+    
+    return tasksInView.filter(task => Array.from(task.participants).includes(this.state.form.designer));
+    // return tasksInView.filter(task => task.designer == this.state.form.designer);
 
-    return tasksInView.filter(task => task.designer === this.state.form.designer);
   }
 
   renderTasks() {
