@@ -6,22 +6,24 @@ import { screens } from '../constants';
 import Platform from '../components/platform';
 import HomePage from '../components/platform/home';
 import TaskPage from '../components/platform/task';
-import AdminPage from '../components/platform/admin';
+import AskedPage from '../components/platform/asked';
+import AnsweredPage from '../components/platform/answered';
 import AdminTaskPage from '../components/platform/admintask';
 
 const PlatformScreenContainer = {
   HOME: HomePage,
   TASK: TaskPage,
-  ADMIN: AdminPage,
+  ASKED: AskedPage,
+  ANSWERED: AnsweredPage,
   ADMINTASK: AdminTaskPage,
-}
+};
 
 class PlatformContainer extends Component {
   render() {
     const PlatformScreen = PlatformScreenContainer[this.props.metadata.component];
 
     let tasks = this.props.market.tasks;
-    if (this.props.metadata.component == 'ADMIN') {
+    if (this.props.metadata.component == 'ASKED') {
       // tasks = this.props.user.tasks;
     }
 

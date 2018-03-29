@@ -9,7 +9,7 @@ const TAG_COLORS = {
   Design: "danger",
 }
 
-export default class AdminPage extends Component {
+export default class AskedPage extends Component {
   constructor(props) {
     super();
     this.state = {
