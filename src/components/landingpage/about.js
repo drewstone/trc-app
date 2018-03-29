@@ -16,6 +16,11 @@ export default function AboutPage({ switchTo, screens }) {
           </ul>
         </div>
       </div>
+
+      <div className="container has-text-centered is-transparent">
+        <a className="button is-primary" href="https://docs.google.com/document/d/1X8r9VZhvKftZJRmrALR_gZCkSbms_43UAhOPhADWb-M/edit?usp=sharing">
+          <h3 className="title is-size-3">Get the whitepaper!</h3></a>
+      </div>
     </div>
   );
 }
