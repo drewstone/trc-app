@@ -26,7 +26,7 @@ class App extends Component {
     const { currentScreen } = this.props;
     let ScreenComponent = screenContainerComponent[currentScreen];
 
-    return (currentScreen == 'PLATFORM') 
+    return (currentScreen === 'PLATFORM') 
       ? (<Web3Provider><ScreenComponent/></Web3Provider>)
       : (<ScreenComponent />);
   }
