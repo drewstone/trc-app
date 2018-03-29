@@ -6,13 +6,13 @@ export default class Form extends Component {
     return (
       <form>
         <div className="field">
-          <label className="label">Task</label>
+          <label className="label">Task Name</label>
           <div className="control">
             <input
               id="form-task"
               className="input"
               type="text"
-              placeholder="Text input"
+              placeholder="Ex: Are the addresses of these locations correct?"
               onChange={this.props.handleTaskChange}
               value={this.props.data.task}
               required/>
@@ -38,7 +38,7 @@ export default class Form extends Component {
             <textarea
               id="form-description"
               className="textarea"
-              placeholder="Textarea"
+              placeholder="Ex: For each building, determine whether or not the specified address is correct."
               onChange={this.props.handleDescriptionChange}
               value={this.props.data.description}
               required/>
@@ -46,7 +46,7 @@ export default class Form extends Component {
           <p className="help">Add a general task description</p>
         </div>
         <div className="field">
-          <label className="label">Task tags</label>
+          <label className="label">Task Tags</label>
           <div className="field is-grouped has-addons">
             {
               this.props.tags.map((tag, inx) => {
@@ -62,7 +62,7 @@ export default class Form extends Component {
           </div>
         </div>
         <div className="field">
-          <label className="label">Task events</label>
+          <label className="label">Task Events</label>
           <div className="field">
             <p className="control">
               <span className="select">
@@ -74,6 +74,7 @@ export default class Form extends Component {
               </span>
             </p>
           </div>
+          <p className="help">Ex: The shown address may be true or false</p>
         </div>
         <ul id="modal-question-list">
           { 
