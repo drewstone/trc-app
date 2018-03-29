@@ -98,7 +98,7 @@ export default class AdminPage extends Component {
       state = Object.assign({}, this.state, {
         form: {
           ...this.state.form,
-          tags: [ ...this.state.form.tags.filter(t => t != tag) ],
+          tags: [ ...this.state.form.tags.filter(t => t !== tag) ],
         }
       });
     }
@@ -176,7 +176,7 @@ export default class AdminPage extends Component {
 
   renderTasks() {
     var tasksInView = this.getTasksInView();
-    if (tasksInView.length == 0) {
+    if (tasksInView.length === 0) {
       return (
         <div className="hero is-light box">
           <h4>There are no tasks present. Use the New Task button on the left to add a task.</h4>
@@ -285,7 +285,7 @@ export default class AdminPage extends Component {
                   const state = Object.assign({}, this.state, {
                     form: {
                       ...this.state.form,
-                      questions: [ ...this.state.form.questions.filter(question => question != "") ],
+                      questions: [ ...this.state.form.questions.filter(question => question !== "") ],
                     }
                   });
 
