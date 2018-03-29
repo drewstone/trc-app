@@ -8,7 +8,7 @@ const TAG_COLORS = {
   Sports: "warning",
   Design: "danger",
   Other: "secondary",
-}
+};
 
 export default class AskedPage extends Component {
   constructor(props) {
@@ -250,11 +250,11 @@ export default class AskedPage extends Component {
           </div>
         </section>
         <div id="platform-modal" className="modal">
-          <div className="modal-background"></div>
+          <div className="modal-background"/>
           <div className="modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title">Add a new task</p>
-              <button className="delete" aria-label="close" onClick={this.handleModalClick.bind(this)}></button>
+              <button className="delete" aria-label="close" onClick={this.handleModalClick.bind(this)}/>
             </header>
             <section className="modal-card-body">
               <Form

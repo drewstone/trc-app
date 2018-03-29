@@ -7,7 +7,8 @@ const TAG_COLORS = {
   Politics: "info",
   Sports: "warning",
   Design: "danger",
-}
+  Other: "secondary",
+};
 
 export default class AnsweredPage extends Component {
   constructor(props) {
