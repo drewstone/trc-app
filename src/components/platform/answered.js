@@ -7,15 +7,14 @@ const TAG_COLORS = {
   Politics: "info",
   Sports: "warning",
   Design: "danger",
-  Other: "secondary",
 }
 
-export default class AdminPage extends Component {
+export default class AnsweredPage extends Component {
   constructor(props) {
     super();
     this.state = {
       filter: "Popular",
-      tags: ["Politics", "Design", "Sports", "Finance", "Other"],
+      tags: ["Politics", "Design", "Sports", "Finance"],
       clickedTags: [],
       tasks: props.tasks || [],
       modalClicked: false,
@@ -244,7 +243,7 @@ export default class AdminPage extends Component {
             </div>
 
             <div className="column is-9 is-fullheight">
-              <span className="has-text-grey-light">These are the tasks you have created.</span>
+              <span className="has-text-grey-light">These are the tasks you have completed.</span>
               { this.renderTasks() }
             </div>
           </div>
