@@ -46,6 +46,20 @@ export default class Form extends Component {
           <p className="help">Add a general task description</p>
         </div>
         <div className="field">
+          <label className="label">Mechanism</label>
+          <div className="field">
+            <p className="control">
+              <span className="select">
+                <select onChange={this.props.handleEventsChange}>
+                  <option value="RBTS">Robust Bayesian Truth Serum</option>
+                  <option value="endogenous">Endogenous</option>
+                </select>
+              </span>
+            </p>
+          </div>
+          <p className="help">Choose which mechanism you want. If in doubt, choose RBTS.</p>
+        </div>
+        <div className="field">
           <label className="label">Task Tags</label>
           <div className="field is-grouped has-addons">
             {
@@ -66,10 +80,10 @@ export default class Form extends Component {
           <div className="field">
             <p className="control">
               <span className="select">
-                <select onChange={this.props.handleChoiceChange}>
+                <select onChange={this.props.handleEventsChange}>
+                  <option>true or false</option>
                   <option>up or down</option>
                   <option>left or right</option>
-                  <option>true or false</option>
                 </select>
               </span>
             </p>

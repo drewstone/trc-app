@@ -57,8 +57,8 @@ export default function(web3) {
         };
       });
 
-      
-      answers = await Promise.all(answers.map(Promise.all))      
+
+      answers = await Promise.all(answers.map(Promise.all))
       return tasks.map((elt, inx) => {
         return {
           ...elt,
@@ -66,7 +66,7 @@ export default function(web3) {
         }
       });
     },
-    
+
     addTask: async function(contracts, data) {
       const { Protocol } = contracts;
       const taskName = data.task;
@@ -75,15 +75,17 @@ export default function(web3) {
       const timeLength = 1;
       const questions = data.questions;
       const description = data.description;
+      const mechanism = data.mechanism;
       const tags = data.tags;
       const args = [taskName, events, questions, timeLength, description, tags];
 
       try {
-        let result = await Protocol.createTask(...args, { from: designer });  
+        let result = await Protocol.createTask(...args, { from: designer });
         return Promise.resolve(Object.assign({}, {
           name: data.task,
           designer: data.designer,
           description: data.description,
+          mechanism: data.mechanism,
           initiationTime: Date.now(),
           tags: data.tags,
           events: data.events,
@@ -138,7 +140,7 @@ export default function(web3) {
       const submitter = data.submitter;
 
       try {
-        let result = await Protocol.scoreTaskRBTS(taskName, designer, { from: submitter });
+        let result = await (data.mechanism === "RBTS" ? Protocol.scoreTaskRBTS : Protocol.scoreTaskEndogenous)(taskName, designer, {from: submitter});
         return Promise.resolve(result);
       } catch (exception) {
         return Promise.reject(`Failed to score task: ${exception}`);

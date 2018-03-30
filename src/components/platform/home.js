@@ -8,7 +8,7 @@ const TAG_COLORS = {
   Sports: "warning",
   Design: "danger",
   Other: "secondary",
-}
+};
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ export default class HomePage extends Component {
         events: ["up", "down"],
         task: "",
         description: "",
+        mechanism: "",
         designer: window.web3.eth.coinbase,
         questions: [""],
         tags: [],
@@ -145,7 +146,18 @@ export default class HomePage extends Component {
     this.setState(state);
   }
 
-  handleChoiceChange(e) {
+  handleMechanismChange(e) {
+    const state = Object.assign({}, this.state, {
+      form: {
+        ...this.state.form,
+        mechanism: e.target.value,
+      }
+    });
+
+    this.setState(state);
+  }
+
+  handleEventsChange(e) {
     const state = Object.assign({}, this.state, {
       form: {
         ...this.state.form,
@@ -294,7 +306,7 @@ export default class HomePage extends Component {
                 tags={Object.keys(TAG_COLORS)}
                 handleTaskChange={this.handleTaskChange.bind(this)}
                 handleDescriptionChange={this.handleDescriptionChange.bind(this)}
-                handleChoiceChange={this.handleChoiceChange.bind(this)}
+                handleChoiceChange={this.handleEventsChange.bind(this)}
                 handleModalTagClick={this.handleModalTagClick.bind(this)}
                 handleQuestionChange={this.handleQuestionChange.bind(this)}
                 addQuestion={() => {

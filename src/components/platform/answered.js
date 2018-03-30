@@ -23,6 +23,7 @@ export default class AnsweredPage extends Component {
         choices: [],
         task: "",
         description: "",
+        mechanism: "",
         designer: window.web3.eth.coinbase,
         questions: [""],
         tags: [],
@@ -145,7 +146,18 @@ export default class AnsweredPage extends Component {
     this.setState(state);
   }
 
-  handleChoiceChange(e) {
+  handleMechanismChange(e) {
+    const state = Object.assign({}, this.state, {
+      form: {
+        ...this.state.form,
+        mechanism: e.target.value,
+      }
+    });
+
+    this.setState(state);
+  }
+
+  handleEventsChange(e) {
     const state = Object.assign({}, this.state, {
       form: {
         ...this.state.form,
@@ -272,7 +284,7 @@ export default class AnsweredPage extends Component {
                 tags={Object.keys(TAG_COLORS)}
                 handleTaskChange={this.handleTaskChange.bind(this)}
                 handleDescriptionChange={this.handleDescriptionChange.bind(this)}
-                handleChoiceChange={this.handleChoiceChange.bind(this)}
+                handleChoiceChange={this.handleEventsChange.bind(this)}
                 handleModalTagClick={this.handleModalTagClick.bind(this)}
                 handleQuestionChange={this.handleQuestionChange.bind(this)}
                 addQuestion={() => {

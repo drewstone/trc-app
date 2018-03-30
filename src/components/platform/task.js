@@ -8,6 +8,7 @@ export default class TaskPage extends Component {
       submitter: window.web3.eth.coinbase,
       events: props.task.events,
       questions: props.task.questions,
+      mechanism: props.task.mechanism ? props.task.mechanism : "RBTS",
       currQuestion: 0,
       prevQuestion: 0,
       completedCount: 0,
@@ -65,6 +66,29 @@ export default class TaskPage extends Component {
           <a key={1} className="pagination-previous" title="This is the first page" onClick={this.handlePrevClick.bind(this)}>Previous</a>,
           <a key={2} className="pagination-next" onClick={this.handleNextClick.bind(this)}>Next</a>
       ];
+    }
+  }
+
+  renderSlider() {
+    if (this.state.mechanism === "RBTS") {
+      return (
+        <input
+          onChange={(e) => this.setState({
+            sliderValues: [...this.state.sliderValues.map((elt, inx) => {
+              if (inx === this.state.currQuestion) {
+                return e.target.value;
+              } else {
+                return elt;
+              }
+            })]
+          })}
+          className="slider is-fullwidth is-info"
+          step="1"
+          min="0"
+          max="100"
+          value={this.state.sliderValues[this.state.currQuestion]}
+          type="range"/>
+      );
     }
   }
 
@@ -150,6 +174,7 @@ export default class TaskPage extends Component {
             <div className="content article-body" style={{height: `${window.innerHeight}px`}}>
               <h3 className="has-text-centered">Description</h3>
               <p>{this.props.task.description}</p>
+              <p className="has-text-centered">The mechanism for this task is: {this.state.mechanism}</p>
               { this.renderTaskNavigation() }
               <div className="card">
                 <div className="card-content has-text-centered">
@@ -157,20 +182,7 @@ export default class TaskPage extends Component {
                     {this.state.questions[this.state.currQuestion]}
                   </p>
                 </div>
-                <input
-                  onChange={(e) => this.setState({ sliderValues: [...this.state.sliderValues.map((elt, inx) => {
-                    if (inx === this.state.currQuestion) {
-                      return e.target.value;
-                    } else {
-                      return elt;
-                    }
-                  })] })}
-                  className="slider is-fullwidth is-info"
-                  step="1"
-                  min="0"
-                  max="100"
-                  value={this.state.sliderValues[this.state.currQuestion]}
-                  type="range"/>
+                { this.renderSlider() }
                 { this.renderSelector() }
               </div>
               <span id="submitBtnSpan">
