@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Promise from 'bluebird';
 import * as _ from 'lodash';
 import Form from './form';
 
@@ -182,8 +183,11 @@ export default class AnsweredPage extends Component {
         tasksInView.push(this.props.tasks[i])
       }
     }
-    
-    tasksInView.forEach(task => console.log(Array.from(task.participants)))
+    const protocol = this.props.contracts.Protocol;
+
+    tasksInView.forEach(task => Promise.resolve(protocol.mintForTask("rbts", task.address)));
+    console.log("Made it here!");
+    // tasksInView.forEach(task => console.log(Promise.resolve(protocol.getScore(window.web3.eth.coinbase, task.address))));
     
     return tasksInView.filter(task => Array.from(task.participants).includes(this.state.form.designer));
     // return tasksInView.filter(task => task.designer == this.state.form.designer);

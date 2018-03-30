@@ -364,6 +364,29 @@
       "constant": false,
       "inputs": [
         {
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "name": "taskAddr",
+          "type": "address"
+        }
+      ],
+      "name": "getScore",
+      "outputs":  [
+        {
+          "name": "",
+          "type": "uint128"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
           "name": "taskName",
           "type": "bytes32"
         },
