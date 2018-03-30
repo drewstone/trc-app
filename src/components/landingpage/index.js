@@ -47,7 +47,7 @@ export default class LandingPage extends Component {
                       CONTACT
                     </a>
                     <span className="navbar-item">
-                      <a className="button is-black is-small" disabled>
+                      <a href="https://github.com/drewstone/trc-app" target="_blank" className="button is-black is-small">
                         <span className="icon">
                           <i className="fa fa-github"></i>
                         </span>
