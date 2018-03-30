@@ -6,13 +6,13 @@ import { screenActions, marketActions } from '../actions';
 import LandingPage from '../components/landingpage';
 import Home from '../components/landingpage/home';
 import About from '../components/landingpage/about';
-import Contact from '../components/landingpage/contact';
+import FAQ from '../components/landingpage/faq';
 import Tutorial from '../components/landingpage/tutorial';
 
 const LandingScreenContainer = {
   HOME: Home,
   ABOUT: About,
-  CONTACT: Contact,
+  FAQ: FAQ,
   TUTORIAL: Tutorial,
 }
 

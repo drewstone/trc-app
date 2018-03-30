@@ -48,3 +48,11 @@ body {
   padding: 3rem 0;
   line-height: 1.5;
 }
+
+.hero-link {
+  color: #00c6ff !important;
+}
+
+.bold {
+  font-weight: 900 !important;
+}

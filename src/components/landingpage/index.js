@@ -40,11 +40,11 @@ export default class LandingPage extends Component {
                     <a className="navbar-item is-size-5" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "TUTORIAL" })}>
                       TUTORIAL
                     </a>
+                    <a className="navbar-item is-size-5" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "FAQ" })}>
+                      FAQ
+                    </a>
                     <a className="navbar-item is-size-5" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "ABOUT" })}>
                       ABOUT
-                    </a>
-                    <a className="navbar-item is-size-5" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "CONTACT" })}>
-                      CONTACT
                     </a>
                     <span className="navbar-item">
                       <a href="https://github.com/drewstone/trc-app" target="_blank" className="button is-black is-small">
