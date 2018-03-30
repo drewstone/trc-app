@@ -11,6 +11,12 @@ body {
   background: #00c6ff;
 }
 
+.button.rounded {
+  border-radius: 5px;
+  padding-bottom: 25px;
+  padding-top: 20px;
+}
+
 .hero.is-info {
   background: linear-gradient(#fdfbfb, #ebedee);
   -webkit-background-size: cover;
@@ -41,4 +47,12 @@ body {
 .hero .subtitle {
   padding: 3rem 0;
   line-height: 1.5;
+}
+
+.hero-link {
+  color: #00c6ff !important;
+}
+
+.bold {
+  font-weight: 900 !important;
 }

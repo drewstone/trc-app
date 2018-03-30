@@ -12,7 +12,7 @@ export default class Form extends Component {
               id="form-task"
               className="input"
               type="text"
-              placeholder="Ex: Are the addresses of these locations correct?"
+              placeholder="Ex: Will the following stocks go up or down?"
               onChange={this.props.handleTaskChange}
               value={this.props.data.task}
               required/>
@@ -38,7 +38,7 @@ export default class Form extends Component {
             <textarea
               id="form-description"
               className="textarea"
-              placeholder="Ex: For each building, determine whether or not the specified address is correct."
+              placeholder="Ex: For each stock, determine whether or not you expect it to go up or down."
               onChange={this.props.handleDescriptionChange}
               value={this.props.data.description}
               required/>

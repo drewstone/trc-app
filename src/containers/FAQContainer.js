@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { screenActions, marketActions } from '../actions';
 import { screens } from '../constants';
-import Contact from '../components/contact';
+import FAQ from '../components/faq';
 
-class ContactContainer extends Component {
+class FAQContainer extends Component {
   render() {
     return (
-      <Contact
+      <FAQ
         screens={screens}
         switchTo={this.props.screenActions.switchTo}
         marketActions={this.props.marketActions}
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ContactContainer);
+)(FAQContainer);
