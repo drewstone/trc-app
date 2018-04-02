@@ -212,7 +212,7 @@ export default class AskedPage extends Component {
                     <div className="media-content">
                       <div className="content">
                         <p>
-                          <a>{task.designer}</a> {new Date(task.initiationTime).toString()}  &nbsp; 
+                          <a>{task.designer}</a> on {new Date(task.initiationTime).toDateString()}  &nbsp; 
                           { 
                             task.tags.map((tag, inx) => (
                               <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>

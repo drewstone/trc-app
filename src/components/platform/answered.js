@@ -185,7 +185,7 @@ export default class AnsweredPage extends Component {
     }
     const protocol = this.props.contracts.Protocol;
 
-    tasksInView.forEach(task => Promise.resolve(protocol.mintForTask("rbts", task.address)));
+    // tasksInView.forEach(task => Promise.resolve(protocol.mintForTask("rbts", task.address)));
     console.log("Made it here!");
     // tasksInView.forEach(task => console.log(Promise.resolve(protocol.getScore(window.web3.eth.coinbase, task.address))));
     
@@ -207,7 +207,7 @@ export default class AnsweredPage extends Component {
       return tasksInView.map((task, inx) => {
         return (
             <div key={inx} className="hero box content is-dark">
-              <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TASK", task: task })}>
+              {/* <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TASK", task: task })}> */}
                 <article className="post">
                   <h4 style={{color: 'white'}}>{task.name}</h4>
                   <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
@@ -220,7 +220,7 @@ export default class AnsweredPage extends Component {
                     <div className="media-content">
                       <div className="content">
                         <p>
-                          <a>{task.designer}</a> {task.initiationTime}  &nbsp; 
+                          <a>{task.designer}</a> on {new Date(task.initiationTime).toDateString()}  &nbsp; 
                           { 
                             task.tags.map((tag, inx) => (
                               <span key={inx} className={`tag is-${TAG_COLORS[tag]}`}>{tag}</span>
@@ -231,7 +231,7 @@ export default class AnsweredPage extends Component {
                     </div>
                   </div>
                 </article>
-              </a>
+              {/* </a> */}
             </div>
         );
       });
