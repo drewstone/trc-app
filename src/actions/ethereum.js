@@ -7,9 +7,20 @@ import RBTS from '../contracts/RBTS';
 
 const CONTRACTS = [ Protocol, Mechanism, RBTS ];
 
+// const DEPLOYED = {
+//   Protocol: "0xffed216a56b472316fc903e93be64ed4e56e10ef",
+// };
+
+// Rinkeby
 const DEPLOYED = {
-  Protocol: "0xffed216a56b472316fc903e93be64ed4e56e10ef",
+  Protocol: "0xd996e9e1aaaa20d31d8889965b6ad293d2994f35",
 };
+
+// // Development
+// const DEPLOYED = {
+//   Protocol: "0x6b395f24622e6a55797495eddd09a8e33bf2e424",
+//   RBTS:  "0x2184e60838167fb19942bc558239b57b1db2540a"
+// };
 
 function setup() {
   return Promise.resolve(CONTRACTS.map(c => {
