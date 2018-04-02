@@ -12,6 +12,16 @@ export default class AdminTaskPage extends Component {
     }
   }
 
+  renderScoreButton() {
+    return [
+      <div className="has-text-centered">
+        <a className="button is-primary rounded" onClick={() => console.log("Closing and scoring task")}>Close and score</a>
+      </div>,
+      <br/>,
+      <br/>
+    ];
+  }
+
   renderTaskNavigation() {
     return (
       <nav className="pagination" role="navigation" aria-label="pagination" style={{marginBottom: "20px"}}>
@@ -89,6 +99,7 @@ export default class AdminTaskPage extends Component {
                   </div>
                 </div>
               </div>
+              { this.renderScoreButton() }
             <div className="content article-body" style={{height: `${window.innerHeight}px`}}>
               <h3 style={{color: 'white'}} className="has-text-centered">Description</h3>
               <p>{this.props.task.description}</p>

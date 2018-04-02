@@ -207,7 +207,7 @@ export default class AnsweredPage extends Component {
       return tasksInView.map((task, inx) => {
         return (
             <div key={inx} className="hero box content is-dark">
-              <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "ADMINTASK", task: task })}>
+              <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TASK", task: task })}>
                 <article className="post">
                   <h4 style={{color: 'white'}}>{task.name}</h4>
                   <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
