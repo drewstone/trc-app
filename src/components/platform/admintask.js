@@ -12,13 +12,17 @@ export default class AdminTaskPage extends Component {
     }
   }
 
+  scoreTask() {
+    return this.props.scoreTask(this.props.contracts, this.props.task);
+  }
+
   renderScoreButton() {
     return [
-      <div className="has-text-centered">
-        <a className="button is-primary rounded" onClick={() => console.log("Closing and scoring task")}>Close and score</a>
+      <div key={1} className="has-text-centered">
+        <a className="button is-primary rounded" onClick={() => this.scoreTask()}>Close and score</a>
       </div>,
-      <br/>,
-      <br/>
+      <br key={2}/>,
+      <br key={3}/>
     ];
   }
 

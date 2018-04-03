@@ -23,10 +23,32 @@
       "payable": false,
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "taskName",
+          "type": "bytes32"
+        },
+        {
+          "name": "designer",
+          "type": "address"
+        }
+      ],
+      "name": "score",
+      "outputs": [
+        {
+          "name": "scores",
+          "type": "uint128[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  "unlinked_binary": "0x6060604052341561000f57600080fd5b61012a8061001e6000396000f300606060405260043610603e5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166339e44cff81146043575b600080fd5b3415604d57600080fd5b606f73ffffffffffffffffffffffffffffffffffffffff600435166024356094565b6040516fffffffffffffffffffffffffffffffff909116815260200160405180910390f35b73ffffffffffffffffffffffffffffffffffffffff8216600090815260208190526040812080548390811060c457fe5b90600052602060002090600291828204019190066010029054906101000a90046fffffffffffffffffffffffffffffffff169050929150505600a165627a7a723058203d00f68df7d973ea243c0a5c57b2e095d576538fd504ff570d3d86fbe2f943b60029",
   "networks": {},
   "schema_version": "0.0.5",
-  "updated_at": 1518910571781
+  "updated_at": 1522723483863
 }

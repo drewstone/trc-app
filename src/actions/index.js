@@ -39,4 +39,14 @@ export const marketActions = {
     type: constants.decentralActions.FETCH_CONTRACTS,
     promise: util.fetchContracts(),
   }),
+
+  scoreTask: (contracts, data) => ({
+    type: constants.marketActions.SCORE_TASK,
+    promise: util.scoreTask(contracts, data),
+  }),
+
+  getBalance: (contracts) => ({
+    type: constants.marketActions.GET_BALANCE,
+    promise: util.getBalance(contracts),
+  })
 };

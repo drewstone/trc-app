@@ -54,6 +54,26 @@ const marketReducer = (state = marketInitialState, action) => {
           }
         },
       });
+    case marketActions.SCORE_TASK:
+      return handle(state, action, {
+        start: prevState => ({ ...prevState, isLoading: true, fooError: null }),
+        finish: prevState => ({ ...prevState, isLoading: false }),
+        failure: prevState => ({ ...prevState, fooError: payload }),
+        success: prevState => {
+          console.log(payload);
+          return ({ ...prevState, fooError: false })
+        },
+      });
+    case marketActions.GET_BALANCE:
+      return handle(state, action, {
+        start: prevState => ({ ...prevState, isLoading: true, fooError: null }),
+        finish: prevState => ({ ...prevState, isLoading: false }),
+        failure: prevState => ({ ...prevState, fooError: payload }),
+        success: prevState => {
+          console.log(payload.toNumber());
+          return ({ ...prevState, balance: payload.toNumber(), fooError: false })
+        },
+      });
     default:
       return state;
   }

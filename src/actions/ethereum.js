@@ -4,17 +4,21 @@ import contract from 'truffle-contract';
 import Protocol from '../contracts/Protocol';
 import Mechanism from '../contracts/Mechanism';
 import RBTS from '../contracts/RBTS';
+import Truecoin from '../contracts/Truecoin';
 
-const CONTRACTS = [ Protocol, Mechanism, RBTS ];
+const CONTRACTS = [ Protocol, Mechanism, RBTS, Truecoin ];
 
-// const DEPLOYED = {
-//   Protocol: "0xffed216a56b472316fc903e93be64ed4e56e10ef",
-// };
-
-// Rinkeby
+// Ropsten
 const DEPLOYED = {
-  Protocol: "0xd996e9e1aaaa20d31d8889965b6ad293d2994f35",
+  Protocol: "0x88059c7081e21e9044df4e8c7e0aac278e491a58",
+  RBTS: "0x6b28b41b5cbf4f5496ea9a3c854360a2afe9ea01",
+  Truecoin: "0x79c59c61e2b47788069684e4ebfb88af1c13de8e",
 };
+
+// // Rinkeby
+// const DEPLOYED = {
+//   Protocol: "0xd996e9e1aaaa20d31d8889965b6ad293d2994f35",
+// };
 
 // // Development
 // const DEPLOYED = {

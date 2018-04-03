@@ -36,6 +36,7 @@ export default class Platform extends Component {
           screens: this.props.screens,
           switchTo: this.props.switchTo,
           submitTask: this.props.marketActions.submitTask,
+          scoreTask: this.props.marketActions.scoreTask,
           contracts: this.props.contracts,
         })
       } else {

@@ -9,7 +9,7 @@ export default function(web3) {
       return await eth.fetchContracts(web3);
     },
     fetchTasks: async function(contracts) {
-      const { Mechanism, Protocol } = contracts;
+      const { Mechanism, Protocol, RBTS } = contracts;
 
       let tasks = await Protocol.getTasks.call();
       let promises = tasks.map(addr => Mechanism.at(addr));
@@ -30,7 +30,9 @@ export default function(web3) {
           terminationTime: task.terminationTime.call(),
           address: task.address,
           task: task,
-          hasFinished: task.hasFinishedTask.call(web3.eth.coinbase)
+          hasFinished: task.hasFinishedTask.call(web3.eth.coinbase),
+          hasScored: Protocol.hasBeenScored.call(task.address),
+          scoreFromTask: Protocol.getScore.call(web3.eth.coinbase, task.address),
         }
       });
 
@@ -54,6 +56,8 @@ export default function(web3) {
           terminationTime: elt.terminationTime.toNumber(),
           address: elt.address,
           hasFinished: elt.hasFinished,
+          hasScored: elt.hasScored,
+          scoreFromTask: elt.scoreFromTask.toNumber(),
         };
       });
 
@@ -133,18 +137,27 @@ export default function(web3) {
     },
 
     scoreTask: async function(contracts, data) {
-      const { Protocol } = contracts;
+      const { Protocol, RBTS } = contracts;
 
-      const taskName = data.task;
-      const designer = data.poster;
-      const submitter = data.submitter;
-
+      const address = data.address;
+      const taskName = data.name;
+      const designer = data.designer;
+      const submitter = web3.eth.coinbase;
+      console.log(Protocol, RBTS);
       try {
-        let result = await (data.mechanism === "RBTS" ? Protocol.scoreTaskRBTS : Protocol.scoreTaskEndogenous)(taskName, designer, {from: submitter});
-        return Promise.resolve(result);
+        let scoreResult = await RBTS.score(taskName, designer);
+        let mintResult = await Protocol.mintForTask("rbts", address);
+
+        console.log(scoreResult, mintResult);
+        return Promise.resolve(Object.assign({}, scoreResult, mintResult));
       } catch (exception) {
         return Promise.reject(`Failed to score task: ${exception}`);
       }
     },
+
+    getBalance: async function(contracts) {
+      const { Truecoin } = contracts;
+      return await Truecoin.balanceOf(window.web3.eth.coinbase);
+    }
   };
 }
