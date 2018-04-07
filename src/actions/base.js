@@ -143,16 +143,23 @@ export default function(web3) {
       const taskName = data.name;
       const designer = data.designer;
       const submitter = web3.eth.coinbase;
-      console.log(Protocol, RBTS);
-      try {
-        let scoreResult = await RBTS.score(taskName, designer);
-        let mintResult = await Protocol.mintForTask("rbts", address);
 
-        console.log(scoreResult, mintResult);
-        return Promise.resolve(Object.assign({}, scoreResult, mintResult));
-      } catch (exception) {
-        return Promise.reject(`Failed to score task: ${exception}`);
-      }
+      let result = await RBTS.protocol.call();
+      result = await Protocol.hasBeenScored.call(address);
+      console.log(result);
+      result = await Protocol.isValidTask(taskName, designer);
+      console.log(result);
+      return;
+
+      // try {
+      //   let scoreResult = await RBTS.score(taskName, designer);
+      //   let mintResult = await Protocol.mintForTask("rbts", address);
+
+      //   console.log(scoreResult, mintResult);
+      //   return Promise.resolve(Object.assign({}, scoreResult, mintResult));
+      // } catch (exception) {
+      //   return Promise.reject(`Failed to score task: ${exception}`);
+      // }
     },
 
     getBalance: async function(contracts) {
