@@ -25,7 +25,7 @@ export default function TutorialPage({ switchTo, screens }) {
               </div>
             </div>
             <div className="column is-8 is-fullheight">
-              <figure class="image is-16x9">
+              <figure className="image is-16x9">
                 <img src="./images/tut_platform.jpg" />
               </figure>
             </div>
@@ -40,7 +40,7 @@ export default function TutorialPage({ switchTo, screens }) {
               </div>
             </div>
             <div className="column is-8 is-fullheight">
-              <figure class="image is-16x9">
+              <figure className="image is-16x9">
                 <img src="./images/tut_filter.jpg" />
               </figure>
             </div>
@@ -55,7 +55,7 @@ export default function TutorialPage({ switchTo, screens }) {
               </div>
             </div>
             <div className="column is-8 is-fullheight">
-              <figure class="image is-16x9">
+              <figure className="image is-16x9">
                 <img src="./images/tut_new.jpg" />
               </figure>
             </div>
@@ -86,7 +86,7 @@ export default function TutorialPage({ switchTo, screens }) {
               </div>
             </div>
             <div className="column is-8 is-fullheight">
-              <figure class="image is-16x9">
+              <figure className="image is-16x9">
                 <img src="./images/tut_task.jpg" />
               </figure>
             </div>
@@ -101,7 +101,7 @@ export default function TutorialPage({ switchTo, screens }) {
               </div>
             </div>
             <div className="column is-8 is-fullheight">
-              <figure class="image is-16x9">
+              <figure className="image is-16x9">
                 <img src="./images/tut_tabs.jpg" />
               </figure>
             </div>
