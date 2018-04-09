@@ -10,9 +10,9 @@ const CONTRACTS = [ Protocol, Mechanism, RBTS, Truecoin ];
 
 // Ropsten
 const DEPLOYED = {
-  Protocol: "0x88059c7081e21e9044df4e8c7e0aac278e491a58",
-  RBTS: "0x6b28b41b5cbf4f5496ea9a3c854360a2afe9ea01",
-  Truecoin: "0x79c59c61e2b47788069684e4ebfb88af1c13de8e",
+  Protocol: "0x6272ea4a37697df1472690769331ef0a1d6b657e",
+  RBTS: "0x54f4e4432891efc599585d7f7e9c04cef239746f",
+  Truecoin: "0x6470d00c03818cc99d748202b80cda924ed402eb",
 };
 
 // // Rinkeby
