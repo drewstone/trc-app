@@ -153,7 +153,7 @@ export default function(web3) {
       // return;
 
       try {
-        let scoreResult = await RBTS.score(taskName, designer);
+        let scoreResult = await RBTS.score(taskName, designer, {from: window.web3.eth.coinbase});
         console.log(scoreResult);
       } catch (exception) {
         console.log(exception);
@@ -161,7 +161,7 @@ export default function(web3) {
       }
 
       try {
-        let mintResult = await Protocol.mintForTask("rbts", address);
+        let mintResult = await Protocol.mintForTask("rbts", address, {from: window.web3.eth.coinbase});
         console.log(mintResult);
       } catch (e) {
         console.log(e);

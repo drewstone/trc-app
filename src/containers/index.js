@@ -18,7 +18,6 @@ const screenContainerComponent = {
 
 class App extends Component {
   componentDidMount() {
-    window.web3.eth.defaultAccount = window.web3.eth.coinbase;
     return this.props.marketActions.fetchContracts(window.web3)
     .then(() => this.props.marketActions.fetchTasks(this.props.contracts))
     .then(() => this.props.marketActions.getBalance(this.props.contracts));

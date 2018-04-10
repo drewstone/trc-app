@@ -15,12 +15,20 @@ export default class AdminTaskPage extends Component {
   }
 
   scoreTask() {
+    this.state.hasScored = false;
     this.props.scoreTask(this.props.contracts, this.props.task);
+    this.renderScoreButton()
   }
 
   renderScoreButton() {
     if (this.state.hasScored) {
-      return [];
+      return [
+        <div key={1} className="has-text-centered">
+          <a className="is-primary rounded">This task has been scored</a>
+        </div>,
+        <br key={2}/>,
+        <br key={3}/>
+      ];
     }
     else {
       return [
