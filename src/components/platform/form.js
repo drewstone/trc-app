@@ -43,7 +43,7 @@ export default class Form extends Component {
               value={this.props.data.description}
               required/>
           </div>
-          <p className="help">Add a general task description (32 characters maximum)</p>
+          <p className="help">Add a general task description (32 characters maximum for demo)</p>
         </div>
         <div className="field">
           <label className="label">Mechanism</label>

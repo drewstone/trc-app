@@ -238,7 +238,7 @@ export default class HomePage extends Component {
         if (task.hasFinished || task.hasScored) {
           if (task.hasFinished) {
             return (
-            <div key={inx} className="hero is-light box content">
+            <div key={inx} className="hero is-light box content" title="You have answered this question">
             <span className="icon"> <i className="fa fa-check-circle"></i> </span>
              { content }
             </div>
@@ -246,7 +246,7 @@ export default class HomePage extends Component {
           }
           else {
             return (
-            <div key={inx} className="hero is-light box content">
+            <div key={inx} className="hero is-light box content" title="This question has been closed">
             <span className="icon"> <i className="fa fa-lock"></i> </span>
                { content }
             </div>
