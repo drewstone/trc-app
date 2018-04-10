@@ -58,3 +58,7 @@ article.post:last-child {
 .hero.box.content p {
   margin: 0;
 }
+
+.hero.admin {
+  background: #85929E;
+}
