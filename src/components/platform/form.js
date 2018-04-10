@@ -81,9 +81,10 @@ export default class Form extends Component {
             <p className="control">
               <span className="select">
                 <select onChange={this.props.handleEventsChange}>
-                  <option>true or false</option>
-                  <option>up or down</option>
-                  <option>left or right</option>
+                  <option>True or False</option>
+                  <option>Up or Down</option>
+                  <option>Yes or No</option>
+                  <option>Left or Right</option>
                 </select>
               </span>
             </p>
