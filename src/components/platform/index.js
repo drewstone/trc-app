@@ -36,6 +36,7 @@ export default class Platform extends Component {
           screens: this.props.screens,
           switchTo: this.props.switchTo,
           submitTask: this.props.marketActions.submitTask,
+          getBalance: this.props.marketActions.getBalance,
           scoreTask: this.props.marketActions.scoreTask,
           contracts: this.props.contracts,
         })
@@ -75,9 +76,10 @@ export default class Platform extends Component {
               </div>
 
               <div className="navbar-end">
-                <a className="navbar-item" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "TUTORIAL" })}>
-                  Tutorial
-                </a>
+              <a className="navbar-item" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "TUTORIAL" })}>
+              Tutorial
+              </a>
+              <p className="navbar-item">TrueCoin Balance: <span className="bold">&nbsp;0.00</span></p>
               </div>
             </div>
           </div>

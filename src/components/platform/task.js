@@ -173,7 +173,7 @@ export default class TaskPage extends Component {
               </div>
             <div className="content article-body" style={{height: `${window.innerHeight}px`}}>
               <h3 className="has-text-centered">Description</h3>
-              <p>{this.props.task.description}</p>
+              <p className="has-text-centered">{this.props.task.description}</p>
               <p className="has-text-centered">The mechanism for this task is: {this.state.mechanism}</p>
               { this.renderTaskNavigation() }
               <div className="card">
@@ -182,6 +182,9 @@ export default class TaskPage extends Component {
                     {this.state.questions[this.state.currQuestion]}
                   </p>
                 </div>
+                <p className="has-text-centered">
+                  Use the slider below to indicate how you expect <i>other</i> participants to respond. For example, all the way to the left indicates that you expect every participant to select the left choice.
+                </p>
                 { this.renderSlider() }
                 { this.renderSelector() }
               </div>

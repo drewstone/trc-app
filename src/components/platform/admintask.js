@@ -7,23 +7,32 @@ export default class AdminTaskPage extends Component {
     this.state = {
       choices: props.task.events,
       questions: props.task.questions,
+      hasScored: props.task.hasScored,
+      hasFinished: props.task.hasFinished,
       currQuestion: 0,
       prevQuestion: 0,
     }
   }
 
   scoreTask() {
-    return this.props.scoreTask(this.props.contracts, this.props.task);
+    var result = this.props.getBalance(this.props.contracts);
+    console.log(Promise.resolve(result));
+    return result;
   }
 
   renderScoreButton() {
-    return [
-      <div key={1} className="has-text-centered">
-        <a className="button is-primary rounded" onClick={() => this.scoreTask()}>Close and score</a>
-      </div>,
-      <br key={2}/>,
-      <br key={3}/>
-    ];
+    if (this.state.hasFinished) {
+      return [];
+    }
+    else {
+      return [
+        <div key={1} className="has-text-centered">
+          <a className="button is-primary rounded" onClick={() => this.scoreTask()}>Close and score</a>
+        </div>,
+        <br key={2}/>,
+        <br key={3}/>
+      ];
+    }
   }
 
   renderTaskNavigation() {
@@ -78,9 +87,7 @@ export default class AdminTaskPage extends Component {
     const answeredCount = this.props.task.answers.filter(arr => arr.length > 0).length;
     return (<div>
       <p className="title">{ this.state.questions[this.state.currQuestion] }</p>
-      <ul>
-        <li>Number of Answers: {answeredCount}</li>
-      </ul>
+      <p>Number of Answers: {answeredCount}</p>
     </div>);
   }
 
@@ -88,7 +95,7 @@ export default class AdminTaskPage extends Component {
     return (
       <section className="articles">
         <div className="column is-10 is-offset-1">
-          <div className="hero is-dark card article">
+          <div className="hero is-light card article">
               <div className="card-content">
                 <div className="media">
                   <div className="media-center">
@@ -105,8 +112,8 @@ export default class AdminTaskPage extends Component {
               </div>
               { this.renderScoreButton() }
             <div className="content article-body" style={{height: `${window.innerHeight}px`}}>
-              <h3 style={{color: 'white'}} className="has-text-centered">Description</h3>
-              <p>{this.props.task.description}</p>
+              <h3 className="has-text-centered">Description</h3>
+              <p className="has-text-centered">{this.props.task.description}</p>
               { this.renderTaskNavigation() }
               <div className="card">
                 <div className="card-content has-text-centered">

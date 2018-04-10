@@ -11,19 +11,6 @@ export default function HomePage({}) {
           <h2 className="subtitle is-size-5">
              <b>Truecoin takes qualities from prediction markets to crowdsource subjective information gathering, allowing you to forecast the crowds' beliefs.</b>
           </h2>
-          <div className="box">
-            
-            <div className="field is-grouped">
-              <p className="control is-expanded">
-                <input className="input" type="text" placeholder="Enter your email" />
-              </p>
-              <p className="control">
-                <a className="button is-primary">
-                  Keep in touch
-                </a>
-              </p>
-            </div>
-          </div>
 
           <h2>Learn more!</h2>
           <iframe width="100%" height="400dpi" src="https://drive.google.com/file/d/1OhIf5A4VLnC4qgDfpk2PCS376CBDF6FP/preview"/>
