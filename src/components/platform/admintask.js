@@ -15,7 +15,7 @@ export default class AdminTaskPage extends Component {
   }
 
   scoreTask() {
-    return this.props.scoreTask(this.props.contracts, this.props.task);
+    this.props.scoreTask(this.props.contracts, this.props.task);
   }
 
   renderScoreButton() {

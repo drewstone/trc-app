@@ -73,6 +73,7 @@ export default function(web3) {
 
     addTask: async function(contracts, data) {
       const { Protocol } = contracts;
+      console.log(data);
       const taskName = data.task;
       const designer = data.designer;
       const events = data.events;
@@ -138,7 +139,7 @@ export default function(web3) {
 
     scoreTask: async function(contracts, data) {
       const { Protocol, RBTS } = contracts;
-
+      console.log(data);
       const address = data.address;
       const taskName = data.name;
       const designer = data.designer;
@@ -153,13 +154,20 @@ export default function(web3) {
 
       try {
         let scoreResult = await RBTS.score(taskName, designer);
-        let mintResult = await Protocol.mintForTask("rbts", address);
-
-        console.log(scoreResult, mintResult);
-        return Promise.resolve(Object.assign({}, scoreResult, mintResult));
+        console.log(scoreResult);
       } catch (exception) {
+        console.log(exception);
         return Promise.reject(`Failed to score task: ${exception}`);
       }
+
+      try {
+        let mintResult = await Protocol.mintForTask("rbts", address);
+        console.log(mintResult);
+      } catch (e) {
+        console.log(e);
+        return Promise.reject(`Failed to mint tokens: ${e}`);
+      }
+      return Promise.resolve();
     },
 
     getBalance: async function(contracts) {

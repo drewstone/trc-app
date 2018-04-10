@@ -27,6 +27,7 @@ const screenReducer = (state = screenInitialState, action) => {
 const marketInitialState = {
   predictions: {},
   tasks: [],
+  balance: -1,
 };
 
 const marketReducer = (state = marketInitialState, action) => {
@@ -50,7 +51,7 @@ const marketReducer = (state = marketInitialState, action) => {
         success: prevState => {
           return {
             ...prevState,
-            tasks: [ ...prevState.tasks, ...payload ],
+            tasks: [ ...payload ],
           }
         },
       });
@@ -70,7 +71,6 @@ const marketReducer = (state = marketInitialState, action) => {
         finish: prevState => ({ ...prevState, isLoading: false }),
         failure: prevState => ({ ...prevState, fooError: payload }),
         success: prevState => {
-          console.log(payload.toNumber());
           return ({ ...prevState, balance: payload.toNumber(), fooError: false })
         },
       });

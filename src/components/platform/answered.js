@@ -183,8 +183,8 @@ export default class AnsweredPage extends Component {
         tasksInView.push(this.props.tasks[i])
       }
     }
-    const protocol = this.props.contracts.Protocol;
 
+    const protocol = this.props.contracts.Protocol;
     // tasksInView.forEach(task => Promise.resolve(protocol.mintForTask("rbts", task.address)));
     console.log("Made it here!");
     // tasksInView.forEach(task => console.log(Promise.resolve(protocol.getScore(window.web3.eth.coinbase, task.address))));
@@ -263,7 +263,7 @@ export default class AnsweredPage extends Component {
 
             </div>
 
-            <div className="column is-9 is-fullheight">
+            <div className="column is-9 is-fullheight" style={{overflow: 'hidden'}}>
               <span className="has-text-grey-light">These are the tasks you have completed.</span>
               { this.renderTasks() }
             </div>

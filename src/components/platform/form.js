@@ -50,7 +50,7 @@ export default class Form extends Component {
           <div className="field">
             <p className="control">
               <span className="select">
-                <select onChange={this.props.handleEventsChange}>
+                <select onChange={this.props.handleChoiceChange}>
                   <option value="RBTS">Robust Bayesian Truth Serum</option>
                   <option value="endogenous">Endogenous</option>
                 </select>

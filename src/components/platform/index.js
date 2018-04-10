@@ -28,6 +28,7 @@ export default class Platform extends Component {
           screens: this.props.screens,
           switchTo: this.props.switchTo,
           addTask: this.props.marketActions.addTask,
+          market: this.props.market,
           contracts: this.props.contracts,
         });        
       } else if (child.type === TaskPage || child.type === AdminTaskPage) {
@@ -38,6 +39,7 @@ export default class Platform extends Component {
           submitTask: this.props.marketActions.submitTask,
           getBalance: this.props.marketActions.getBalance,
           scoreTask: this.props.marketActions.scoreTask,
+          market: this.props.market,
           contracts: this.props.contracts,
         })
       } else {
@@ -79,7 +81,7 @@ export default class Platform extends Component {
               <a className="navbar-item" onClick={() => this.props.switchTo(this.props.screens.LANDING_PAGE, { component: "TUTORIAL" })}>
               Tutorial
               </a>
-              <p className="navbar-item">TrueCoin Balance: <span className="bold">&nbsp;0.00</span></p>
+              <p className="navbar-item">TrueCoin Balance: <span className="bold">&nbsp; { this.props.market.balance }</span></p>
               </div>
             </div>
           </div>

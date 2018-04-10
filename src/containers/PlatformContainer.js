@@ -19,6 +19,15 @@ const PlatformScreenContainer = {
 };
 
 class PlatformContainer extends Component {
+  componentDidMount() {
+    setInterval(() => {
+      console.log(this.props.market.balance);
+      console.log(Date.now());
+      this.props.marketActions.getBalance(this.props.contracts)
+      .then(() => this.props.marketActions.fetchTasks(this.props.contracts));
+    }, 5000);
+  }
+
   render() {
     const PlatformScreen = PlatformScreenContainer[this.props.metadata.component];
 
@@ -34,7 +43,8 @@ class PlatformContainer extends Component {
         tasks={this.props.market.tasks}
         screens={screens}
         switchTo={this.props.screenActions.switchTo}
-        marketActions={this.props.marketActions}>
+        marketActions={this.props.marketActions}
+        market={this.props.market}>
         <PlatformScreen />
       </Platform>
     );
