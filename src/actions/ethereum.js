@@ -8,17 +8,19 @@ import Truecoin from '../contracts/Truecoin';
 
 const CONTRACTS = [ Protocol, Mechanism, RBTS, Truecoin ];
 
-// Ropsten
-const DEPLOYED = {
-  Protocol: "0x6272ea4a37697df1472690769331ef0a1d6b657e",
-  RBTS: "0x54f4e4432891efc599585d7f7e9c04cef239746f",
-  Truecoin: "0x6470d00c03818cc99d748202b80cda924ed402eb",
-};
-
-// // Rinkeby
+// // Ropsten
 // const DEPLOYED = {
-//   Protocol: "0xd996e9e1aaaa20d31d8889965b6ad293d2994f35",
+//   Protocol: "0x6272ea4a37697df1472690769331ef0a1d6b657e",
+//   RBTS: "0x54f4e4432891efc599585d7f7e9c04cef239746f",
+//   Truecoin: "0x6470d00c03818cc99d748202b80cda924ed402eb",
 // };
+
+// Rinkeby
+const DEPLOYED = {
+  Protocol: "0x1ade409c46f2b883a487d7c0eb76f10d3c092592",
+     RBTS: "0x9785a584836bfb6dba0b586928a3f422916b3e24",
+    Truecoin: "0x553f4bde53bcd2e4fabea4e8577bafc2d740c84d"
+};
 
 // // Development
 // const DEPLOYED = {

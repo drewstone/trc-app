@@ -92,11 +92,35 @@ export default class AdminTaskPage extends Component {
   }
 
   renderQuestionData() {
-    const answeredCount = this.props.task.answers.filter(arr => arr.length > 0).length;
-    return (<div>
-      <p className="title">{ this.state.questions[this.state.currQuestion] }</p>
-      <p>Number of Answers: {answeredCount}</p>
-    </div>);
+    const answeredCount = this.props.task.answers.length > 0 ? this.props.task.answers[0].length : 0;
+    var responses = this.props.task.answers[this.state.currQuestion];
+
+    var numSecondChoice = 0;
+    for (var i = 0, len = responses.length; i < len; i++) {
+      numSecondChoice += responses[i][0].c[0];
+    }
+    
+    var responseList = responses.map((response, inx) => {
+      return (
+        <div key={inx} className="box content">
+          <h5>Selected Answer: <span className="bold">{ this.state.events[response[0].c[0]] }</span></h5>
+          <p>Predicted Distribution: { response[1].c[0] / 10000 }</p>
+        </div>
+      );
+    });
+
+    return (
+      <div>
+        <p className="title has-text-centered">{ this.state.questions[this.state.currQuestion] }</p>
+        <div className="hero box content is-link">
+          <h4 className="title">Responses Summary</h4>
+          <p className="">Number of Answers: <span className="bold">{answeredCount}</span></p>
+          <p>Distribution of Answers: <span className="bold">{ this.state.events[0] } ({ answeredCount - numSecondChoice })</span>, <span className="bold">{ this.state.events[1] } ({ numSecondChoice })</span></p>
+        </div>
+        
+        { responseList }
+      </div>
+    );
   }
 
   render() {
@@ -124,7 +148,7 @@ export default class AdminTaskPage extends Component {
               <p className="has-text-centered">{this.props.task.description}</p>
               { this.renderTaskNavigation() }
               <div className="card">
-                <div className="card-content has-text-centered">
+                <div className="card-content">
                   { this.renderQuestionData() }
                 </div>
               </div>
