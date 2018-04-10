@@ -13,6 +13,7 @@ export default class Form extends Component {
               className="input"
               type="text"
               placeholder="Ex: Will the following stocks go up or down?"
+              maxLength="32"
               onChange={this.props.handleTaskChange}
               value={this.props.data.task}
               required/>
@@ -35,10 +36,11 @@ export default class Form extends Component {
         <div className="field">
           <label className="label">Description</label>
           <div className="control">
-            <textarea
+            <input
               id="form-description"
-              className="textarea"
+              className="input"
               placeholder="Ex: For each stock, determine whether or not you expect it to go up or down."
+              maxLength="32"
               onChange={this.props.handleDescriptionChange}
               value={this.props.data.description}
               required/>
@@ -102,6 +104,7 @@ export default class Form extends Component {
                         id={`form-text-${inx}`}
                         className="input"
                         type="text"
+                        maxLength="32"
                         onChange={this.props.handleQuestionChange}
                         value={this.props.data.questions[inx].text}
                         placeholder="Question"
