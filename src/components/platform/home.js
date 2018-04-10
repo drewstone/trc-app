@@ -235,18 +235,33 @@ export default class HomePage extends Component {
             </div>
           </article>
         );
-  
-        return (task.hasFinished) ? (
-          <div key={inx} className="hero is-light box content">
-            { content }
-          </div>
-        ) : (
-          <div key={inx} className="box content">
+        if (task.hasFinished || task.hasScored) {
+          if (task.hasFinished) {
+            return (
+            <div key={inx} className="hero is-light box content">
+            <span className="icon"> <i className="fa fa-check-circle"></i> </span>
+             { content }
+            </div>
+            )
+          }
+          else {
+            return (
+            <div key={inx} className="hero is-light box content">
+            <span className="icon"> <i className="fa fa-lock"></i> </span>
+               { content }
+            </div>
+            )
+          }
+        }
+        else {
+          return  (
+            <div key={inx} className="box content">
             <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "TASK", task: task })}>
               { content }
             </a>
           </div>
-        );
+          )
+        }
       });
     }
   }
