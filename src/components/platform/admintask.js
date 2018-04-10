@@ -19,7 +19,7 @@ export default class AdminTaskPage extends Component {
   }
 
   renderScoreButton() {
-    if (this.state.hasFinished) {
+    if (this.state.hasScored) {
       return [];
     }
     else {

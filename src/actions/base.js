@@ -149,17 +149,17 @@ export default function(web3) {
       console.log(result);
       result = await Protocol.isValidTask(taskName, designer);
       console.log(result);
-      return;
+      // return;
 
-      // try {
-      //   let scoreResult = await RBTS.score(taskName, designer);
-      //   let mintResult = await Protocol.mintForTask("rbts", address);
+      try {
+        let scoreResult = await RBTS.score(taskName, designer);
+        let mintResult = await Protocol.mintForTask("rbts", address);
 
-      //   console.log(scoreResult, mintResult);
-      //   return Promise.resolve(Object.assign({}, scoreResult, mintResult));
-      // } catch (exception) {
-      //   return Promise.reject(`Failed to score task: ${exception}`);
-      // }
+        console.log(scoreResult, mintResult);
+        return Promise.resolve(Object.assign({}, scoreResult, mintResult));
+      } catch (exception) {
+        return Promise.reject(`Failed to score task: ${exception}`);
+      }
     },
 
     getBalance: async function(contracts) {
