@@ -165,7 +165,7 @@ export default class TaskPage extends Component {
                   <div className="container">
                     <div className="media-content">
                       <h1 className="title article-title is-1"><b>Task name: </b>{this.props.task.name}</h1>
-                      <h3 style={{marginBottom: "20px"}}><b>Posted: </b>{(new Date(this.props.task.initiationTime)).toDateString()}</h3>
+                      <h3 style={{marginBottom: "20px"}}><b>Posted: </b>{(new Date(this.props.task.initiationTime * Math.pow(10, 3))).toDateString()}</h3>
                       <h3 style={{marginBottom: "20px"}}><b>Designer: </b>{this.props.task.designer}</h3>
                     </div>
                   </div>

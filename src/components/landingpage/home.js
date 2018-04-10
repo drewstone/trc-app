@@ -9,7 +9,7 @@ export default function HomePage({}) {
             A prediction market for crowd intelligence.
           </h1>
           <h2 className="subtitle is-size-5">
-             <b>Truecoin takes qualities from prediction markets to crowdsource subjective information gathering, allowing you to forecast the crowds' beliefs.</b>
+             <b>Truecoin leverages insights from algorithmic game theory to crowdsource subjective data collection.</b>
           </h2>
 
           <h2>Learn more!</h2>
