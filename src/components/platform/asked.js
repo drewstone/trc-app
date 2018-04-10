@@ -198,11 +198,11 @@ export default class AskedPage extends Component {
     else {
       return tasksInView.map((task, inx) => {
         return (
-            <div key={inx} className="hero box content is-dark">
+            <div key={inx} className="hero box content admin">
               <a onClick={() => this.props.switchTo(this.props.screens.PLATFORM, { component: "ADMINTASK", task: task })}>
                 <article className="post">
-                  <h4 style={{color: 'white'}}>{task.name}</h4>
-                  <span className="pull-right has-text-grey-light">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
+                  <h4 className="has-text-white">{task.name}</h4>
+                  <span className="pull-right has-text-white">{Object.keys(task.questions).length} &nbsp; <i className="fa fa-tasks"></i></span>
                   <div className="media">
                     <div className="media-left">
                       <p className="image is-32x32">
@@ -211,7 +211,7 @@ export default class AskedPage extends Component {
                     </div>
                     <div className="media-content">
                       <div className="content">
-                        <p>
+                        <p className="has-text-white">
                           <a>{task.designer}</a> on {new Date(task.initiationTime).toDateString()}  &nbsp; 
                           { 
                             task.tags.map((tag, inx) => (
