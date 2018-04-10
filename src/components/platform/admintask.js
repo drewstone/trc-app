@@ -9,13 +9,15 @@ export default class AdminTaskPage extends Component {
       questions: props.task.questions,
       hasScored: props.task.hasScored,
       hasFinished: props.task.hasFinished,
+      answers: props.task.answers,
+      events: props.task.events,
       currQuestion: 0,
       prevQuestion: 0,
     }
   }
 
   scoreTask() {
-    this.state.hasScored = false;
+    this.state.hasScored = true;
     this.props.scoreTask(this.props.contracts, this.props.task);
     this.renderScoreButton()
   }

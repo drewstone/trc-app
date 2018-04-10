@@ -21,8 +21,6 @@ const PlatformScreenContainer = {
 class PlatformContainer extends Component {
   componentDidMount() {
     setInterval(() => {
-      console.log(this.props.market.balance);
-      console.log(Date.now());
       this.props.marketActions.getBalance(this.props.contracts)
       .then(() => this.props.marketActions.fetchTasks(this.props.contracts));
     }, 5000);
