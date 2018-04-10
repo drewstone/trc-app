@@ -49,7 +49,6 @@ function fetch(web3) {
     return Promise.map(Object.keys(contracts), c => {
       contracts[c].setProvider(web3.currentProvider);
       contracts[c].defaults({from: web3.eth.coinbase});
-      // contracts[c].web3.eth.defaultAccount = web3.eth.coinbase;
       return (!!DEPLOYED[c])
         ? Promise.props({ [c]: contracts[c].at(DEPLOYED[c]) })
         : { [c]: contracts[c] };

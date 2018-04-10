@@ -9,6 +9,7 @@ export default class AdminTaskPage extends Component {
       questions: props.task.questions,
       hasScored: props.task.hasScored,
       hasFinished: props.task.hasFinished,
+      answers: props.task.answers,
       currQuestion: 0,
       prevQuestion: 0,
     }
@@ -21,6 +22,7 @@ export default class AdminTaskPage extends Component {
   }
 
   renderScoreButton() {
+    console.log(this.state.answers);
     if (this.state.hasScored) {
       return [
         <div key={1} className="has-text-centered">

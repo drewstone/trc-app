@@ -183,7 +183,7 @@ export default class TaskPage extends Component {
                   </p>
                 </div>
                 <p className="has-text-centered">
-                  Use the slider below to indicate how you expect <i>other</i> participants to respond. For example, all the way to the left indicates that you expect every participant to select the left choice.
+                  Use the slider below to indicate how you expect <i>other</i> participants to respond.
                 </p>
                 { this.renderSlider() }
                 { this.renderSelector() }
